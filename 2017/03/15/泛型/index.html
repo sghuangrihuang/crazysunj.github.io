@@ -130,7 +130,257 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-泛型" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      泛型
+    </h1>
+  
+
+        
+        <a href="/2017/03/15/泛型/" class="archive-article-date">
+  	<time datetime="2017-03-15T09:23:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文地址：<a href="http://www.cnblogs.com/absfree/p/5270883.html" target="_blank" rel="external">深入理解Java之泛型</a></p>
+<h2 id="1-Why-——引入泛型机制的原因"><a href="#1-Why-——引入泛型机制的原因" class="headerlink" title="1. Why ——引入泛型机制的原因"></a>1. Why ——引入泛型机制的原因</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的ArrayList实现。<br><a id="more"></a><br>在Java 5之前，ArrayList的实现大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class ArrayList &#123;</div><div class="line">    public Object get(int i) &#123; ... &#125;</div><div class="line">    public void add(Object o) &#123; ... &#125;</div><div class="line">    ...</div><div class="line">    private Object[] elementData;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从以上代码我们可以看到，用于向ArrayList中添加元素的add函数接收一个Object型的参数，从ArrayList获取指定元素的get方法也返回一个Object类型的对象，Object对象数组elementData存放这ArrayList中的对象， 也就是说，无论你向ArrayList中放入什么类型的类型，到了它的内部，都是一个Object对象。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于继承的泛型实现会带来两个问题：第一个问题是有关get方法的，我们每次调用get方法都会返回一个Object对象，每一次都要强制类型转换为我们需要的类型，这样会显得很麻烦；第二个问题是有关add方法的，假如我们往聚合了String对象的ArrayList中加入一个File对象，编译器不会产生任何错误提示，而这不是我们想要的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以，从Java 5开始，ArrayList在使用时可以加上一个类型参数(type parameter)，这个类型参数用来指明ArrayList中的元素类型。类型参数的引入解决了以上提到的两个问题，如以下代码所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; s = new ArrayList&lt;String&gt;();</div><div class="line">s.add(&quot;abc&quot;);</div><div class="line">String s = s.get(0); //无需进行强制转换</div><div class="line">s.add(123);  //编译错误，只能向其中添加String对象</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>在以上代码中，编译器“获知”ArrayList的类型参数String后，便会替我们完成强制类型转换以及类型检查的工作。</p>
+<h2 id="2-泛型类"><a href="#2-泛型类" class="headerlink" title="2. 泛型类"></a>2. 泛型类</h2><p>所谓泛型类（generic class）就是具有一个或多个类型参数的类。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Pair&lt;T, U&gt; &#123;</div><div class="line">    private T first;</div><div class="line">    private U second;</div><div class="line">    public Pair(T first, U second) &#123;</div><div class="line">        this.first = first;</div><div class="line">        this.second = second;</div><div class="line">    &#125;</div><div class="line">    public T getFirst() &#123;</div><div class="line">        return first;</div><div class="line">    &#125;</div><div class="line">    public U getSecond() &#123;</div><div class="line">        return second;</div><div class="line">    &#125;</div><div class="line">    public void setFirst(T newValue) &#123;</div><div class="line">        first = newValue;</div><div class="line">    &#125;</div><div class="line">    public void setSecond(U newValue) &#123;</div><div class="line">        second = newValue;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的代码中我们可以看到，泛型类Pair的类型参数为T、U，放在类名后的尖括号中。这里的T即Type的首字母，代表类型的意思，常用的还有E（element）、K（key）、V（value）等。当然不用这些字母指代类型参数也完全可以。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实例化泛型类的时候，我们只需要把类型参数换成具体的类型即可，比如实例化一个Pair类我们可以这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;String, Integer&gt; pair = new Pair&lt;String, Integer&gt;();</div></pre></td></tr></table></figure>
+<h2 id="3-泛型方法"><a href="#3-泛型方法" class="headerlink" title="3. 泛型方法"></a>3. 泛型方法</h2><p>所谓泛型方法，就是带有类型参数的方法，它既可以定义在泛型类中，也可以定义在普通类中。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class ArrayAlg &#123;</div><div class="line">    public static &lt;T&gt; T getMiddle(T[] a) &#123;</div><div class="line">        return a[a.length / 2];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码中的getMiddle方法即为一个泛型方法，定义的格式是类型变量放在修饰符的后面、返回类型的前面。我们可以看到，以上泛型方法可以针对各种类型的数组调用，在这些数组的类型已知切有限时，虽然也可以用过重载实现，不过编码效率要低得多。调用以上泛型方法的示例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String[] strings = &#123;&quot;aa&quot;, &quot;bb&quot;, &quot;cc&quot;&#125;;</div><div class="line">String middle = ArrayAlg.getMiddle(names);</div></pre></td></tr></table></figure>
+<h2 id="4-类型变量的限定"><a href="#4-类型变量的限定" class="headerlink" title="4. 类型变量的限定"></a>4. 类型变量的限定</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在有些情况下，泛型类或者泛型方法想要对自己的类型参数进一步加一些限制。比如，我们想要限定类型参数只能为某个类的子类或者只能为实现了某个接口的类。相关的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T extends BoundingType&gt;（BoundingType是一个类或者接口）。其中的BoundingType可以多于1个，用“&amp;”连接即可。</div></pre></td></tr></table></figure>
+<h2 id="5-深入理解泛型的实现"><a href="#5-深入理解泛型的实现" class="headerlink" title="5. 深入理解泛型的实现"></a>5. 深入理解泛型的实现</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，从虚拟机的角度看，不存在“泛型”概念。比如上面我们定义的泛型类Pair，在虚拟机看来（即编译为字节码后），它长的是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Pair &#123;</div><div class="line">    private Object first;</div><div class="line">    private Object second;</div><div class="line">    public Pair(Object first, Object second) &#123;</div><div class="line">        this.first = first;</div><div class="line">        this.second = second;</div><div class="line">    &#125;</div><div class="line">    public Object getFirst() &#123;</div><div class="line">        return first;</div><div class="line">    &#125;</div><div class="line">    public Object getSecond() &#123;</div><div class="line">        return second;</div><div class="line">    &#125;</div><div class="line">    public void setFirst(Object newValue) &#123;</div><div class="line">        first = newValue;</div><div class="line">    &#125;</div><div class="line">    public void setSecond(Object newValue) &#123;</div><div class="line">        second = newValue;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的类是通过类型擦除得到的，是Pair泛型类对应的原始类型（raw type）。类型擦除就是把所有类型参数替换为BoundingType（若未加限定就替换为Object）。</p>
+<p>我们可以简单地验证下，编译Pair.java后，键入“javap -c -s Pair”可得到：</p>
+<p><img src="/img/genericity1.png" alt=""></p>
+<p>上图中带“descriptor”的行即为相应方法的签名，比如从第四行我们可以看到Pair构造方法的两个形参经过类型擦除后均已变为了Object。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于在虚拟机中泛型类Pair变为它的raw type，因而getFirst方法返回的是一个Object对象，而从编译器的角度看，这个方法返回的是我们实例化类时指定的类型参数的对象。实际上， 是编译器帮我们完成了强制类型转换的工作。也就是说编译器会把对Pair泛型类中getFirst方法的调用转化为两条虚拟机指令：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一条是对raw type方法getFirst的调用，这个方法返回一个Object对象；第二条指令把返回的Object对象强制类型转换为当初我们指定的类型参数类型。</p>
+<p>我们通过以下的代码来直观的感受下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Pair&lt;T, U&gt; &#123;</div><div class="line">    //请见上面贴出的代码</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String first = &quot;first&quot;, second = &quot;second&quot;;</div><div class="line">        Pair&lt;String, String&gt; p = new Pair&lt;String, String&gt;(first, second);</div><div class="line">        String result = p.getFirst();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译后我们通过javap查看下生成的字节码：</p>
+<p><img src="/img/genericity2.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们重点关注下上面标着”17:”的那行，根据后面的注释，我们知道这是对getFirst方法的调用，可以看到他的返回类型的确是Object。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们再看下标着“20:”的那行，是一个checkcast指令，字面上我们就可以知道这条指令的含义是检查类型转换是否成功，再看后面的注释，我们这里确实存在一个到String的强制类型转换。</p>
+<p>类型擦除也会发生于泛型方法中，如以下泛型方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static &lt;T extends Comparable&gt; T min(T[] a)</div></pre></td></tr></table></figure>
+<p>编译后经过类型擦除会变成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static Comparable min(Comparable[] a)</div></pre></td></tr></table></figure>
+<p>方法的类型擦除会带来一些问题，考虑以下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class DateInterval extends Pair&lt;Date, Date&gt; &#123;</div><div class="line">    public DateInterval(Date first, Date second) &#123;</div><div class="line">        super(first, second);</div><div class="line">    &#125;</div><div class="line">    public void setSecond(Date second) &#123;</div><div class="line">        if (second.compareTo(getFirst()) &gt;= 0) &#123;</div><div class="line">            super.setSecond(second);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码经过类型擦除后，变为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class DateInterval extends Pair &#123;</div><div class="line">    ...</div><div class="line">    public void setSecond(Date second) &#123;</div><div class="line">        if (second.compareTo(getFirst()) &gt;= 0) &#123;</div><div class="line">            super.setSecond(second);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而在DateInterval类还存在一个从Pair类继承而来的setSecond的方法（经过类型擦除后）如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void setSecond(Object second)</div></pre></td></tr></table></figure>
+<p>现在我们可以看到，这个方法与DateInterval重写的setSecond方法具有不同的方法签名（形参不同），所以是两个不同的方法，然而这两个方法之前却是override的关系。考虑以下的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">DateInterval interval = new DateInterval(...);</div><div class="line">Pair&lt;Date, Date&gt; pair = interval;</div><div class="line">Date aDate = new Date(...);</div><div class="line">pair.setSecond(aDate);</div></pre></td></tr></table></figure>
+<p>由以上代码可知，pair实际引用的是DateInterval对象，因此应该调用DateInterval的setSecond方法，这里的问题是<strong>类型擦除与多态发生了冲突</strong>。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们来梳理下为什么会发生这个问题：pair在之前被声明为类型Pair，该类在虚拟机看来只有一个“setSecond(Object)”方法。因此在运行时，虚拟机发现pair实际引用的是DateInterval对象后，会去调用DateInterval的“setSecond(Object)”，然而DateInterval类中却只有”setSecond(Date)”方法。</p>
+<p>解决这个问题的方法是由编译器在DateInterval中生成一个<strong>桥方法</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public void setSecond(Object second) &#123;</div><div class="line">   setSecond((Date) second);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们再来通过javap来感受下：</p>
+<p><img src="/img/genericity3.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以看到，在DateInterval类中存在两个setSecond方法，第一个setSecond方法（即我们定义的setSecond方法）的形参为Date，第二个setSecond方法的形参是Object，第二个方法就是编译器为我们生成的桥方法。我们可以看到第二个方法中存在到Date的强制类型转换，而且调用了第一个setSecond方法。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综合以上，我们知道了泛型机制的实现实际上是编译器帮我们分担了一些麻烦的工作。一方面通过使用类型参数，可以告诉编译器在编译时进行类型检查；另一方面，原本需要我们做的强制类型转换的工作也由编译器为我们代劳了。</p>
+<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><p>1） 不能用基本类型实例化类型参数</p>
+<p>也就是说，以下语句是非法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;int, int&gt; pair = new Pair&lt;int, int&gt;();</div></pre></td></tr></table></figure>
+<p>不过我们可以用相应的包装类型来代替。</p>
+<p>2）不能抛出也不能捕获泛型类实例</p>
+<p>泛型类扩展Throwable即为不合法，因此无法抛出或捕获泛型类实例。但在异常声明中使用类型参数是合法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static &lt;T extends Throwable&gt; void doWork(T t) throws T &#123;</div><div class="line">    try &#123;</div><div class="line">        ...</div><div class="line">    &#125; catch (Throwable realCause) &#123;</div><div class="line">        t.initCause(realCause);</div><div class="line">        throw t;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3）参数化类型的数组不合法</p>
+<p>在Java中，Object[]数组可以是任何数组的父类（因为任何一个数组都可以向上转型为它在定义时指定元素类型的父类的数组）。考虑以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String[] strs = new String[10];</div><div class="line">Object[] objs = strs;</div><div class="line">obj[0] = new Date(...);</div></pre></td></tr></table></figure>
+<p>在上述代码中，我们将数组元素赋值为满足父类（Object）类型，但不同于原始类型（Pair）的对象，在编译时能够通过，而在运行时会抛出ArrayStoreException异常。</p>
+<p>基于以上原因，假设Java允许我们通过以下语句声明并初始化一个泛型数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;String, String&gt;[] pairs = new Pair&lt;String, String&gt;[10];</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么在虚拟机进行类型擦除后，实际上pairs成为了Pair[]数组，我们可以将它向上转型为Object[]数组。这时我们若往其中添加Pair对象，便能通过编译时检查和运行时检查，而我们的本意是只想让这个数组存储Pair对象，这会产生难以定位的错误。因此，Java不允许我们通过以上的语句形式声明并初始化一个泛型数组。</p>
+<p>可用如下语句声明并初始化一个泛型数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;String, String&gt;[] pairs = (Pair&lt;String, String&gt;[]) new Pair[10];</div></pre></td></tr></table></figure>
+<p>4）不能实例化类型变量</p>
+<p>不能以诸如“new T(…)”, “new T[…]”, “T.class”的形式使用类型变量。Java禁止我们这样做的原因很简单，因为存在类型擦除，所以类似于”new T(…)”这样的语句就会变为”new Object(…)”, 而这通常不是我们的本意。我们可以用如下语句代替对“new T[…]”的调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arrays = (T[]) new Object[N];</div></pre></td></tr></table></figure>
+<p>5）泛型类的静态上下文中不能使用类型变量</p>
+<p>注意，这里我们强调了泛型类。因为普通类中可以定义静态泛型方法，如上面我们提到的ArrayAlg类中的getMiddle方法。关于为什么有这样的规定，请考虑下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class People&lt;T&gt; &#123;</div><div class="line">    public static T name;</div><div class="line">    public static T getName() &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们知道，在同一时刻，内存中可能存在不只一个People类实例。假设现在内存中存在着一个People对象和People对象，而类的静态变量与静态方法是所有类实例共享的。那么问题来了，name究竟是String类型还是Integer类型呢？基于这个原因，Java中不允许在泛型类的静态上下文中使用类型变量。</p>
+<h2 id="7-类型通配符"><a href="#7-类型通配符" class="headerlink" title="7. 类型通配符"></a>7. 类型通配符</h2><p>介绍类型通配符前，首先介绍两点：</p>
+<ul>
+<li><p>假设Student是People的子类，Pair却不是Pair的子类，它们之间不存在”is-a”关系。</p>
+</li>
+<li><p>Pair与它的原始类型Pair之间存在”is-a”关系，Pair在任何情况下都可以转换为Pair类型。</p>
+</li>
+</ul>
+<p>现在考虑这样一个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static void printName(Pair&lt;People, People&gt; p) &#123;</div><div class="line">    People p1 = p.getFirst();</div><div class="line">    System.out.println(p1.getName()); //假设People类定义了getName实例方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在以上的方法中，我们想要同时能够传入Pair和Pair类型的参数，然而二者之间并不存在”is-a”关系。在这种情况下，Java提供给我们这样一种解决方案：使用Pair&lt;? extends People&gt;作为形参的类型。也就是说，Pair和Pair都可以看作是Pair&lt;? extends People&gt;的子类。</p>
+<p>形如”&lt;? extends BoundingType&gt;”的代码叫做通配符的子类型限定。与之对应的还有通配符的超类型限定，格式是这样的：&lt;? super BoundingType&gt;。</p>
+<p>现在我们考虑下面这段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Pair&lt;Student&gt; students = new Pair&lt;Student&gt;(student1, student2);</div><div class="line">Pair&lt;? extends People&gt; wildchards = students;</div><div class="line">wildchards.setFirst(people1);</div></pre></td></tr></table></figure>
+<p>以上代码的第三行会报错，因为wildchards是一个Pair&lt;? extends People&gt;对象，它的setFirst方法和getFirst方法是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">void setFirst(? extends People)</div><div class="line">? extends People getFirst()</div></pre></td></tr></table></figure>
+<p>对于setFirst方法来说，会使得编译器不知道形参究竟是什么类型（只知道是People的子类），而我们试图传入一个People对象，编译器无法判定People和形参类型是否是”is-a”的关系，所以调用setFirst方法会报错。而调用wildchards的getFirst方法是合法的，因为我们知道它会返回一个People的子类，而People的子类“always is a People”。（总是可以把子类对象转换为父类对象）</p>
+<p>而对于通配符的超类型限定的情况下，调用getter方法是非法的，而调用setter方法是合法的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了子类型限定和超类型限定，还有一种通配符叫做无限定的通配符，它是这样的：&lt;?&gt;。这个东西我们什么时候会用到呢？考虑一下这个场景，我们调用一个会返回一个getPairs方法，这个方法会返回一组Pair对象。其中既有Pair, 还有Pair对象。（Student类和Teacher类不存在继承关系）显然，这种情况下，子类型限定和超类型限定都不能用。这时我们可以用这样一条语句搞定它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;?&gt;[] pairs = getPairs(...);</div></pre></td></tr></table></figure>
+<p>对于无限定的通配符，调用getter方法和setter方法都是非法的。</p>
+<h2 id="8-参考资料"><a href="#8-参考资料" class="headerlink" title="8. 参考资料"></a>8. 参考资料</h2><p><a href="https://book.douban.com/subject/3146174/" target="_blank" rel="external">JAVA核心技术（卷1） (豆瓣)</a></p>
+<h2 id="9-转者题外话"><a href="#9-转者题外话" class="headerlink" title="9. 转者题外话"></a>9. 转者题外话</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本篇可以说比较快的掌握java的高级用法-泛型，把运用的部分提炼了出来，如果想详细深入，可参考《JAVA核心技术》和《Effective Java》。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">泛型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/15/泛型/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/15/工厂模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          工厂模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">打造炫酷的多类型RecyclerView的Adapter</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+
+  
+
+  
+
+  <!-- 网易云跟帖 -->
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "undefined",
+    target: "cloud-tie-wrapper"
+  };
+  var yunManualLoad = true;
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+  </script>
+
+
           </div>
         </div>
       </div>
@@ -222,6 +472,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -255,10 +509,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -306,6 +556,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -314,15 +568,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>

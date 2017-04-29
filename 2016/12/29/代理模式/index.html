@@ -126,7 +126,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-代理模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      代理模式
+    </h1>
+  
+
+        
+        <a href="/2016/12/29/代理模式/" class="archive-article-date">
+  	<time datetime="2016-12-29T05:24:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>定义<br>给某一个对象提供一个代理，并由代理对象控制对原对象的引用。</li>
+<li>角色<ul>
+<li>ISubject：抽象主题角色，是一个接口。该接口是对象和它的代理共用的接口。</li>
+<li>RealSubject：真实主题角色，是实现抽象主题接口的类。</li>
+<li>Proxy：代理角色，内部含有对真实对象RealSubject的引用，从而可以操作真实对象。代理对象提供与真实对象相同的接口，以便在任何时刻都能代替真实对象。同时，代理对象可以在执行真实对象操作时，附加其他的操作，相当于对真实对象进行封装。</li>
+</ul>
+</li>
+</ol>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>例子：小明想要租房。</p>
+<p>实现代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class XiaoMing&#123;</div><div class="line">	public void renting()&#123;</div><div class="line">		System.out.println(&quot;租房子&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>找了很久找不到，于是找到了中介<br>实现代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class Proxy&#123;</div><div class="line">	private XiaoMing xm;</div><div class="line">	public Proxy()&#123;</div><div class="line">		xm=new XiaoMing();</div><div class="line">	&#125;</div><div class="line">	public void renting()&#123;</div><div class="line">		xm.rennting();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>统一管理行为，利用接口，XiaoMing与Proxy分别实现Rent接口</p>
+<p>Rent接口如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Rent &#123;</div><div class="line">    void renting();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h4 id="三大代理"><a href="#三大代理" class="headerlink" title="三大代理"></a>三大代理</h4><p><strong>远程代理</strong></p>
+<p>远程代理可以作为另一个JVM上对象的本地代表。调用代理的放大，会被代理利用网络转发到远程执行，并且结果会通过网络返回给代理，再由代理将结果转给客户。</p>
+<p>这个比较好理解，只不过是把真实对象放在远程，然后通过代理调用远程对象。</p>
+<p>实现方式：</p>
+<ul>
+<li>Java: RMI(Remote Method Invocation)</li>
+<li>Android: AIDL(Android Interface Definition Language)</li>
+</ul>
+<p><strong>虚拟代理</strong>（一般用于控制访问创建开销大的资源）</p>
+<p>虚拟代理作为创建开销大的对象的代表。虚拟代理经常直到我们真正需要一个对象的时候才创建它。当对象在创建前和创建中时，由虚拟代理来扮演对象的替身。对象创建后，代理就会请求直接委托给对象。</p>
+<p>例子：图像加载。</p>
+<p><strong>保护代理</strong></p>
+<p>一般用动态代理实现保护代理，动态代理就是在运行时动态地创建一个代理类，实现一个或者多个接口，并将方法的调用转发到你所指定的类。因为实际的代理类是在运行时创建的。</p>
+<p>例子：信息数据修改。</p>
+<h4 id="代理的变体"><a href="#代理的变体" class="headerlink" title="代理的变体"></a>代理的变体</h4><p><strong>防火墙代理</strong></p>
+<p>控制网络资源的访问，保护主体免于“坏客户”的侵害。</p>
+<p>例子：防火墙系统。</p>
+<p><strong>智能引用代理</strong></p>
+<p>当主题被引用时，进行额外的动作，例如计算一个对象被引用的次数。</p>
+<p>例子：数字图书馆。</p>
+<p><strong>缓存代理</strong></p>
+<p>为开销大的运算结果提供暂时存储：它也允许多个客户共享结果，以减少计算或者网络延迟。</p>
+<p>例子：Web服务器代理，以及内容管理与出版系统。</p>
+<p><strong>同步代理</strong></p>
+<p>在多线程的情况下为主题提供安全的访问。</p>
+<p>例子：javaspaces，为分散式环境内的潜在对象集合提供同步访问控制。</p>
+<p><strong>复杂隐藏代理</strong></p>
+<p>用来隐藏一个类的复杂集合的复杂度，并进行访问控制。有时候也称为外观代理，这不难理解。复杂隐藏代理和外观模式是不一样的，因为代理控制访问，而外观模式只提供另一组接口。</p>
+<p><strong>写入时复制代理</strong></p>
+<p>用来控制对象的复制，方法是延迟对象的复制，直到客户真的需要为止。这是虚拟代理的变体。</p>
+<p>例子：CopyOnWriteArrayList。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代理模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/代理模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/29/对于所有对象都通用的方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          对于所有对象都通用的方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/29/适配器模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">适配器模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+
+  
+
+  
+
+  <!-- 网易云跟帖 -->
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "undefined",
+    target: "cloud-tie-wrapper"
+  };
+  var yunManualLoad = true;
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+  </script>
+
+
           </div>
         </div>
       </div>
@@ -218,6 +419,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -251,10 +456,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -302,6 +503,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -310,15 +515,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
