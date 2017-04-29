@@ -130,198 +130,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IOC思想" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      IOC思想
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/IOC思想/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><pre><code>Spring容器来实现这些相互依赖对象的创建、协调工作。
-</code></pre><h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>西游记中六小龄童大闹天宫。</p>
-<h3 id="一般实现："><a href="#一般实现：" class="headerlink" title="一般实现："></a>一般实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi&#123;</div><div class="line">   public void tianGong()&#123;</div><div class="line">       //①演员直接侵入剧本</div><div class="line">       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();</div><div class="line">       lxlt.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们会发现以上剧本在①处，作为具体角色饰演者的六小龄童直接侵入到剧本中，使剧本和演员直接耦合在一起。<br><img src="/img/ioc1.png" alt=""></p>
-<h3 id="改善："><a href="#改善：" class="headerlink" title="改善："></a>改善：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个明智的编剧在剧情创作时应围绕故事的角色进行，而不应考虑角色的具体饰演者，这样才可能在剧本投拍时自由地遴选任何适合的演员，而非绑定在六小龄童一人身上。通过以上的分析，我们知道需要为该剧本主人公孙悟空定义一个接口：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   public void tianGong()</div><div class="line">   &#123;</div><div class="line">        //①引入孙悟空角色接口</div><div class="line">       SunWuKong sunWuKong = new LiuXiaoLingTong();</div><div class="line">        //②通过接口开展剧情</div><div class="line">        sunWuKong.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在①处引入了剧本的角色——孙悟空，剧本的情节通过角色展开，在拍摄时角色由演员饰演，如②处所示。因此西游记、孙悟空、六小龄童三者的类图关系如图所示：</p>
-<p><img src="/img/ioc2.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以看出XiYouJi同时依赖于SunWuKong接口和LiuXiaoLingTong类，并没有达到我们所期望的剧本仅依赖于角色的目的。但是角色最终必须通过具体的演员才能完成拍摄，如何让LiuXiaoLingTong和剧本无关而又能完成SunWuKong的具体动作呢？当然是在影片投拍时，导演将LiuXiaoLingTong安排在SunWuKong的角色上，导演将剧本、角色、饰演者装配起来。</p>
-<p><img src="/img/ioc3.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过引入导演，使剧本和具体饰演者解耦了。对应到软件中，导演像是一个装配器，安排演员表演具体的角色。<br>现在我们可以反过来讲解IoC的概念了。IoC（Inverse of Control）的字面意思是控制反转，它包括两个内容：</p>
-<ul>
-<li>其一是控制</li>
-<li>其二是反转</li>
-</ul>
-<h3 id="IOC的类型"><a href="#IOC的类型" class="headerlink" title="IOC的类型"></a>IOC的类型</h3><h4 id="构造函数注入"><a href="#构造函数注入" class="headerlink" title="构造函数注入"></a>构造函数注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   private SunWuKong swk;</div><div class="line">   //①注入孙悟空的具体扮演者</div><div class="line">   public XiYouJi(SunWuKong swk)&#123;</div><div class="line">       this.swk = swk;</div><div class="line">   &#125;</div><div class="line">    public void tianGong()&#123;</div><div class="line">       swk.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">        //①指定角色的扮演者</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">        //②注入具体扮演者到剧本中</div><div class="line">       XiYouJi xyj = new XiYouJi(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="属性注入"><a href="#属性注入" class="headerlink" title="属性注入"></a>属性注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①属性注入方法</div><div class="line">    public void setSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">        //①调用属性Setter方法注入</div><div class="line">       xyj.setSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="接口注入"><a href="#接口注入" class="headerlink" title="接口注入"></a>接口注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public interface ActorArrangable &#123;</div><div class="line">   void injectSunWuKong(SunWuKong swk);</div><div class="line">&#125;</div><div class="line">public class XiYouJi implements ActorArrangable &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①实现接口方法</div><div class="line">    public void injectSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">       xyj.injectSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="通过容器完成依赖关系的注入"><a href="#通过容器完成依赖关系的注入" class="headerlink" title="通过容器完成依赖关系的注入"></a>通过容器完成依赖关系的注入</h4><p>java:spring;android:xutils（java反射和动态代理）</p>
-<p>反射（配置文件的读取、利用反射机制注入对象）：</p>
-<ol>
-<li>在运行时判断任意一个对象所属的类。</li>
-<li>在运行时构造任意一个类的对象。</li>
-<li>在运行时判断任意一个类所具有的成员变量和方法。</li>
-<li>在运行时调用任意一个对象的方法</li>
-</ol>
-<p>动态代理</p>
-<p>程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言。尽管在这样的定义与分类下Java不是动态语言，它却有着一个非常突出的动态相关机制：Reflection。这个字的意思是“反射、映象、倒影”，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。</p>
-<p>动态代理类</p>
-<p>1.Interface InvocationHandler<br>2.Proxy</p>
-<p>android dagger2 butterknife（java mirror编译期根据注解动态生成代码）<br>这里以butterknife为例。</p>
-<p>JDK 5中提供了apt工具用来对注解进行处理。apt是一个命令行工具，与之配套的还有一套用来描述程序语义结构的Mirror API。Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构。通过Mirror API可以获取到被注解的Java类型元素的信息，从而提供相应的处理逻辑。具体的处理工作交给apt工具来完成。编写注解处理器的核心是AnnotationProcessorFactory和AnnotationProcessor两个接口。后者表示的是注解处理器，而前者则是为某些注解类型创建注解处理器的工厂。</p>
-<p>生成代码步骤</p>
-<ol>
-<li>自己的java处理器 extends AbstractProcessor</li>
-<li>通过查找解析注解（findAndParseTargets）形成集合Map（复杂，不贴源代码）</li>
-<li>遍历集合，通过javaoet(代码生成库，jake大神写的)生成java源码文件。</li>
-</ol>
-<p>扫描源代码（源代码中的每一部分都是Element的一个特定类型，而这些信息是由Mirror获取到）</p>
-<p>Element<br>类为TypeElement，变量为VariableElement，方法为ExecuteableElement</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Butterknife</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">xUtils</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/IOC思想/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-  
-<nav id="article-nav">
-  
-  
-    <a href="/2016/12/29/对于所有对象都通用的方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">对于所有对象都通用的方法</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-
-  
-
-  
-
-  <!-- 网易云跟帖 -->
-  
-
-
+            
           </div>
         </div>
       </div>
@@ -413,18 +222,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -446,6 +243,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,11 +306,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,11 +318,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>

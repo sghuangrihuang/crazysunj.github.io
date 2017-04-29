@@ -126,490 +126,17 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-创建和销毁对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/创建和销毁对象/">创建和销毁对象</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/创建和销毁对象/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:26:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一条-考虑用静态工厂方法代替构造器"><a href="#第一条-考虑用静态工厂方法代替构造器" class="headerlink" title="第一条 考虑用静态工厂方法代替构造器"></a>第一条 考虑用静态工厂方法代替构造器</h2><h4 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h4><ul>
-<li>他们有名称，根据静态方法很容易区分返回对象的区别</li>
-<li>不必在每次调用他们的时候都创建一个新对象，我们可以使用事前构造好的实例或者将构造好的实例缓存起来，进行重复利用，从而避免不必要的重复对象</li>
-<li>可以在返回原返回类型的任何子类型的对象，这样我们在选择返回对象的类时就有了更大的灵活性，如Java Collections类，里面封装了许多私有类，返回不同的类，提供不同的功能</li>
-<li>在创建参数化类型实例的时候，他们使代码变得更加简洁，因为有的时候，构造函数参数比较复杂</li>
-</ul>
-<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><ul>
-<li>类如果不含公有的或者受保护的构造器，就不能被子类化，例如Conllections类，返回的类为私有类，导致该类不能被继承，但是我们能够使用复合(composition)</li>
-<li>它们与其他的静态方法实际上没啥任何区别，如果使用静态工厂方法，很难查明类是如何被实例化的</li>
-</ul>
-<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;静态工厂方法和公有构造器都各有用处，我们需要理解它们各自的长处。静态工厂通常更适合，因此切忌第一反应就是提供公有的构造器，而不先考虑静态工厂。<br>
-        
-          <a class="article-more-a" href="/2016/12/29/创建和销毁对象/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">对象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
   
-    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/单例模式/">单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/单例模式/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:25:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>创建类模式</p>
-<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="/img/singleton1.gif" alt=""></p>
-<h2 id="类图知识点"><a href="#类图知识点" class="headerlink" title="类图知识点"></a>类图知识点</h2><ul>
-<li>类图分为三部分，依次是类名、属性、方法</li>
-<li>以&lt;&lt;开头和以&gt;&gt;结尾的为注释信息</li>
-<li>修饰符+代表public，-代表private，#代表protected，什么都没有代表包可见</li>
-<li>带下划线的属性或方法代表是静态的</li>
-</ul>
-<p>单例模式应该是23种设计模式中最简单的一种模式了。它有以下几个要素：</p>
-<ul>
-<li>私有的构造方法</li>
-<li>指向自己实例的私有静态引用</li>
-<li>以自己实例为返回值的静态的公有的方法</li>
-</ul>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2>
-        
-          <a class="article-more-a" href="/2016/12/29/单例模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单例模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
   
-    <article id="post-适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/适配器模式/">适配器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/适配器模式/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</p>
-<h2 id="生活中的适配器"><a href="#生活中的适配器" class="headerlink" title="生活中的适配器"></a>生活中的适配器</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用电器做例子，笔记本电脑的插头一般都是三相的，即除了阳极、阴极外，还有一个地极。而有些地方的电源插座却只有两极，没有地极。电源插座与笔记本电脑的电源插头不匹配使得笔记本电脑无法使用。这时候一个三相到两相的转换器（适配器）就能解决此问题，而这正像是本模式所做的事情。</p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适配器模式有类的适配器模式和对象的适配器模式两种不同的形式。</p>
-<h4 id="类适配器模式"><a href="#类适配器模式" class="headerlink" title="类适配器模式"></a>类适配器模式</h4><p><img src="/img/Adapter1.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上图中可以看出，Adaptee类并没有sampleOperation2()方法，而客户端则期待这个方法。为使客户端能够使用Adaptee类，提供一个中间环节，即类Adapter，把Adaptee的API与Target类的API衔接起来。Adapter与Adaptee是继承关系，这决定了这个适配器模式是类的。<br>
-        
-          <a class="article-more-a" href="/2016/12/29/适配器模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">适配器模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/代理模式/">代理模式</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/代理模式/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:24:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
-<li>定义<br>给某一个对象提供一个代理，并由代理对象控制对原对象的引用。</li>
-<li>角色<ul>
-<li>ISubject：抽象主题角色，是一个接口。该接口是对象和它的代理共用的接口。</li>
-<li>RealSubject：真实主题角色，是实现抽象主题接口的类。</li>
-<li>Proxy：代理角色，内部含有对真实对象RealSubject的引用，从而可以操作真实对象。代理对象提供与真实对象相同的接口，以便在任何时刻都能代替真实对象。同时，代理对象可以在执行真实对象操作时，附加其他的操作，相当于对真实对象进行封装。</li>
-</ul>
-</li>
-</ol>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>例子：小明想要租房。</p>
-<p>实现代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class XiaoMing&#123;</div><div class="line">	public void renting()&#123;</div><div class="line">		System.out.println(&quot;租房子&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>找了很久找不到，于是找到了中介<br>实现代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class Proxy&#123;</div><div class="line">	private XiaoMing xm;</div><div class="line">	public Proxy()&#123;</div><div class="line">		xm=new XiaoMing();</div><div class="line">	&#125;</div><div class="line">	public void renting()&#123;</div><div class="line">		xm.rennting();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>统一管理行为，利用接口，XiaoMing与Proxy分别实现Rent接口</p>
-<p>Rent接口如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Rent &#123;</div><div class="line">    void renting();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/12/29/代理模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代理模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-对于所有对象都通用的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/对于所有对象都通用的方法/">对于所有对象都通用的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/对于所有对象都通用的方法/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:24:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一条-覆盖equals时请遵守通用规定"><a href="#第一条-覆盖equals时请遵守通用规定" class="headerlink" title="第一条 覆盖equals时请遵守通用规定"></a>第一条 覆盖equals时请遵守通用规定</h2><ol>
-<li>类的每个实例本质上都是一样的</li>
-<li>不关心类是否提供了“逻辑相等”的测试功能</li>
-<li>超类已经覆盖了equals，从超类继承过来的行为对于子类也是合适的</li>
-<li>类是私有的或是包级私有的，可以确定它的equals方法永远不会被调用</li>
-<li>五大性质<ul>
-<li>自反性</li>
-<li>对称性</li>
-<li>传递性</li>
-<li>一致性</li>
-<li>非空性</li>
-</ul>
-</li>
-<li>扩展<ul>
-<li>里氏替换原则</li>
-<li>复合优于继承</li>
-</ul>
-</li>
-<li>实现高质量equals方法的诀窍<ul>
-<li>使用==操作符检查“参数是否为这个对象的引用”</li>
-<li>使用instanceof操作符检查“参数是否为正确的类型”</li>
-<li>把参数转换成正确的类型</li>
-<li>对于该类中的每个“关键”域，检查参数中的域是否与该对象中对应的域相匹配(域就是属性)</li>
-<li>当你编写完成了equals方法之后，应该问自己三个问题：它是否是对称的、传递的、一致的？<ul>
-<li>覆盖equals时总要覆盖hashCode</li>
-<li>不要企图让equals方法过于智能</li>
-<li>不要将equals声明中的Object对象替换为其他的类型
-        
-          <a class="article-more-a" href="/2016/12/29/对于所有对象都通用的方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">对象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-IOC思想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/IOC思想/">IOC思想</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/IOC思想/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><pre><code>Spring容器来实现这些相互依赖对象的创建、协调工作。
-</code></pre><h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>西游记中六小龄童大闹天宫。</p>
-<h3 id="一般实现："><a href="#一般实现：" class="headerlink" title="一般实现："></a>一般实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi&#123;</div><div class="line">   public void tianGong()&#123;</div><div class="line">       //①演员直接侵入剧本</div><div class="line">       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();</div><div class="line">       lxlt.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们会发现以上剧本在①处，作为具体角色饰演者的六小龄童直接侵入到剧本中，使剧本和演员直接耦合在一起。<br><img src="/img/ioc1.png" alt=""></p>
-<h3 id="改善："><a href="#改善：" class="headerlink" title="改善："></a>改善：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个明智的编剧在剧情创作时应围绕故事的角色进行，而不应考虑角色的具体饰演者，这样才可能在剧本投拍时自由地遴选任何适合的演员，而非绑定在六小龄童一人身上。通过以上的分析，我们知道需要为该剧本主人公孙悟空定义一个接口：<br>
-        
-          <a class="article-more-a" href="/2016/12/29/IOC思想/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Butterknife</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">xUtils</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
   
   
     <nav id="page-nav">
@@ -709,18 +236,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -742,6 +257,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,11 +320,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,11 +332,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>

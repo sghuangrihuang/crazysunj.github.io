@@ -128,201 +128,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-单例模式" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      单例模式
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/单例模式/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:25:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>创建类模式</p>
-<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="/img/singleton1.gif" alt=""></p>
-<h2 id="类图知识点"><a href="#类图知识点" class="headerlink" title="类图知识点"></a>类图知识点</h2><ul>
-<li>类图分为三部分，依次是类名、属性、方法</li>
-<li>以&lt;&lt;开头和以&gt;&gt;结尾的为注释信息</li>
-<li>修饰符+代表public，-代表private，#代表protected，什么都没有代表包可见</li>
-<li>带下划线的属性或方法代表是静态的</li>
-</ul>
-<p>单例模式应该是23种设计模式中最简单的一种模式了。它有以下几个要素：</p>
-<ul>
-<li>私有的构造方法</li>
-<li>指向自己实例的私有静态引用</li>
-<li>以自己实例为返回值的静态的公有的方法</li>
-</ul>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><a id="more"></a>
-<ul>
-<li>在内存中只有一个对象，节省内存空间</li>
-<li>避免频繁的创建销毁对象，可以提高性能</li>
-<li>避免对共享资源的多重占用</li>
-<li>可以全局访问</li>
-</ul>
-<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ul>
-<li>需要频繁实例化然后销毁的对象</li>
-<li>创建对象时耗时过多或者耗资源过多，但又经常用到的对象</li>
-<li>有状态的工具类对象</li>
-<li>频繁访问数据库或文件的对象</li>
-<li>要求只有一个对象的场景</li>
-</ul>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>只能使用单例类提供的方法得到单例对象，不要使用反射，否则将会实例化一个新对象</li>
-<li>不要做断开单例类对象与类中静态引用的危险操作</li>
-<li>多线程使用单例使用共享资源时，注意线程安全问题</li>
-</ul>
-<h2 id="争议"><a href="#争议" class="headerlink" title="争议"></a>争议</h2><p>争议点：如果一个单例对象在内存中长久不用，会被jvm认为是一个垃圾，在执行垃圾收集的时候会被清理掉。</p>
-<p>我比较赞成某大神的观点是：在hotspot虚拟机1.6版本中，除非人为地断开单例中静态引用到单例对象的联接，否则jvm垃圾收集器是不会回收单例对象的。</p>
-<p>附上链接：<a href="http://blog.csdn.net/zhengzhb/article/details/7331354" target="_blank" rel="external">单例模式与垃圾回收</a></p>
-<h2 id="实现方法（7种）"><a href="#实现方法（7种）" class="headerlink" title="实现方法（7种）"></a>实现方法（7种）</h2><h4 id="1-饿汉模式"><a href="#1-饿汉模式" class="headerlink" title="1.饿汉模式"></a>1.饿汉模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private static Singleton instance = new Singleton();</div><div class="line">    private Singleton() &#123;</div><div class="line">    &#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：这种方式在类加载时就完成了初始化，所以类加载较慢，但获取对象的速度快。 这种方式基于类加载机制避免了多线程的同步问题，但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，这时候初始化instance显然没有达到懒加载的效果。</p>
-<h4 id="2-懒汉模式（线程不安全）"><a href="#2-懒汉模式（线程不安全）" class="headerlink" title="2.懒汉模式（线程不安全）"></a>2.懒汉模式（线程不安全）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private static Singleton instance;</div><div class="line">    private Singleton() &#123;</div><div class="line">    &#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        if (instance == null) &#123;</div><div class="line">            instance = new Singleton();</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：懒汉模式申明了一个静态对象，在用户第一次调用时初始化，虽然节约了资源，但第一次加载时需要实例化，反映稍慢一些，而且在多线程不能正常工作。</p>
-<h4 id="3-懒汉模式（线程安全"><a href="#3-懒汉模式（线程安全" class="headerlink" title="3.懒汉模式（线程安全)"></a>3.懒汉模式（线程安全)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private static Singleton instance;</div><div class="line">    private Singleton() &#123;</div><div class="line">    &#125;</div><div class="line">    public static synchronized Singleton getInstance() &#123;</div><div class="line">        if (instance == null) &#123;</div><div class="line">            instance = new Singleton();</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：这种写法能够在多线程中很好的工作，但是每次调用getInstance方法时都需要进行同步，造成不必要的同步开销，而且大部分时候我们是用不到同步的，所以不建议用这种模式。</p>
-<h4 id="4-双重检查模式-（DCL）"><a href="#4-双重检查模式-（DCL）" class="headerlink" title="4.双重检查模式 （DCL）"></a>4.双重检查模式 （DCL）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private volatile static Singleton instance;</div><div class="line">    private Singleton() &#123;</div><div class="line">    &#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        if (instance == null) &#123;</div><div class="line">            synchronized (Singleton.class) &#123;</div><div class="line">                if (instance == null) &#123;</div><div class="line">                    instance = new Singleton();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：这种写法在getSingleton方法中对singleton进行了两次判空，第一次是为了不必要的同步，第二次是在singleton等于null的情况下才创建实例。在这里用到了volatile(线程在每次使用变量的时候，都会读取变量修改后的值),在这里使用volatile会或多或少的影响性能，但考虑到程序的正确性，牺牲这点性能还是值得的。 DCL优点是资源利用率高，第一次执行getInstance时单例对象才被实例化，效率高。缺点是第一次加载时反应稍慢一些，在高并发环境下也有一定的缺陷，虽然发生的概率很小。DCL虽然在一定程度解决了资源的消耗和多余的同步，线程安全等问题，但是他还是在某些情况会出现失效的问题，也就是DCL失效，建议用静态内部类单例模式来替代DCL。</p>
-<h4 id="5-静态内部类单例模式"><a href="#5-静态内部类单例模式" class="headerlink" title="5.静态内部类单例模式"></a>5.静态内部类单例模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">    private Singleton() &#123;</div><div class="line">    &#125;</div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        return SingletonHolder.sInstance;</div><div class="line">    &#125;</div><div class="line">    private static class SingletonHolder &#123;</div><div class="line">        private static final Singleton sInstance = new Singleton();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：第一次加载Singleton类时并不会初始化sInstance，只有第一次调用getInstance方法时虚拟机加载SingletonHolder并初始化sInstance ，这样不仅能确保线程安全也能保证Singleton类的唯一性，所以推荐使用静态内部类单例模式。</p>
-<h4 id="6-枚举单例"><a href="#6-枚举单例" class="headerlink" title="6.枚举单例"></a>6.枚举单例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public enum Singleton &#123;</div><div class="line">    INSTANCE;</div><div class="line">    public void doSomeThing() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：默认枚举实例的创建是线程安全的，并且在任何情况下都是单例，上述讲的几种单例模式实现中，有一种情况下他们会重新创建对象，那就是反序列化，将一个单例实例对象写到磁盘再读回来，从而获得了一个实例。反序列化操作提供了readResolve方法，这个方法可以让开发人员控制对象的反序列化。在上述的几个方法示例中如果要杜绝单例对象被反序列化是重新生成对象，就必须加入如下方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">private Object readResolve() throws ObjectStreamException &#123;</div><div class="line">     return singleton;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>枚举单例的优点就是简单，但是大部分应用开发很少用枚举，可读性并不是很高，不建议用。</p>
-<h4 id="7-使用容器实现单例模式"><a href="#7-使用容器实现单例模式" class="headerlink" title="7.使用容器实现单例模式"></a>7.使用容器实现单例模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class SingletonManager &#123;</div><div class="line">    private static Map&lt;String, Object&gt; objMap = new HashMap&lt;String, Object&gt;();</div><div class="line">    private SingletonManager() &#123;</div><div class="line">    &#125;</div><div class="line">    public static void registerService(String key, Object instance) &#123;</div><div class="line">        if (!objMap.containsKey(key)) &#123;</div><div class="line">            objMap.put(key, instance);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public static Object getService(String key) &#123;</div><div class="line">        return objMap.get(key);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利弊：用SingletonManager 将多种的单例类统一管理，在使用时根据key获取对象对应类型的对象。这种方式使得我们可以管理多种类型的单例，并且在使用时可以通过统一的接口进行获取操作，降低了用户的使用成本，也对用户隐藏了具体实现，降低了耦合度。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单例模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/单例模式/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/12/29/适配器模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          适配器模式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/12/29/创建和销毁对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">创建和销毁对象</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-
-  
-
-  
-
-  <!-- 网易云跟帖 -->
-  
-
-
+            
           </div>
         </div>
       </div>
@@ -414,18 +220,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -447,6 +241,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,11 +304,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,11 +316,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>

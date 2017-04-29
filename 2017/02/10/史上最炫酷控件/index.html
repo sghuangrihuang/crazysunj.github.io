@@ -128,187 +128,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-史上最炫酷控件" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      史上最炫酷控件
-    </h1>
-  
-
-        
-        <a href="/2017/02/10/史上最炫酷控件/" class="archive-article-date">
-  	<time datetime="2017-02-10T11:13:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本来打算年前发布的，但是开了一波车，没刹住。年后回来公司APP又改版，累坏宝宝了，改的差不多了，就赶紧抽空把这个炫酷的控件分享给大家。</p>
-<h2 id="控件的四大特点"><a href="#控件的四大特点" class="headerlink" title="控件的四大特点"></a>控件的四大特点</h2><ul>
-<li>可旋转：支持普通旋转和惯性旋转，主要是对触摸事件的分析，本控件没有用GestureDetector，条件纯手工，这也方便学习，这也是控件发布的主要原因</li>
-<li>可拖拽：支持长按拖拽，当然这也是触摸事件，我觉得比较精妙的地方是对数据的处理</li>
-<li>炫酷的动画：大多数动画在该控件都有涉及，例如拖拽结束，显示，隐藏和布局改动时</li>
-<li>灵活性：相信大家都用过RecyclerView，用过的都说好，哈哈，我第一次想到它是因为LayoutManager这个类，大家可以随意改动自己菜单的布局，多炫酷啊！可惜后来写着写着，就忘了，有空我会想想怎么实现，当然大家都可以提意见，剩下的还剩它的Adapter，你也可以根据type提供不同的view，但是我去掉了它的回收机制，我想这个菜单应该不需要大量的回收吧(当然有些地方还是需要做的，确实做得不够好)，除了用适配器，用户还可以直接在xml中添加子view，但两者不兼容</li>
-</ul>
-<p>那它到底长什么样呢？看看炫酷的马赛克吧！<br><a id="more"></a><br><img src="/img/coolmenu1.gif" alt=""></p>
-<h2 id="介绍下控件的主要结构吧"><a href="#介绍下控件的主要结构吧" class="headerlink" title="介绍下控件的主要结构吧"></a>介绍下控件的主要结构吧</h2><p>控件的第一个子view作为菜单的中心点，所以</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int childCount = getChildCount();</div><div class="line">if (childCount &lt;= 0) &#123;</div><div class="line">    throw new RuntimeException(&quot;child count must be more than 1&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>控件会根据用户对宽高设置的模式，进行相应的测量和布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (widthMode == MeasureSpec.EXACTLY &amp;&amp; heightMode == MeasureSpec.EXACTLY) &#123;</div><div class="line">    edge = width &gt;= height ? height : width;</div><div class="line">&#125; else &#123;</div><div class="line">......</div><div class="line">measureChild(child, widthMeasureSpec, heightMeasureSpec);</div><div class="line">......</div><div class="line">int m = MeasureSpec.makeMeasureSpec((int) (edge * (i == 0 ? 0.8f : 0.6f) * 1.0f / 3), MeasureSpec.EXACTLY);</div><div class="line">child.measure(m, m);</div></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大致介绍一下，只有宽高都精确地情况下才支持用户提供的数据，否则会获取子view的宽高，取最大的3者与屏幕宽高相比，如若超过屏幕，则取屏幕宽高小者，反之则取宽高和大者，得到边长，菜单中间边长取边长的0.8，其它孩子取0.6。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;布局我就不介绍了，根据角度排布，暂时只有圆形布局这么一项，我会思考加入LayoutManager这个玩意的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于触摸事件，介绍真的是三天三夜都介绍不完，长话短说，重写了dispatchTouchEvent，onInterceptTouchEvent，onTouchEvent，从中并没有用GestureDetector，既然是学习，我就没用了，越是好的API，越是让人不想去学习，因为太方便了，现在这版本触摸事件没有考虑cancel这个条件，下个版本会加入的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于适配器方面只提供以下3个刷新方法，因为我想菜单的数量并不是太多，太多实在太丑了，但我并没有做数量的限制，这个由用户自己决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public final void notifyDataSetChanged() &#123;</div><div class="line">    mObservable.notifyChanged();</div><div class="line">&#125;</div><div class="line">public final void notifyItemInserted(int position) &#123;</div><div class="line">    mObservable.notifyItemInserted(position);</div><div class="line">&#125;</div><div class="line">public final void notifyItemRemoved(int position) &#123;</div><div class="line">    mObservable.notifyItemRemoved(position);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>关于布局动画我只去掉了在拖拽的时候，如果用户觉得其他时候，动画感觉不适可以提出建议，或者动画由用户决定，这也是不错的。</p>
-<p>关于向外曝露的接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public interface OnItemClickListener &#123;</div><div class="line">    void onItemClick(View view, int position);</div><div class="line">&#125;</div><div class="line">public interface OnItemDragListener &#123;</div><div class="line">    void onDragStart(View view, int position);</div><div class="line">    void onDragMove(View view, float rawX, float rawY, int position);</div><div class="line">    void onDragEnd(View view, int position);</div><div class="line">&#125;</div><div class="line">public interface OnItemFlingListener &#123;</div><div class="line">    void onFlingStart();</div><div class="line">    void onFlingEnd();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>为什么提供了OnItemClickListener，是因为我在onInterceptTouchEvent方法中，返回了true。如果用户一定需要孩子的触摸事件，就要考虑完整的逻辑哦。</p>
-<p>属性提供</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;attr name=&quot;centerLayout&quot; /&gt; //菜单中间布局</div><div class="line"></div><div class="line">&lt;attr name=&quot;isDrag&quot; /&gt;    //可拖拽</div><div class="line"></div><div class="line">&lt;attr name=&quot;isFling&quot; /&gt;     //可惯性滑动</div></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接近尾声了，还有许多我并没有列出来，感兴趣的可以自己去发掘秘密，控件还做得不好，我希望正在阅读的你把它分享给身边喜爱自定义控件的朋友，大家共同学习，共同进步！还有一句就是大家不要在意标题，那只是一个噱头 - -！</p>
-<p>Gradle依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.crazysunj:coolmenu:1.0.0&apos;</div></pre></td></tr></table></figure>
-<p>Github地址：<a href="https://github.com/crazysunj/Android-CoolMenu" target="_blank" rel="external">https://github.com/crazysunj/Android-CoolMenu</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Animator</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Cool</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">onTouchEvent</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/10/史上最炫酷控件/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/01/12/Android代码规范/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android代码规范
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/02/13/模板方法模式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">模板方法模式</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-
-  
-
-  
-
-  <!-- 网易云跟帖 -->
-  
-
-
+            
           </div>
         </div>
       </div>
@@ -400,18 +220,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -433,6 +241,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,11 +304,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,11 +316,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>

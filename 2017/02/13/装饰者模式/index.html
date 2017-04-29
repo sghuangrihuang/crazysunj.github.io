@@ -129,216 +129,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-装饰者模式" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      装饰者模式
-    </h1>
-  
-
-        
-        <a href="/2017/02/13/装饰者模式/" class="archive-article-date">
-  	<time datetime="2017-02-13T07:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><pre><code>动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从定义中，我们知道其实继承也可以达到“同样的”效果，那又为什么会出现装饰者模式呢？</p>
-<p>首先我们先来了解开放封闭原则。</p>
-<pre><code>类应该对扩展开放，对修改封闭。
-</code></pre><p>问题来了，为什么会出现这样的原则呢？</p>
-<p>这样的设计具有弹性可以应对改变，可以接受新的功能来应对改变的需求。</p>
-<p>这样说，确实不好理解，太官话了。那么我来解答几个关于开放封闭的问题。</p>
-<h4 id="1-如何将某件东西设计成可以扩展，又禁止修改？"><a href="#1-如何将某件东西设计成可以扩展，又禁止修改？" class="headerlink" title="1. 如何将某件东西设计成可以扩展，又禁止修改？"></a>1. 如何将某件东西设计成可以扩展，又禁止修改？</h4><pre><code>许多模式是长期经验的实证，可通过提供扩展的方法来保护代码免于被修改。在本章，将看到使用装饰者模式的一个好例子，完全遵循开放封闭原则。
-</code></pre><h4 id="2-如何让设计的每个部分都遵循开放封闭原则？"><a href="#2-如何让设计的每个部分都遵循开放封闭原则？" class="headerlink" title="2. 如何让设计的每个部分都遵循开放封闭原则？"></a>2. 如何让设计的每个部分都遵循开放封闭原则？</h4><pre><code>通常，你办不到。要让oo设计同时具备开放性和封闭性，又不修改现有的代码，需要花费许多时间和努力。一般来说，我们实在没有闲工夫把设计的每个部分都这么设计(而且，就算做得到，也可能只是一种浪费)。遵循开放封闭原则，通常会引入新的抽象层次，增加代码的复杂度。你需要把注意力集中在设计中最有可能改变的地方，然后应用开放封闭原则。
-</code></pre><a id="more"></a>
-<h4 id="3-那么哪些地方的改变更重要呢？"><a href="#3-那么哪些地方的改变更重要呢？" class="headerlink" title="3. 那么哪些地方的改变更重要呢？"></a>3. 那么哪些地方的改变更重要呢？</h4><pre><code>这牵涉到设计oo系统的经验，和对你工作领域的了解。多看一些其他的例子可以帮你学习如何辨别设计中的变化区。
-</code></pre><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>废话不多说，上图</p>
-<p><img src="/img/decorator1.png" alt=""></p>
-<p>在装饰模式中的各个角色有：</p>
-<ul>
-<li>抽象构件（Component）角色：给出一个抽象接口，以规范准备接收附加责任的对象</li>
-<li>具体构件（Concrete Component）角色：定义一个将要接收附加责任的类</li>
-<li>装饰（Decorator）角色：持有一个构件（Component）对象的实例，并实现一个与抽象构件接口一致的接口。</li>
-<li>具体装饰（Concrete Decorator）角色：负责给构件对象添加上附加的责任</li>
-</ul>
-<p>其实，我知道你还是不懂，没关系，我们先说一波装饰者的优缺点。</p>
-<p>优点：</p>
-<ul>
-<li>Decorator模式与继承关系的目的都是要扩展对象的功能，但是Decorator可以提供比继承更多的灵活性</li>
-<li>通过使用不同的具体装饰类以及这些装饰类的排列组合，设计师可以创造出很多不同行为的组合</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>这种比继承更加灵活机动的特性，也同时意味着更加多的复杂性</li>
-<li>装饰模式会导致设计中出现许多小类，如果过度使用，会使程序变得很复杂</li>
-<li>装饰模式是针对抽象组件（Component）类型编程。但是，如果你要针对具体组件编程时，就应该重新思考你的应用架构，以及装饰者是否合适。当然也可以改变Component接口，增加新的公开的行为，实现“半透明”的装饰者模式。在实际项目中要做出最佳选择</li>
-</ul>
-<p>尝试记住优缺点，好了，现在我们研究研究到底怎么回事？我们来研究研究权威的I/O框架。</p>
-<p>上一张简单的架构图。</p>
-<p><img src="/img/decorator2.png" alt=""></p>
-<p>然后我们去探索下，源码到底怎么回事，还记得这样的用法吗？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new BufferedInputStream(new FileInputStream(file));</div></pre></td></tr></table></figure>
-<p>走进BufferedInputStream，我们就看到显眼的继承关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public class BufferedInputStream extends FilterInputStream</div></pre></td></tr></table></figure>
-<p>然后我们看看它的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public BufferedInputStream(InputStream in) &#123;</div><div class="line">   this(in, defaultBufferSize);</div><div class="line">&#125;</div><div class="line">public BufferedInputStream(InputStream in, int size) &#123;</div><div class="line">   super(in);</div><div class="line">   if (size &lt;= 0) &#123;</div><div class="line">       throw new IllegalArgumentException(&quot;Buffer size &lt;= 0&quot;);</div><div class="line">   &#125;</div><div class="line">   buf = new byte[size];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>很显然，在构造函数里，传入一个输入流，从结构层次不难发现BufferedInputStream继承于FilterInputStream，而FilterInputStream继承于InputStream</p>
-<p>我们往下看，我们用的比较多的，可能就是这个方法了read(byte b[], int off, int len)</p>
-<p>先看看BufferedInputStream中的read方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public synchronized int read(byte b[], int off, int len)</div><div class="line">        throws IOException</div><div class="line">&#123;</div><div class="line">    getBufIfOpen(); // Check for closed stream</div><div class="line">    if ((off | len | (off + len) | (b.length - (off + len))) &lt; 0) &#123;</div><div class="line">        throw new IndexOutOfBoundsException();</div><div class="line">    &#125; else if (len == 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    int n = 0;</div><div class="line">    for (;;) &#123;</div><div class="line">        int nread = read1(b, off + n, len - n);</div><div class="line">        if (nread &lt;= 0)</div><div class="line">            return (n == 0) ? nread : n;</div><div class="line">        n += nread;</div><div class="line">        if (n &gt;= len)</div><div class="line">            return n;</div><div class="line">        // if not closed but no bytes available, return</div><div class="line">        InputStream input = in;</div><div class="line">        if (input != null &amp;&amp; input.available() &lt;= 0)</div><div class="line">            return n;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>再来看看FilterInputStream中的read方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public int read(byte b[], int off, int len) throws IOException &#123;</div><div class="line">    return in.read(b, off, len);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>越来越明显了，在看看InputStream中的read方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public int read(byte b[], int off, int len) throws IOException &#123;</div><div class="line">    if (b == null) &#123;</div><div class="line">        throw new NullPointerException();</div><div class="line">    &#125; else if (off &lt; 0 || len &lt; 0 || len &gt; b.length - off) &#123;</div><div class="line">        throw new IndexOutOfBoundsException();</div><div class="line">    &#125; else if (len == 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    int c = read();</div><div class="line">    if (c == -1) &#123;</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line">    b[off] = (byte)c;</div><div class="line">    int i = 1;</div><div class="line">    try &#123;</div><div class="line">        for (; i &lt; len ; i++) &#123;</div><div class="line">            c = read();</div><div class="line">            if (c == -1) &#123;</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">            b[off + i] = (byte)c;</div><div class="line">        &#125;</div><div class="line">    &#125; catch (IOException ee) &#123;</div><div class="line">    &#125;</div><div class="line">    return i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>FilterInputStream的read很实在，直接调用InputStream的read<br>而BufferedInputStream中read进行了装饰，我们可以看到read1这个方法，走进入看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">private int read1(byte[] b, int off, int len) throws IOException &#123;</div><div class="line">    int avail = count - pos;</div><div class="line">    if (avail &lt;= 0) &#123;</div><div class="line">        /* If the requested length is at least as large as the buffer, and</div><div class="line">           if there is no mark/reset activity, do not bother to copy the</div><div class="line">           bytes into the local buffer.  In this way buffered streams will</div><div class="line">           cascade harmlessly. */</div><div class="line">        if (len &gt;= getBufIfOpen().length &amp;&amp; markpos &lt; 0) &#123;</div><div class="line">            return getInIfOpen().read(b, off, len);</div><div class="line">        &#125;</div><div class="line">        fill();</div><div class="line">        avail = count - pos;</div><div class="line">        if (avail &lt;= 0) return -1;</div><div class="line">    &#125;</div><div class="line">    int cnt = (avail &lt; len) ? avail : len;</div><div class="line">    System.arraycopy(getBufIfOpen(), pos, b, off, cnt);</div><div class="line">    pos += cnt;</div><div class="line">    return cnt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们就直接找read方法就行了getInIfOpen().read(b, off, len)，那么getInIfOpen()又是什么呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">private InputStream getInIfOpen() throws IOException &#123;</div><div class="line">    InputStream input = in;</div><div class="line">    if (input == null)</div><div class="line">        throw new IOException(&quot;Stream closed&quot;);</div><div class="line">    return input;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>很明显，in就是我们所传进来的InputStream,我们对FileInputStream进行了包装，BufferedInputStream是一种缓冲流，因为FileInputStream 里面的read(buffer)方法，直接读取到自己的buffer里面，这个是读取到一个数组里面，jvm里面创建一个新对象都需要耗费时间的，而且每一次read都要执行I/O操作，比较慢。创建 BufferedInputStream时即创建了一个内部缓冲区数组。</p>
-<p>Java没有这样做，直接继承FileInputStream，重写它的read的方法，而是用组合的方式。</p>
-<p>这么复杂的I/O框架都是这样做，那么你明白为什么这样做么？</p>
-<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><ul>
-<li>继承属于扩展形式之一，但不见得是达到弹性设计的最佳方式</li>
-<li>在我们的设计中，应该允许行为可以被扩展，而无须修改现有的代码</li>
-<li>组合和委托可用于在运行时动态地加上新的行为</li>
-<li>除了继承，装饰者模式也可以让我们扩展行为</li>
-<li>装饰者模式意味着一群装饰者类，这些类用来包装具体组件</li>
-<li>装饰者类反映出被装饰的组件类型（事实上，他们具有相同的类型，都经过接口或继承实现）</li>
-<li>装饰者可以在被装饰者行为前面与/或后面加上自己的行为，甚至被装饰者的行为整个取代掉，而达到特定的目的</li>
-<li>你可以用无数个装饰者包装一个组件</li>
-<li>装饰者一般对组件的客户是透明的，除非客户程序依赖于组件的具体类型</li>
-<li>装饰者会导致设计中出现许多小对象，如果过度使用，会让程序变得很复杂</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">装饰者模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/13/装饰者模式/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/02/13/模板方法模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          模板方法模式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/13/Linux探秘之用户态与内核态/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux探秘之用户态与内核态</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-
-  
-
-  
-
-  <!-- 网易云跟帖 -->
-  
-
-
+            
           </div>
         </div>
       </div>
@@ -430,18 +221,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -463,6 +242,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,11 +305,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,11 +317,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
