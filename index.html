@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>crazysunjの博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="永不止步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="crazysunjの博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="crazysunjの博客">
+<meta property="og:description" content="永不止步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crazysunjの博客">
+<meta name="twitter:description" content="永不止步">
+  
+    <link rel="alternative" href="/atom.xml" title="crazysunjの博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.f6a68c.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/img/blog.jpg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">crazysunj</a></h1>
+		</hgroup>
+		
+		<p class="header-subtitle">满招损，谦受益。失之淡然，得之坦然。</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/crazysunj" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/img/blog.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">crazysunj</h1>
+			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>满招损，谦受益。失之淡然，得之坦然。<i class="icon icon-quo-right"></i></p>
+			
+			
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/crazysunj" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            
+  
+    <article id="post-打造炫酷的多类型RecyclerView的Adapter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/">打造炫酷的多类型RecyclerView的Adapter</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/" class="archive-article-date">
+  	<time datetime="2017-04-01T06:10:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RecyclerView渐渐地走进了我们的项目里面，UI越来越复杂，高效快捷开发出复杂的页面是我们所追求的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家对BaseRecyclerViewAdapterHelper应该不陌生吧，它能帮助我们快捷地使用RecyclerView，这也是我为什么没有重新写一个库的原因，远离重复造轮子，追求创新，哪怕是微创新，都是很好的。话说我打了波广告，能不能给我点个star啊，开个玩笑。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在我来大致介绍下我新写的库，主要是项目中这种界面太多了，我们要有面向组件的思想，拿来就用，支持扩展。废话不多说，进入主题。</p>
+        
+          <a class="article-more-a" href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DiffUtil</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/15/泛型/">泛型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/15/泛型/" class="archive-article-date">
+  	<time datetime="2017-03-15T09:23:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文地址：<a href="http://www.cnblogs.com/absfree/p/5270883.html">深入理解Java之泛型</a></p>
+<h2 id="1-Why-——引入泛型机制的原因"><a href="#1-Why-——引入泛型机制的原因" class="headerlink" title="1. Why ——引入泛型机制的原因"></a>1. Why ——引入泛型机制的原因</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的ArrayList实现。<br>
+        
+          <a class="article-more-a" href="/2017/03/15/泛型/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">泛型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/15/工厂模式/">工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/15/工厂模式/" class="archive-article-date">
+  	<time datetime="2017-03-15T05:52:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们要创建一个对象的时候，第一反应就是new一个啊，恩，没有错，错在对象老是在变。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此接口编程就这么诞生了，它可以隔离掉以后系统可能发生的一大堆改变。简单解释一下，如果代码是针对接口而写，那么通过多态，它可以与任何新类实现该接口。但是，当代码使用大量的具体类时，等于自找麻烦，因为一旦加入新的具体类，就必须改变代码。也就是说，你的代码并非“对修改关闭”。想用新的具体类型来扩展代码，必须重新打开它。</p>
+<p>现在我们一步步来认识它。</p>
+<p>故事的起源是，你有一个比萨店，而你是比萨店的主人。</p>
+<p>那么你要做一个比萨的方法就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public Pizza orderPizza() &#123;</div><div class="line">    Pizza pizza = new Pizza();</div><div class="line">    pizza.prepare();</div><div class="line">    pizza.bake();</div><div class="line">    pizza.cut();</div><div class="line">    pizza.box();</div><div class="line">    return pizza;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然上面的只是抽象的比萨制作，如果我有多种类型呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public Pizza orderPizza(String type) &#123;</div><div class="line">    Pizza pizza = null;</div><div class="line">    if (type.equals(&quot;cheese&quot;)) &#123;</div><div class="line">        pizza = new CheesePizza();</div><div class="line">    &#125; else if (type.equals(&quot;greek&quot;)) &#123;</div><div class="line">        pizza = new GreekPizza();</div><div class="line">    &#125; else if (type.equals(&quot;pepperoni&quot;)) &#123;</div><div class="line">        pizza = new PepperoniPizza();</div><div class="line">    &#125;</div><div class="line">    pizza.prepare();</div><div class="line">    pizza.bake();</div><div class="line">    pizza.cut();</div><div class="line">    pizza.box();</div><div class="line">    return pizza;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做貌似不错，但是这些类型不能一直卖的好，那么可能会加几种类型，也有可能会删减几种类型，由此看来，我们又得去改方法里面的具体代码，但是改着改着，我们会发现，我们改的都是同一个地方，是的，具体的pizza不停的变，而其它的都没变。</p>
+<p>聪明的你肯定已经想到了，提出来，搞个静态方法不就好了？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class SimplePizzaFactory &#123;</div><div class="line">    public Pizza createPizza(String type) &#123;</div><div class="line">        Pizza pizza = null;</div><div class="line">        if (type.equals(&quot;cheese&quot;)) &#123;</div><div class="line">            pizza = new CheesePizza();</div><div class="line">        &#125; else if (type.equals(&quot;greek&quot;)) &#123;</div><div class="line">            pizza = new GreekPizza();</div><div class="line">        &#125; else if (type.equals(&quot;pepperoni&quot;)) &#123;</div><div class="line">            pizza = new PepperoniPizza();</div><div class="line">        &#125;</div><div class="line">        return pizza;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为一名优秀的程序员，总是存在好奇，探索精神，咋看一下，有解决问题么？不就是把问题从一个地方转到另一个地方么？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是不对的，假如以后其它类也用到这个方法呢？在修改的时候，不用一个个类改，只要改这么一个地方就行了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里有点打脸哈，上面写着搞个静态方法，但是代码却不是，静态的叫静态工厂，它有个缺点就是不能通过继承来改变创建方式。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重新回顾一下，我是比萨店的老板，我开了比萨店，而这是抽象的，应该有许多工厂去创建他们不同的比萨，更确切的说，我拥有的是一个品牌。</p>
+<p>程序员还是用代码说话，一步一步来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class PizzaStore &#123;</div><div class="line">    private SimplePizzaFactory factory;</div><div class="line">    public PizzaStore(SimplePizzaFactory factory) &#123;</div><div class="line">        this.factory = factory;</div><div class="line">    &#125;</div><div class="line">    public Pizza orderPizza(String type) &#123;</div><div class="line">        Pizza pizza = factory.createPizza(type);</div><div class="line">        pizza.prepare();</div><div class="line">        pizza.bake();</div><div class="line">        pizza.cut();</div><div class="line">        pizza.box();</div><div class="line">        return pizza;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是我想说，这并不是工厂模式，更确切的说谁是一种编程习惯。<br>问题总是不断哈，我们的品牌越做越大，总是并免不了加盟这玩意，作为老板，那么你必须严格细查这些加盟店的质量，加盟店可能来自不同的地区，风味不同，不妨说纽约、芝加哥、加州。</p>
+<p>第一种想法就是，建立3个不同的工厂，传入PizzaStore即可。但是这种感觉是，3个厂加工了比萨之后，只能放在我的店里卖的节奏哈？</p>
+<p>那我们为什么不把制造pizza抽象出来呢，同时店也抽象出来，不同的店去做不同类型的pizza，不是更好么？但都是在我品牌下。</p>
+<p>看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public abstract class PizzaStore &#123;</div><div class="line">    public Pizza orderPizza(String type) &#123;</div><div class="line">        Pizza pizza = createPizza(type);</div><div class="line">        pizza.prepare();</div><div class="line">        pizza.bake();</div><div class="line">        pizza.cut();</div><div class="line">        pizza.box();</div><div class="line">        return pizza;</div><div class="line">    &#125;</div><div class="line">    protected abstract Pizza createPizza(String type);</div><div class="line">&#125;</div><div class="line">public class NYPizzaStore extends PizzaStore &#123;</div><div class="line">    @Override</div><div class="line">    protected Pizza createPizza(String type) &#123;</div><div class="line">        if (type.equals(&quot;cheese&quot;)) &#123;</div><div class="line">            return new CheesePizza();</div><div class="line">        &#125; else if (type.equals(&quot;greek&quot;)) &#123;</div><div class="line">            return new GreekPizza();</div><div class="line">        &#125; else if (type.equals(&quot;pepperoni&quot;)) &#123;</div><div class="line">            return new PepperoniPizza();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好像越来越有工厂模式的味道了，简单解析何谓工厂，例如这句代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">abstract Product factoryMethod(String type)</div></pre></td></tr></table></figure>
+<ul>
+<li>abstract:工厂方法是抽象的，所以依赖子类来处理对象的创建</li>
+<li>Product:工厂方法必须返回一个产品。超类中定义的方法，通常使用到工厂方法的返回值</li>
+<li>factoryMethod:工厂方法将客户(也就是超类中的代码，例如orderPizza())和实际创建具体产品的代码分隔开来</li>
+<li>type:工厂方法可能需要参数(也可能不需要)来指定所要的产品</li>
+</ul>
+<p>细心的朋友会发现一个问题哈，既然是纽约风味的，店是纽约的，为何卖的pizza却是抽象的，因此我们得修改具体产品</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public abstract class Pizza &#123;</div><div class="line">    protected String name;//名称</div><div class="line">    protected String dough;//面团</div><div class="line">    protected String sauce;//调味汁</div><div class="line">    protected List&lt;String&gt; toppings = new ArrayList&lt;&gt;();//配料</div><div class="line">    public void prepare() &#123;</div><div class="line">    &#125;</div><div class="line">    public void bake() &#123;</div><div class="line">    &#125;</div><div class="line">    public void cut() &#123;</div><div class="line">    &#125;</div><div class="line">    public void box() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抽象类Pizza提供名称、面团、调味汁、配料的属性，子类可以在构造方法中赋值，这样就打造了不同的口味，更友好一点，可以在prepare()或者构造函数等地方赋值默认值，然后在我们上面NYPizzaStore中，返回不同的纽约风味pizza。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工厂模式已经清晰了，所有工厂模式都用来封装对象的创建，它通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。</p>
+<p>来我们来看看工厂模式的类图。</p>
+<p><img src="/img/factory1.jpeg" alt=""></p>
+<p>关于ProductFactory可以抽象也可以默认，都是允许的，没有太固定，变得只是形式，思想是不会变的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里我要介绍一个原则，相信了解过原则的已经猜出来了，就是大名鼎鼎的依赖倒置原则—要依赖抽象，不要依赖具体类，这个原则说明了高层组件不能依赖底层组件，而且不管高层或底层组件，都应该依赖于抽象。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还是没理解？让我们再回顾一下上面的例子，PizzaStore就是高层组件，而Pizza就是底层组件，而且前者依赖后者，很清晰。那么，要符合这个原则，我们应该怎么做呢？现在我们来倒置你的思考方式：</p>
+<ol>
+<li>开始我们需要一家比萨店</li>
+<li>我们得先从顶端开始，然后往下到具体类。但是，正如你所看到的你不想让比萨店例会这些具体类，要不然比萨店将全都依赖这些具体类。现在，开始”倒置”，别从顶端开始，而是从比萨开始，然后想想看能抽象化些什么</li>
+<li>你得抽象抽象化一个比萨</li>
+<li>你还得用一个工厂来将这些具体类取出比萨店，这样，各种不同的具体比萨类就只能依赖一个抽象，而比萨店也会依赖这个抽象，倒置完毕</li>
+</ol>
+<p>以下方法能帮你避免在OO设计中违反依赖倒置原则</p>
+<ul>
+<li>变量不可以持有具体类的引用</li>
+<li>不要让类派生自具体类</li>
+<li>不要覆盖类中已实现的方法</li>
+</ul>
+<p>具体说为什么这样能避免，经过上面的例子，我相信你已经领悟到了。</p>
+<p>是时候该结尾了，理一理要点：</p>
+<ul>
+<li>所有的工厂都是用来封装对象的创建</li>
+<li>简单工厂，虽然不是真正的设计模式，但仍不失为一个简单的方法，可以将客户程序从具体类解耦</li>
+<li>工厂方法使用继承：把对象的创建委托给子类，子类实现工厂方法来创建对象</li>
+<li>抽象工厂使用对象组合：对象的创建被实现在工厂接口所暴露出来的方法中</li>
+<li>所有工厂模式都通过减少应用程序和具体类之间的依赖促进松耦合</li>
+<li>工厂方法允许类将实例化延迟到子类进行</li>
+<li>抽象工厂创建相关的对象家族，而不需要依赖它们的具体类</li>
+<li>依赖倒置原则，知道我们避免依赖具体类型，而要尽量依赖抽象</li>
+<li>工厂是很有威力的技巧，帮助我们针对抽象编程，而不要针对具体类编程</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后，留一个小问题，我们在抽象类Pizza中加了这么多的属性，而这些属性的依赖，我们应该怎么设计呢？作为一名优秀的程序员，应该是不断的遇坑，不断探索，不断的发现，加油吧！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工厂模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Linux探秘之用户态与内核态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/13/Linux探秘之用户态与内核态/">Linux探秘之用户态与内核态</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/13/Linux探秘之用户态与内核态/" class="archive-article-date">
+  	<time datetime="2017-03-13T10:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文地址：<a href="http://www.cnblogs.com/bakari/p/5520860.html" target="_blank" rel="external">Linux探秘之用户态与内核态</a></p>
+<h2 id="Unix-Linux的体系架构"><a href="#Unix-Linux的体系架构" class="headerlink" title="Unix/Linux的体系架构"></a>Unix/Linux的体系架构</h2><p><img src="/img/linux1.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如上图所示，从宏观上来看，Linux操作系统的体系架构分为用户态和内核态（或者用户空间和内核）。内核从本质上看是一种软件——控制计算机的硬件资源，并提供上层应用程序运行的环境。用户态即上层应用程序的活动空间，应用程序的执行必须依托于内核提供的资源，包括CPU资源、存储资源、I/O资源等。为了使上层应用能够访问到这些资源，内核必须为上层应用提供访问的接口：即系统调用。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统调用是操作系统的最小功能单位，这些系统调用根据不同的应用场景可以进行扩展和裁剪，现在各种版本的Unix实现都提供了不同数量的系统调用，如Linux的不同版本提供了240-260个系统调用，FreeBSD大约提供了320个（reference：UNIX环境高级编程）。我们可以把系统调用看成是一种不能再化简的操作（类似于原子操作，但是不同概念），有人把它比作一个汉字的一个“笔画”，而一个“汉字”就代表一个上层应用，我觉得这个比喻非常贴切。因此，有时候如果要实现一个完整的汉字（给某个变量分配内存空间），就必须调用很多的系统调用。如果从实现者（程序员）的角度来看，这势必会加重程序员的负担，良好的程序设计方法是：重视上层的业务逻辑操作，而尽可能避免底层复杂的实现细节。库函数正是为了将程序员从复杂的细节中解脱出来而提出的一种有效方法。它实现对系统调用的封装，将简单的业务逻辑接口呈现给用户，方便用户调用，从这个角度上看，库函数就像是组成汉字的“偏旁”。这样的一种组成方式极大增强了程序设计的灵活性，对于简单的操作，我们可以直接调用系统调用来访问资源，如“人”，对于复杂操作，我们借助于库函数来实现，如“仁”。显然，这样的库函数依据不同的标准也可以有不同的实现版本，如ISO C 标准库，POSIX标准库等。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shell是一个特殊的应用程序，俗称命令行，本质上是一个命令解释器，它下通系统调用，上通各种应用，通常充当着一种“胶水”的角色，来连接各个小功能程序，让不同程序能够以一个清晰的接口协同工作，从而增强各个程序的功能。同时，Shell是可编程的，它可以执行符合Shell语法的文本，这样的文本称为Shell脚本，通常短短的几行Shell脚本就可以实现一个非常大的功能，原因就是这些Shell语句通常都对系统调用做了一层封装。为了方便用户和系统交互，一般，一个Shell对应一个终端，终端是一个硬件设备，呈现给用户的是一个图形化窗口。我们可以通过这个窗口输入或者输出文本。这个文本直接传递给shell进行分析解释，然后执行。</p>
+<p>总结一下，用户态的应用程序可以通过三种方式来访问内核态的资源：</p>
+<ul>
+<li>系统调用</li>
+<li>库函数</li>
+<li>Shell脚本</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下图是对上图的一个细分结构，从这个图上可以更进一步对内核所做的事有一个“全景式”的印象。主要表现为：向下控制硬件资源，向内管理操作系统资源：包括进程的调度和管理、内存的管理、文件系统的管理、设备驱动程序的管理以及网络资源的管理，向上则向应用程序提供系统调用的接口。从整体上来看，整个操作系统分为两层：用户态和内核态，这种分层的架构极大地提高了资源管理的可扩展性和灵活性，而且方便用户对资源的调用和集中式的管理，带来一定的安全性。</p>
+<p><img src="/img/linux2.jpg" alt=""></p>
+<h2 id="用户态和内核态的切换"><a href="#用户态和内核态的切换" class="headerlink" title="用户态和内核态的切换"></a>用户态和内核态的切换</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为操作系统的资源是有限的，如果访问资源的操作过多，必然会消耗过多的资源，而且如果不对这些操作加以区分，很可能造成资源访问的冲突。所以，为了减少有限资源的访问和使用冲突，Unix/Linux的设计哲学之一就是：对不同的操作赋予不同的执行等级，就是所谓特权的概念。简单说就是有多大能力做多大的事，与系统相关的一些特别关键的操作必须由最高特权的程序来完成。Intel的X86架构的CPU提供了0到3四个特权级，数字越小，特权越高，Linux操作系统中主要采用了0和3两个特权级，分别对应的就是内核态和用户态。运行于用户态的进程可以执行的操作和访问的资源都会受到极大的限制，而运行在内核态的进程则可以执行任何操作并且在资源的使用上没有限制。很多程序开始时运行于用户态，但在执行的过程中，一些操作需要在内核权限下才能执行，这就涉及到一个从用户态切换到内核态的过程。比如C函数库中的内存分配函数malloc()，它具体是使用sbrk()系统调用来分配内存，当malloc调用sbrk()的时候就涉及一次从用户态到内核态的切换，类似的函数还有printf()，调用的是wirte()系统调用来输出字符串，等等。</p>
+<p><img src="/img/linux3.gif" alt=""></p>
+<p>到底在什么情况下会发生从用户态到内核态的切换，一般存在以下三种情况：</p>
+<ol>
+<li><p>当然就是系统调用：原因如上的分析。</p>
+</li>
+<li><p>异常事件： 当CPU正在执行运行在用户态的程序时，突然发生某些预先不可知的异常事件，这个时候就会触发从当前用户态执行的进程转向内核态执行相关的异常事件，典型的如缺页异常。</p>
+</li>
+<li><p>外围设备的中断：当外围设备完成用户的请求操作后，会像CPU发出中断信号，此时，CPU就会暂停执行下一条即将要执行的指令，转而去执行中断信号对应的处理程序，如果先前执行的指令是在用户态下，则自然就发生从用户态到内核态的转换。</p>
+</li>
+</ol>
+<p><font color="red">注意：</font>系统调用的本质其实也是中断，相对于外围设备的硬中断，这种中断称为软中断，这是操作系统为用户特别开放的一种中断，如Linux int 80h中断。所以，从触发方式和效果上来看，这三种切换方式是完全一样的，都相当于是执行了一个中断响应的过程。但是从触发的对象来看，系统调用是进程主动请求切换的，而异常和硬中断则是被动的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文仅是从宏观的角度去理解Linux用户态和内核态的设计，并没有去深究它们的具体实现方式。从实现上来看，必须要考虑到的一点我想就是性能问题，因为用户态和内核态之间的切换也会消耗大量资源。关于实现的细节，目前学艺不精不敢乱说，等日后补上。但知道了这一点，我相信对很多问题也就很容易理解了，比如说基于缓冲区的IO和无缓冲的IO，用户进程和内核进程之间的切换，IO复用中的读写内核事件表，等等。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">用户态</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">内核态</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-装饰者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/装饰者模式/">装饰者模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/13/装饰者模式/" class="archive-article-date">
+  	<time datetime="2017-02-13T07:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><pre><code>动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从定义中，我们知道其实继承也可以达到“同样的”效果，那又为什么会出现装饰者模式呢？</p>
+<p>首先我们先来了解开放封闭原则。</p>
+<pre><code>类应该对扩展开放，对修改封闭。
+</code></pre><p>问题来了，为什么会出现这样的原则呢？</p>
+<p>这样的设计具有弹性可以应对改变，可以接受新的功能来应对改变的需求。</p>
+<p>这样说，确实不好理解，太官话了。那么我来解答几个关于开放封闭的问题。</p>
+<h4 id="1-如何将某件东西设计成可以扩展，又禁止修改？"><a href="#1-如何将某件东西设计成可以扩展，又禁止修改？" class="headerlink" title="1. 如何将某件东西设计成可以扩展，又禁止修改？"></a>1. 如何将某件东西设计成可以扩展，又禁止修改？</h4><pre><code>许多模式是长期经验的实证，可通过提供扩展的方法来保护代码免于被修改。在本章，将看到使用装饰者模式的一个好例子，完全遵循开放封闭原则。
+</code></pre><h4 id="2-如何让设计的每个部分都遵循开放封闭原则？"><a href="#2-如何让设计的每个部分都遵循开放封闭原则？" class="headerlink" title="2. 如何让设计的每个部分都遵循开放封闭原则？"></a>2. 如何让设计的每个部分都遵循开放封闭原则？</h4><pre><code>通常，你办不到。要让oo设计同时具备开放性和封闭性，又不修改现有的代码，需要花费许多时间和努力。一般来说，我们实在没有闲工夫把设计的每个部分都这么设计(而且，就算做得到，也可能只是一种浪费)。遵循开放封闭原则，通常会引入新的抽象层次，增加代码的复杂度。你需要把注意力集中在设计中最有可能改变的地方，然后应用开放封闭原则。
+</code></pre>
+        
+          <a class="article-more-a" href="/2017/02/13/装饰者模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">装饰者模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-模板方法模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/模板方法模式/">模板方法模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/13/模板方法模式/" class="archive-article-date">
+  	<time datetime="2017-02-13T06:17:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，我们先来个小场景：冲泡咖啡和茶</p>
+<p>那么冲泡方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">咖啡</th>
+<th style="text-align:center">茶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.把水煮沸</td>
+<td style="text-align:center">1.把水煮沸</td>
+</tr>
+<tr>
+<td style="text-align:center">2.用沸水冲泡咖啡</td>
+<td style="text-align:center">2.用沸水浸泡茶叶</td>
+</tr>
+<tr>
+<td style="text-align:center">3.把咖啡倒进杯子</td>
+<td style="text-align:center">3.把茶倒进杯子</td>
+</tr>
+<tr>
+<td style="text-align:center">4.加糖和咖啡</td>
+<td style="text-align:center">4.加柠檬</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们代码简单实现</p>
+<p>咖啡：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by sunjian on 2017/2/13.</div><div class="line"> */</div><div class="line">public class Coffee &#123;</div><div class="line">    void prepareRecipe() &#123;</div><div class="line">        boilWater();</div><div class="line">        brewCoffeeGrinds();</div><div class="line">        pourInCup();</div><div class="line">        addSugarAndMilk();</div><div class="line">    &#125;</div><div class="line">    public void boilWater() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;boilWater&quot;);</div><div class="line">    &#125;</div><div class="line">    public void brewCoffeeGrinds() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;brewCoffeeGrinds&quot;);</div><div class="line">    &#125;</div><div class="line">    public void pourInCup() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;pourInCup&quot;);</div><div class="line">    &#125;</div><div class="line">    public void addSugarAndMilk() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;addSugarAndMilk&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>茶：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by sunjian on 2017/2/13.</div><div class="line"> */</div><div class="line">public class Tea &#123;</div><div class="line">    void prepareRecipe() &#123;</div><div class="line">        boilWater();</div><div class="line">        steepTeaBag();</div><div class="line">        pourInCup();</div><div class="line">        addLemon();</div><div class="line">    &#125;</div><div class="line">    public void boilWater() &#123;</div><div class="line">        Log.d(&quot;Tea&quot;, &quot;boilWater&quot;);</div><div class="line">    &#125;</div><div class="line">    public void steepTeaBag() &#123;</div><div class="line">        Log.d(&quot;Tea&quot;, &quot;steepTeaBag&quot;);</div><div class="line">    &#125;</div><div class="line">    public void pourInCup() &#123;</div><div class="line">        Log.d(&quot;Tea&quot;, &quot;pourInCup&quot;);</div><div class="line">    &#125;</div><div class="line">    public void addLemon() &#123;</div><div class="line">        Log.d(&quot;Tea&quot;, &quot;addLemon&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很明显prepareRecipe(),boilWater(),pourInCup()这3个方法重复了，那么我们把它定义为抽象方法，但是prepareRecipe()方法最好不要曝露出去，因此我们这样实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by sunjian on 2017/2/13.</div><div class="line"> */</div><div class="line">public abstract class CaffeineBeverage &#123;</div><div class="line">    final void prepareRecipe() &#123;</div><div class="line">        boilWater();</div><div class="line">        brew();</div><div class="line">        pourInCup();</div><div class="line">        addCondiments();</div><div class="line">    &#125;</div><div class="line">    public abstract void addCondiments();</div><div class="line">    public void pourInCup() &#123;</div><div class="line">        Log.d(&quot;CaffeineBeverage&quot;, &quot;pourInCup&quot;);</div><div class="line">    &#125;</div><div class="line">    public abstract void brew();</div><div class="line">    public void boilWater() &#123;</div><div class="line">        Log.d(&quot;CaffeineBeverage&quot;, &quot;boilWater&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样一来，我们只要使Coffee和Tea分别继承CaffeineBeverage，重写brew()和addCondiments()即可。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到这里已经，定义有点明显了，好像是模板方法定义了一个算法的步骤，并允许子类为一个或多个步骤提供实现，该例子中prepareRecipe()方法就是一个模板方法，里面定义了咖啡和茶的冲泡算法，这里我想说一下，算法并不是什么很高端的东西，生活中到处是算法，可能它用在计算机中比较合适，算法简单点说就是一种技巧，不要问我什么是技巧。</p>
+<p>好了，我们来看看模板方法模式的官方定义</p>
+<pre><code>在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。
+</code></pre><p>类图（请叫我盗图狂魔）：</p>
+<p><img src="/img/concrete1.png" alt=""></p>
+<p>而模板方法模式的一个精髓就是hook(钩子)，简单来说，钩子就是一个判断条件。接下来我们结合我们的例子告诉你什么是钩子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by sunjian on 2017/2/13.</div><div class="line"> */</div><div class="line">public abstract class CaffeineBeverageWithHook &#123;</div><div class="line">    final void prepareRecipe() &#123;</div><div class="line">        boilWater();</div><div class="line">        brew();</div><div class="line">        pourInCup();</div><div class="line">        if (isAddCondiments()) &#123;</div><div class="line">            addCondiments();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public abstract void addCondiments();</div><div class="line">    public void pourInCup() &#123;</div><div class="line">        Log.d(&quot;CaffeineBeverage&quot;, &quot;pourInCup&quot;);</div><div class="line">    &#125;</div><div class="line">    public abstract void brew();</div><div class="line">    public void boilWater() &#123;</div><div class="line">        Log.d(&quot;CaffeineBeverage&quot;, &quot;boilWater&quot;);</div><div class="line">    &#125;</div><div class="line">    public boolean isAddCondiments() &#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类可以根据用户的需要到底要不要加东西，默认返回True，表明要加，如果想不加，经过逻辑判断返回false即可，这就是钩子，就是这么简单。</p>
+<p>而这里我们说一说一个设计原则：好莱坞原则</p>
+<pre><code>别调用我们，我们会调用你。
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就像我们例子中，Coffee和Tea的冲泡方法步骤依赖于CaffeineBeverageWithHook父类的prepareRecipe()，子类只要实现相应的方法就行了，而具体怎么调用，不用管。</p>
+<p>差不多接近尾声了，我们总结一下要点。</p>
+<ul>
+<li>“模板方法”定义了算法的步骤，把这些步骤的实现延迟到子类</li>
+<li>模板方法模式为我们提供了一种代码复用的重要技巧</li>
+<li>模板方法的抽象类可以定义具体方法、抽象方法和钩子</li>
+<li>抽象方法由子类实现</li>
+<li>钩子是一种方法，它在抽象类中不做事，或者只做默认的事情，子类可以选择要不要去覆盖它</li>
+<li>为了防止子类改变模板方法的算法，可以将模板方法申明为final</li>
+<li>好莱坞原则告诉我们，将决策权放在高层模板中，以便决定如何以及时调用底层模块</li>
+<li>你将在真实世界代码中看到模板方法模式的许多变体，不要将期待它们全部是一眼就可以被你认出的</li>
+<li>策略模式和模板方法模式都封装算法，一个用组合，一个用继承<br>工厂方法是模板方法的一种特殊版本</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">模板方法模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-史上最炫酷控件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/10/史上最炫酷控件/">史上最炫酷控件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/10/史上最炫酷控件/" class="archive-article-date">
+  	<time datetime="2017-02-10T11:13:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本来打算年前发布的，但是开了一波车，没刹住。年后回来公司APP又改版，累坏宝宝了，改的差不多了，就赶紧抽空把这个炫酷的控件分享给大家。</p>
+<h2 id="控件的四大特点"><a href="#控件的四大特点" class="headerlink" title="控件的四大特点"></a>控件的四大特点</h2><ul>
+<li>可旋转：支持普通旋转和惯性旋转，主要是对触摸事件的分析，本控件没有用GestureDetector，条件纯手工，这也方便学习，这也是控件发布的主要原因</li>
+<li>可拖拽：支持长按拖拽，当然这也是触摸事件，我觉得比较精妙的地方是对数据的处理</li>
+<li>炫酷的动画：大多数动画在该控件都有涉及，例如拖拽结束，显示，隐藏和布局改动时</li>
+<li>灵活性：相信大家都用过RecyclerView，用过的都说好，哈哈，我第一次想到它是因为LayoutManager这个类，大家可以随意改动自己菜单的布局，多炫酷啊！可惜后来写着写着，就忘了，有空我会想想怎么实现，当然大家都可以提意见，剩下的还剩它的Adapter，你也可以根据type提供不同的view，但是我去掉了它的回收机制，我想这个菜单应该不需要大量的回收吧(当然有些地方还是需要做的，确实做得不够好)，除了用适配器，用户还可以直接在xml中添加子view，但两者不兼容</li>
+</ul>
+<p>那它到底长什么样呢？看看炫酷的马赛克吧！<br>
+        
+          <a class="article-more-a" href="/2017/02/10/史上最炫酷控件/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Animator</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Cool</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">onTouchEvent</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Android代码规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/12/Android代码规范/">Android代码规范</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/12/Android代码规范/" class="archive-article-date">
+  	<time datetime="2017-01-12T06:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-源文件基础"><a href="#1-源文件基础" class="headerlink" title="1.源文件基础"></a>1.源文件基础</h1><h2 id="1-1-文件名"><a href="#1-1-文件名" class="headerlink" title="1.1 文件名"></a>1.1 文件名</h2><p>源文件以其最顶层的类名来命名，大小写敏感，文件扩展名为.java。</p>
+<h2 id="1-2-文件编码：UTF-8"><a href="#1-2-文件编码：UTF-8" class="headerlink" title="1.2 文件编码：UTF-8"></a>1.2 文件编码：UTF-8</h2><p>源文件编码格式为 UTF-8。</p>
+<h2 id="1-3-特殊字符"><a href="#1-3-特殊字符" class="headerlink" title="1.3 特殊字符"></a>1.3 特殊字符</h2><h3 id="1-3-1-空白字符"><a href="#1-3-1-空白字符" class="headerlink" title="1.3.1 空白字符"></a>1.3.1 空白字符</h3><p>除了行结束符序列，ASCII水平空格字符(0×20，即空格)是源文件中唯一允许出现的空白字符，这意味着：</p>
+<p>所有其它字符串中的空白字符都要进行转义。<br>制表符不用于缩进（可以在IDE中Tab键设置为若干个空格）。</p>
+<h3 id="1-3-2-特殊转义序列"><a href="#1-3-2-特殊转义序列" class="headerlink" title="1.3.2 特殊转义序列"></a>1.3.2 特殊转义序列</h3><p>对于具有特殊转义序列的任何字符(\b, \t, \n, \f, \r, \”, \’及)，我们使用它的转义序列，而不是相应的八进制(比如\012)或Unicode(比如\u000a)转义。</p>
+<h3 id="1-3-3-非ASCII字符"><a href="#1-3-3-非ASCII字符" class="headerlink" title="1.3.3 非ASCII字符"></a>1.3.3 非ASCII字符</h3><p>对于剩余的非ASCII字符，是使用实际的Unicode字符(比如∞)，还是使用等价的Unicode转义符(比如\u221e)，取决于哪个能让代码更易于阅读和理解。</p>
+<pre><code>Tip:在使用Unicode转义符或是一些实际的Unicode字符时，建议做些注释给出解释，这有助于别人阅读和理解。
+</code></pre><p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String unitAbbrev = &quot;μs&quot;; | 赞，即使没有注释也非常清晰</div><div class="line">String unitAbbrev = &quot;\u03bcs&quot;; // &quot;μs&quot; | 允许，但没有理由要这样做</div><div class="line">String unitAbbrev = &quot;\u03bcs&quot;; // Greek letter mu, &quot;s&quot; | 允许，但这样做显得笨拙还容易出错</div><div class="line">String unitAbbrev = &quot;\u03bcs&quot;; | 很糟，读者根本看不出这是什么</div><div class="line">return &apos;\ufeff&apos; + content; // byte order mark | Good，对于非打印字符，使用转义，并在必要时写上注释</div></pre></td></tr></table></figure>
+<pre><code>Tip:永远不要由于害怕某些程序可能无法正确处理非ASCII字符而让你的代码可读性变差。当程序无法正确处理非ASCII字符时，它自然无法正确运行， 你就会去fix这些问题的了。(言下之意就是大胆去用非ASCII字符，如果真的有需要的话)
+</code></pre><h1 id="2-源文件结构"><a href="#2-源文件结构" class="headerlink" title="2. 源文件结构"></a>2. 源文件结构</h1><p>一个源文件包含(按顺序地)：</p>
+<ul>
+<li>许可证或版权信息(如有需要)</li>
+<li>package语句</li>
+<li>import语句</li>
+<li>一个顶级类(只有一个)以上每个部分之间用一个空行隔开。
+        
+          <a class="article-more-a" href="/2017/01/12/Android代码规范/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代码规范</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-类和接口(下)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/12/类和接口(下)/">类和接口(下)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/12/类和接口(下)/" class="archive-article-date">
+  	<time datetime="2017-01-12T02:59:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。</p>
+<h2 id="第6条-接口优于抽象类"><a href="#第6条-接口优于抽象类" class="headerlink" title="第6条:接口优于抽象类"></a>第6条:接口优于抽象类</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先得说说接口与抽象类的区别：抽象类允许包含某些方法的实现，但是接口则不允许；更重要的一个区别在于，为了实现由抽象类定义的类型，类必须成为抽象类的一个子类，而继承只能单继承。</p>
+<ul>
+<li>现有的类可以很容易被更新，以实现新的接口:就是说A和B两个类分别继承抽象类和实现接口，假设我们要增加新方法，实现接口的很容易实现新的方法</li>
+<li>接口是定义mixin(混合类型)的理想选择:mixin就是混合类型的意思，很明显了，说的就是抽象类只能单继承，想拥有更多的功能只能提高类的层次结构，而接口可以多实现</li>
+<li>接口允许我们构造非层次结构的类型框架:说的跟第二条差不多，就是说多实现，不打破类的层次结构</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然接口不允许包含方法的实现，但是接口来定义类型并不妨碍你为程序员提供实现上的帮助。通过对你导出的每个重要接口都提供一个抽象的骨架实现类，把接口和抽象类的优点结合起来。</p>
+<p>例如：<br>
+        
+          <a class="article-more-a" href="/2017/01/12/类和接口(下)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-类和接口(上)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/09/类和接口(上)/">类和接口(上)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/09/类和接口(上)/" class="archive-article-date">
+  	<time datetime="2017-01-09T07:28:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。</p>
+<h2 id="第1条-使类和成员的可访问性最小化"><a href="#第1条-使类和成员的可访问性最小化" class="headerlink" title="第1条:使类和成员的可访问性最小化"></a>第1条:使类和成员的可访问性最小化</h2><h4 id="什么是设计良好的模块？"><a href="#什么是设计良好的模块？" class="headerlink" title="什么是设计良好的模块？"></a>什么是设计良好的模块？</h4><p>这个模块对于外部的其他模块而言，是否隐藏其内部数据和其他实现细节。</p>
+<h4 id="那么问题来了，为什么要进行信息隐藏呢？"><a href="#那么问题来了，为什么要进行信息隐藏呢？" class="headerlink" title="那么问题来了，为什么要进行信息隐藏呢？"></a>那么问题来了，为什么要进行信息隐藏呢？</h4>
+        
+          <a class="article-more-a" href="/2017/01/09/类和接口(上)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 crazysunj
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+   <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true,
+		showTags: true
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),g=e(75),m=r(g),w=e(70);l(),(0,w.addLoadEvent)(function(){m.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),g=x[f],m=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&m&&void 0!==m[a],s&&a in x||(l=s?m[a]:e[a],x[a]=d&&"function"!=typeof m[a]?e[a]:h&&s?i(l,r):b&&m[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&g&&!g[a]&&u(g,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,g,m,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=g==h,M=!1,A=t.prototype,T=A[p]||A[v]||g&&A[g],L=T||j(g),N=g?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,g)if(O={values:E?L:j(h),keys:m?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),g=e(10),m=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),g(t),n=w(n,!0),g(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){g(t);for(var e,r=b(n=m(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=m(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(m(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:m(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){var n=t.getAttribute("target");n&&""!==n||t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.f6a68c.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dagger2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IOC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Animator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">View</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
