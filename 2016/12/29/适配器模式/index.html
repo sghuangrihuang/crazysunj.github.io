@@ -17,7 +17,7 @@
 <meta property="og:description" content="定义&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。 生活中的适配器&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;用电器做例子，笔记本电脑的插头一般都是三相的，即除了阳极、阴极外，还有一个地极。而有些地方的电">
 <meta property="og:image" content="http://yoursite.com/img/Adapter1.png">
 <meta property="og:image" content="http://yoursite.com/img/Adapter2.png">
-<meta property="og:updated_time" content="2017-04-29T02:43:34.000Z">
+<meta property="og:updated_time" content="2017-04-30T10:10:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
 <meta name="twitter:description" content="定义&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。 生活中的适配器&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;用电器做例子，笔记本电脑的插头一般都是三相的，即除了阳极、阴极外，还有一个地极。而有些地方的电">
@@ -152,17 +152,17 @@
         <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</p>
 <h2 id="生活中的适配器"><a href="#生活中的适配器" class="headerlink" title="生活中的适配器"></a>生活中的适配器</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用电器做例子，笔记本电脑的插头一般都是三相的，即除了阳极、阴极外，还有一个地极。而有些地方的电源插座却只有两极，没有地极。电源插座与笔记本电脑的电源插头不匹配使得笔记本电脑无法使用。这时候一个三相到两相的转换器（适配器）就能解决此问题，而这正像是本模式所做的事情。</p>
 <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适配器模式有类的适配器模式和对象的适配器模式两种不同的形式。</p>
-<h4 id="类适配器模式"><a href="#类适配器模式" class="headerlink" title="类适配器模式"></a>类适配器模式</h4><p><img src="/img/Adapter1.png" alt=""></p>
+<h3 id="类适配器模式"><a href="#类适配器模式" class="headerlink" title="类适配器模式"></a>类适配器模式</h3><p><img src="/img/Adapter1.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在上图中可以看出，Adaptee类并没有sampleOperation2()方法，而客户端则期待这个方法。为使客户端能够使用Adaptee类，提供一个中间环节，即类Adapter，把Adaptee的API与Target类的API衔接起来。Adapter与Adaptee是继承关系，这决定了这个适配器模式是类的。<br><a id="more"></a><br>具体角色</p>
 <ul>
 <li>目标(Target)：这就是所期待得到的接口。注意：由于这里讨论的是类适配器模式，因此目标不可以是类</li>
 <li>源(Adapee)：现在需要适配的接口</li>
 <li>适配器(Adaper)：适配器类是本模式的核心。适配器把源接口转换成目标接口。显然，这一角色不可以是接口，而必须是具体类</li>
 </ul>
-<h4 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与类的适配器模式一样，对象的适配器模式把被适配的类的API转换成为目标类的API，与类的适配器模式不同的是，对象的适配器模式不是使用继承关系连接到Adaptee类，而是使用委派关系连接到Adaptee类。</p>
+<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与类的适配器模式一样，对象的适配器模式把被适配的类的API转换成为目标类的API，与类的适配器模式不同的是，对象的适配器模式不是使用继承关系连接到Adaptee类，而是使用委派关系连接到Adaptee类。</p>
 <p><img src="/img/Adapter2.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上图可以看出，Adaptee类并没有sampleOperation2()方法，而客户端则期待这个方法。为使客户端能够使用Adaptee类，需要提供一个包装(Wrapper)类Adapter。这个包装类包装了一个Adaptee的实例，从而此包装类能够把Adaptee的API与Target类的API衔接起来。Adapter与Adaptee是委派关系，这决定了适配器模式是对象的。</p>
-<h4 id="类适配器和对象适配器的权衡"><a href="#类适配器和对象适配器的权衡" class="headerlink" title="类适配器和对象适配器的权衡"></a>类适配器和对象适配器的权衡</h4><ol>
+<h3 id="类适配器和对象适配器的权衡"><a href="#类适配器和对象适配器的权衡" class="headerlink" title="类适配器和对象适配器的权衡"></a>类适配器和对象适配器的权衡</h3><ol>
 <li>类适配器<ul>
 <li>使用对象继承的方式，是静态的定义方式</li>
 <li>由于适配器直接继承了Adaptee，使得适配器不能和Adaptee的子类一起工作，因为继承是静态的关系，当适配器继承了Adaptee后，就不可能再去处理Adaptee的子类了</li>
@@ -178,8 +178,8 @@
 </ul>
 </li>
 </ol>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建议尽量使用对象适配器的实现方式，多用合成/聚合、少用继承。当然，具体问题具体分析，根据需要来选用实现方式，最适合的才是最好的。</p>
-<h4 id="适配器模式的优缺点"><a href="#适配器模式的优缺点" class="headerlink" title="适配器模式的优缺点"></a>适配器模式的优缺点</h4><ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建议尽量使用对象适配器的实现方式，多用合成/聚合、少用继承。当然，具体问题具体分析，根据需要来选用实现方式，最适合的才是最好的。</p>
+<h2 id="适配器模式的优缺点"><a href="#适配器模式的优缺点" class="headerlink" title="适配器模式的优缺点"></a>适配器模式的优缺点</h2><ol>
 <li>优点<ul>
 <li>更好的复用性：系统需要使用现有的类，而此类的接口不符合系统的需要。那么通过适配器模式就可以让这些功能得到更好的复用</li>
 <li>更好的扩展性：在实现适配器功能的时候，可以调用自己开发的功能，从而自然地扩展系统的功能</li>
@@ -190,10 +190,10 @@
 </ul>
 </li>
 </ol>
-<h4 id="适配器的扩展模式-缺省适配模式"><a href="#适配器的扩展模式-缺省适配模式" class="headerlink" title="适配器的扩展模式-缺省适配模式"></a>适配器的扩展模式-缺省适配模式</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺省适配(Default Adapter)模式为一个接口提供缺省实现，这样子类型可以从这个缺省实现进行扩展，而不必从原有接口进行扩展。作为适配器模式的一个特例，缺省是适配模式在JAVA语言中有着特殊的应用。</p>
+<h2 id="适配器的扩展模式-缺省适配模式"><a href="#适配器的扩展模式-缺省适配模式" class="headerlink" title="适配器的扩展模式-缺省适配模式"></a>适配器的扩展模式-缺省适配模式</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺省适配(Default Adapter)模式为一个接口提供缺省实现，这样子类型可以从这个缺省实现进行扩展，而不必从原有接口进行扩展。作为适配器模式的一个特例，缺省是适配模式在JAVA语言中有着特殊的应用。</p>
 <p><strong>产生的原因：</strong></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些空的方法是一种浪费，有时也是一种混乱。除非看过这些空方法的代码，程序员可能会以为这些方法不是空的。即便他知道其中有一些方法是空的，也不一定知道哪些方法是空的，哪些方法不是空的，除非看过这些方法的源代码或是文档。</p>
-<h4 id="相似设计模式比较"><a href="#相似设计模式比较" class="headerlink" title="相似设计模式比较"></a>相似设计模式比较</h4><ul>
+<h2 id="相似设计模式比较"><a href="#相似设计模式比较" class="headerlink" title="相似设计模式比较"></a>相似设计模式比较</h2><ul>
 <li>适配器：将一个接口转成另一个接口</li>
 <li>装饰者：不改变接口，但加入责任</li>
 <li>外观：让接口更简单</li>
@@ -308,6 +308,34 @@
 
 
 
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生活中的适配器"><span class="toc-number">2.</span> <span class="toc-text">生活中的适配器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">3.</span> <span class="toc-text">结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器模式"><span class="toc-number">3.1.</span> <span class="toc-text">类适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象适配器"><span class="toc-number">3.2.</span> <span class="toc-text">对象适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器和对象适配器的权衡"><span class="toc-number">3.3.</span> <span class="toc-text">类适配器和对象适配器的权衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式的优缺点"><span class="toc-number">4.</span> <span class="toc-text">适配器模式的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器的扩展模式-缺省适配模式"><span class="toc-number">5.</span> <span class="toc-text">适配器的扩展模式-缺省适配模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相似设计模式比较"><span class="toc-number">6.</span> <span class="toc-text">相似设计模式比较</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
 
 
   
@@ -418,6 +446,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -442,10 +482,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -458,15 +494,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,7 +518,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,19 +538,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">

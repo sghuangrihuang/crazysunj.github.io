@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="crazysunjの博客">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来打算年前发布的，但是开了一波车，没刹住。年后回来公司APP又改版，累坏宝宝了，改的差不多了，就赶紧抽空把这个炫酷的控件分享给大家。 控件的四大特点 可旋转：支持普通旋转和惯性旋转，主要是对触摸事件的分析，本控件没有用GestureDetector，条件纯手工，这也方便学习，这也是控件发布的主要原因 可拖拽：支持">
 <meta property="og:image" content="http://yoursite.com/img/coolmenu1.gif">
-<meta property="og:updated_time" content="2017-04-29T02:39:10.000Z">
+<meta property="og:updated_time" content="2017-04-30T10:06:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="史上最炫酷控件">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来打算年前发布的，但是开了一波车，没刹住。年后回来公司APP又改版，累坏宝宝了，改的差不多了，就赶紧抽空把这个炫酷的控件分享给大家。 控件的四大特点 可旋转：支持普通旋转和惯性旋转，主要是对触摸事件的分析，本控件没有用GestureDetector，条件纯手工，这也方便学习，这也是控件发布的主要原因 可拖拽：支持">
@@ -156,7 +156,7 @@
 <li>灵活性：相信大家都用过RecyclerView，用过的都说好，哈哈，我第一次想到它是因为LayoutManager这个类，大家可以随意改动自己菜单的布局，多炫酷啊！可惜后来写着写着，就忘了，有空我会想想怎么实现，当然大家都可以提意见，剩下的还剩它的Adapter，你也可以根据type提供不同的view，但是我去掉了它的回收机制，我想这个菜单应该不需要大量的回收吧(当然有些地方还是需要做的，确实做得不够好)，除了用适配器，用户还可以直接在xml中添加子view，但两者不兼容</li>
 </ul>
 <p>那它到底长什么样呢？看看炫酷的马赛克吧！<br><a id="more"></a><br><img src="/img/coolmenu1.gif" alt=""></p>
-<h2 id="介绍下控件的主要结构吧"><a href="#介绍下控件的主要结构吧" class="headerlink" title="介绍下控件的主要结构吧"></a>介绍下控件的主要结构吧</h2><p>控件的第一个子view作为菜单的中心点，所以</p>
+<h2 id="控件的主要结构"><a href="#控件的主要结构" class="headerlink" title="控件的主要结构"></a>控件的主要结构</h2><p>控件的第一个子view作为菜单的中心点，所以</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int childCount = getChildCount();</div><div class="line">if (childCount &lt;= 0) &#123;</div><div class="line">    throw new RuntimeException(&quot;child count must be more than 1&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>控件会根据用户对宽高设置的模式，进行相应的测量和布局</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (widthMode == MeasureSpec.EXACTLY &amp;&amp; heightMode == MeasureSpec.EXACTLY) &#123;</div><div class="line">    edge = width &gt;= height ? height : width;</div><div class="line">&#125; else &#123;</div><div class="line">......</div><div class="line">measureChild(child, widthMeasureSpec, heightMeasureSpec);</div><div class="line">......</div><div class="line">int m = MeasureSpec.makeMeasureSpec((int) (edge * (i == 0 ? 0.8f : 0.6f) * 1.0f / 3), MeasureSpec.EXACTLY);</div><div class="line">child.measure(m, m);</div></pre></td></tr></table></figure>
@@ -297,6 +297,34 @@
 
 
 
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控件的四大特点"><span class="toc-number">1.</span> <span class="toc-text">控件的四大特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控件的主要结构"><span class="toc-number">2.</span> <span class="toc-text">控件的主要结构</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
 
 
   
@@ -407,6 +435,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -431,10 +471,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -447,15 +483,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,7 +507,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,19 +527,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/img/linux1.png">
 <meta property="og:image" content="http://yoursite.com/img/linux2.jpg">
 <meta property="og:image" content="http://yoursite.com/img/linux3.gif">
-<meta property="og:updated_time" content="2017-04-29T02:32:27.000Z">
+<meta property="og:updated_time" content="2017-04-30T09:57:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux探秘之用户态与内核态">
 <meta name="twitter:description" content="原文地址：Linux探秘之用户态与内核态 Unix/Linux的体系架构 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如上图所示，从宏观上来看，Linux操作系统的体系架构分为用户态和内核态（或者用户空间和内核）。内核从本质上看是一种软件——控制计算机的硬件资源，并提供上层应用程序运行的环境。用户态即上层应用程序的活动空间，应用程序的执行必须依托于内核提供的">
@@ -286,6 +286,34 @@
 
 
 
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unix-Linux的体系架构"><span class="toc-number">1.</span> <span class="toc-text">Unix/Linux的体系架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户态和内核态的切换"><span class="toc-number">2.</span> <span class="toc-text">用户态和内核态的切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
 
 
   
@@ -396,6 +424,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -420,10 +460,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -436,15 +472,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,7 +496,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,19 +516,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">

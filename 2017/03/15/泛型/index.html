@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>泛型 | crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文地址：深入理解Java之泛型 1. Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对">
+  <meta name="description" content="原文地址：深入理解Java之泛型 Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的A">
 <meta name="keywords" content="Android,Java,泛型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="泛型">
 <meta property="og:url" content="http://yoursite.com/2017/03/15/泛型/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
-<meta property="og:description" content="原文地址：深入理解Java之泛型 1. Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对">
+<meta property="og:description" content="原文地址：深入理解Java之泛型 Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的A">
 <meta property="og:image" content="http://yoursite.com/img/genericity1.png">
 <meta property="og:image" content="http://yoursite.com/img/genericity2.png">
 <meta property="og:image" content="http://yoursite.com/img/genericity3.png">
-<meta property="og:updated_time" content="2017-04-29T02:25:53.000Z">
+<meta property="og:updated_time" content="2017-04-30T09:57:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="泛型">
-<meta name="twitter:description" content="原文地址：深入理解Java之泛型 1. Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对">
+<meta name="twitter:description" content="原文地址：深入理解Java之泛型 Why ——引入泛型机制的原因&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的A">
 <meta name="twitter:image" content="http://yoursite.com/img/genericity1.png">
   
     <link rel="alternative" href="/atom.xml" title="crazysunjの博客" type="application/atom+xml">
@@ -151,25 +151,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>原文地址：<a href="http://www.cnblogs.com/absfree/p/5270883.html" target="_blank" rel="external">深入理解Java之泛型</a></p>
-<h2 id="1-Why-——引入泛型机制的原因"><a href="#1-Why-——引入泛型机制的原因" class="headerlink" title="1. Why ——引入泛型机制的原因"></a>1. Why ——引入泛型机制的原因</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的ArrayList实现。<br><a id="more"></a><br>在Java 5之前，ArrayList的实现大致如下：</p>
+<h2 id="Why-——引入泛型机制的原因"><a href="#Why-——引入泛型机制的原因" class="headerlink" title="Why ——引入泛型机制的原因"></a>Why ——引入泛型机制的原因</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假如我们想要实现一个String数组，并且要求它可以动态改变大小，这时我们都会想到用ArrayList来聚合String对象。然而，过了一阵，我们想要实现一个大小可以改变的Date对象数组，这时我们当然希望能够重用之前写过的那个针对String对象的ArrayList实现。<br><a id="more"></a><br>在Java 5之前，ArrayList的实现大致如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class ArrayList &#123;</div><div class="line">    public Object get(int i) &#123; ... &#125;</div><div class="line">    public void add(Object o) &#123; ... &#125;</div><div class="line">    ...</div><div class="line">    private Object[] elementData;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从以上代码我们可以看到，用于向ArrayList中添加元素的add函数接收一个Object型的参数，从ArrayList获取指定元素的get方法也返回一个Object类型的对象，Object对象数组elementData存放这ArrayList中的对象， 也就是说，无论你向ArrayList中放入什么类型的类型，到了它的内部，都是一个Object对象。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于继承的泛型实现会带来两个问题：第一个问题是有关get方法的，我们每次调用get方法都会返回一个Object对象，每一次都要强制类型转换为我们需要的类型，这样会显得很麻烦；第二个问题是有关add方法的，假如我们往聚合了String对象的ArrayList中加入一个File对象，编译器不会产生任何错误提示，而这不是我们想要的。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以，从Java 5开始，ArrayList在使用时可以加上一个类型参数(type parameter)，这个类型参数用来指明ArrayList中的元素类型。类型参数的引入解决了以上提到的两个问题，如以下代码所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; s = new ArrayList&lt;String&gt;();</div><div class="line">s.add(&quot;abc&quot;);</div><div class="line">String s = s.get(0); //无需进行强制转换</div><div class="line">s.add(123);  //编译错误，只能向其中添加String对象</div><div class="line">...</div></pre></td></tr></table></figure>
 <p>在以上代码中，编译器“获知”ArrayList的类型参数String后，便会替我们完成强制类型转换以及类型检查的工作。</p>
-<h2 id="2-泛型类"><a href="#2-泛型类" class="headerlink" title="2. 泛型类"></a>2. 泛型类</h2><p>所谓泛型类（generic class）就是具有一个或多个类型参数的类。例如：</p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>所谓泛型类（generic class）就是具有一个或多个类型参数的类。例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Pair&lt;T, U&gt; &#123;</div><div class="line">    private T first;</div><div class="line">    private U second;</div><div class="line">    public Pair(T first, U second) &#123;</div><div class="line">        this.first = first;</div><div class="line">        this.second = second;</div><div class="line">    &#125;</div><div class="line">    public T getFirst() &#123;</div><div class="line">        return first;</div><div class="line">    &#125;</div><div class="line">    public U getSecond() &#123;</div><div class="line">        return second;</div><div class="line">    &#125;</div><div class="line">    public void setFirst(T newValue) &#123;</div><div class="line">        first = newValue;</div><div class="line">    &#125;</div><div class="line">    public void setSecond(U newValue) &#123;</div><div class="line">        second = newValue;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的代码中我们可以看到，泛型类Pair的类型参数为T、U，放在类名后的尖括号中。这里的T即Type的首字母，代表类型的意思，常用的还有E（element）、K（key）、V（value）等。当然不用这些字母指代类型参数也完全可以。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实例化泛型类的时候，我们只需要把类型参数换成具体的类型即可，比如实例化一个Pair类我们可以这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;String, Integer&gt; pair = new Pair&lt;String, Integer&gt;();</div></pre></td></tr></table></figure>
-<h2 id="3-泛型方法"><a href="#3-泛型方法" class="headerlink" title="3. 泛型方法"></a>3. 泛型方法</h2><p>所谓泛型方法，就是带有类型参数的方法，它既可以定义在泛型类中，也可以定义在普通类中。例如：</p>
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>所谓泛型方法，就是带有类型参数的方法，它既可以定义在泛型类中，也可以定义在普通类中。例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class ArrayAlg &#123;</div><div class="line">    public static &lt;T&gt; T getMiddle(T[] a) &#123;</div><div class="line">        return a[a.length / 2];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上代码中的getMiddle方法即为一个泛型方法，定义的格式是类型变量放在修饰符的后面、返回类型的前面。我们可以看到，以上泛型方法可以针对各种类型的数组调用，在这些数组的类型已知切有限时，虽然也可以用过重载实现，不过编码效率要低得多。调用以上泛型方法的示例代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String[] strings = &#123;&quot;aa&quot;, &quot;bb&quot;, &quot;cc&quot;&#125;;</div><div class="line">String middle = ArrayAlg.getMiddle(names);</div></pre></td></tr></table></figure>
-<h2 id="4-类型变量的限定"><a href="#4-类型变量的限定" class="headerlink" title="4. 类型变量的限定"></a>4. 类型变量的限定</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在有些情况下，泛型类或者泛型方法想要对自己的类型参数进一步加一些限制。比如，我们想要限定类型参数只能为某个类的子类或者只能为实现了某个接口的类。相关的语法如下：</p>
+<h2 id="类型变量的限定"><a href="#类型变量的限定" class="headerlink" title="类型变量的限定"></a>类型变量的限定</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在有些情况下，泛型类或者泛型方法想要对自己的类型参数进一步加一些限制。比如，我们想要限定类型参数只能为某个类的子类或者只能为实现了某个接口的类。相关的语法如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T extends BoundingType&gt;（BoundingType是一个类或者接口）。其中的BoundingType可以多于1个，用“&amp;”连接即可。</div></pre></td></tr></table></figure>
-<h2 id="5-深入理解泛型的实现"><a href="#5-深入理解泛型的实现" class="headerlink" title="5. 深入理解泛型的实现"></a>5. 深入理解泛型的实现</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，从虚拟机的角度看，不存在“泛型”概念。比如上面我们定义的泛型类Pair，在虚拟机看来（即编译为字节码后），它长的是这样的：</p>
+<h2 id="深入理解泛型的实现"><a href="#深入理解泛型的实现" class="headerlink" title="深入理解泛型的实现"></a>深入理解泛型的实现</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，从虚拟机的角度看，不存在“泛型”概念。比如上面我们定义的泛型类Pair，在虚拟机看来（即编译为字节码后），它长的是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Pair &#123;</div><div class="line">    private Object first;</div><div class="line">    private Object second;</div><div class="line">    public Pair(Object first, Object second) &#123;</div><div class="line">        this.first = first;</div><div class="line">        this.second = second;</div><div class="line">    &#125;</div><div class="line">    public Object getFirst() &#123;</div><div class="line">        return first;</div><div class="line">    &#125;</div><div class="line">    public Object getSecond() &#123;</div><div class="line">        return second;</div><div class="line">    &#125;</div><div class="line">    public void setFirst(Object newValue) &#123;</div><div class="line">        first = newValue;</div><div class="line">    &#125;</div><div class="line">    public void setSecond(Object newValue) &#123;</div><div class="line">        second = newValue;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>上面的类是通过类型擦除得到的，是Pair泛型类对应的原始类型（raw type）。类型擦除就是把所有类型参数替换为BoundingType（若未加限定就替换为Object）。</p>
 <p>我们可以简单地验证下，编译Pair.java后，键入“javap -c -s Pair”可得到：</p>
@@ -203,7 +203,7 @@
 <p><img src="/img/genericity3.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以看到，在DateInterval类中存在两个setSecond方法，第一个setSecond方法（即我们定义的setSecond方法）的形参为Date，第二个setSecond方法的形参是Object，第二个方法就是编译器为我们生成的桥方法。我们可以看到第二个方法中存在到Date的强制类型转换，而且调用了第一个setSecond方法。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综合以上，我们知道了泛型机制的实现实际上是编译器帮我们分担了一些麻烦的工作。一方面通过使用类型参数，可以告诉编译器在编译时进行类型检查；另一方面，原本需要我们做的强制类型转换的工作也由编译器为我们代劳了。</p>
-<h2 id="6-注意事项"><a href="#6-注意事项" class="headerlink" title="6. 注意事项"></a>6. 注意事项</h2><p>1） 不能用基本类型实例化类型参数</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1） 不能用基本类型实例化类型参数</p>
 <p>也就是说，以下语句是非法的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;int, int&gt; pair = new Pair&lt;int, int&gt;();</div></pre></td></tr></table></figure>
 <p>不过我们可以用相应的包装类型来代替。</p>
@@ -226,7 +226,7 @@
 <p>注意，这里我们强调了泛型类。因为普通类中可以定义静态泛型方法，如上面我们提到的ArrayAlg类中的getMiddle方法。关于为什么有这样的规定，请考虑下面的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class People&lt;T&gt; &#123;</div><div class="line">    public static T name;</div><div class="line">    public static T getName() &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们知道，在同一时刻，内存中可能存在不只一个People类实例。假设现在内存中存在着一个People对象和People对象，而类的静态变量与静态方法是所有类实例共享的。那么问题来了，name究竟是String类型还是Integer类型呢？基于这个原因，Java中不允许在泛型类的静态上下文中使用类型变量。</p>
-<h2 id="7-类型通配符"><a href="#7-类型通配符" class="headerlink" title="7. 类型通配符"></a>7. 类型通配符</h2><p>介绍类型通配符前，首先介绍两点：</p>
+<h2 id="类型通配符"><a href="#类型通配符" class="headerlink" title="类型通配符"></a>类型通配符</h2><p>介绍类型通配符前，首先介绍两点：</p>
 <ul>
 <li><p>假设Student是People的子类，Pair却不是Pair的子类，它们之间不存在”is-a”关系。</p>
 </li>
@@ -246,8 +246,8 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了子类型限定和超类型限定，还有一种通配符叫做无限定的通配符，它是这样的：&lt;?&gt;。这个东西我们什么时候会用到呢？考虑一下这个场景，我们调用一个会返回一个getPairs方法，这个方法会返回一组Pair对象。其中既有Pair, 还有Pair对象。（Student类和Teacher类不存在继承关系）显然，这种情况下，子类型限定和超类型限定都不能用。这时我们可以用这样一条语句搞定它：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Pair&lt;?&gt;[] pairs = getPairs(...);</div></pre></td></tr></table></figure>
 <p>对于无限定的通配符，调用getter方法和setter方法都是非法的。</p>
-<h2 id="8-参考资料"><a href="#8-参考资料" class="headerlink" title="8. 参考资料"></a>8. 参考资料</h2><p><a href="https://book.douban.com/subject/3146174/" target="_blank" rel="external">JAVA核心技术（卷1） (豆瓣)</a></p>
-<h2 id="9-转者题外话"><a href="#9-转者题外话" class="headerlink" title="9. 转者题外话"></a>9. 转者题外话</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本篇可以说比较快的掌握java的高级用法-泛型，把运用的部分提炼了出来，如果想详细深入，可参考《JAVA核心技术》和《Effective Java》。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://book.douban.com/subject/3146174/" target="_blank" rel="external">JAVA核心技术（卷1） (豆瓣)</a></p>
+<h2 id="转者题外话"><a href="#转者题外话" class="headerlink" title="转者题外话"></a>转者题外话</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本篇可以说比较快的掌握java的高级用法-泛型，把运用的部分提炼了出来，如果想详细深入，可参考《JAVA核心技术》和《Effective Java》。</p>
 
       
 
@@ -357,6 +357,34 @@
 </nav>
 
 
+
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-——引入泛型机制的原因"><span class="toc-number">1.</span> <span class="toc-text">Why ——引入泛型机制的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型类"><span class="toc-number">2.</span> <span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型方法"><span class="toc-number">3.</span> <span class="toc-text">泛型方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型变量的限定"><span class="toc-number">4.</span> <span class="toc-text">类型变量的限定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深入理解泛型的实现"><span class="toc-number">5.</span> <span class="toc-text">深入理解泛型的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">6.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型通配符"><span class="toc-number">7.</span> <span class="toc-text">类型通配符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转者题外话"><span class="toc-number">9.</span> <span class="toc-text">转者题外话</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
 
 
 
@@ -468,6 +496,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -492,10 +532,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -508,15 +544,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +568,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,19 +588,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">

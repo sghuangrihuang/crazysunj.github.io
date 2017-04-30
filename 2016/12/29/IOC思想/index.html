@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/img/ioc1.png">
 <meta property="og:image" content="http://yoursite.com/img/ioc2.png">
 <meta property="og:image" content="http://yoursite.com/img/ioc3.png">
-<meta property="og:updated_time" content="2017-04-29T02:45:08.000Z">
+<meta property="og:updated_time" content="2017-04-30T10:02:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOC思想">
 <meta name="twitter:description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
@@ -310,6 +310,34 @@
 
 
 
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介："><span class="toc-number">1.</span> <span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子："><span class="toc-number">2.</span> <span class="toc-text">例子：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般实现："><span class="toc-number">3.</span> <span class="toc-text">一般实现：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改善："><span class="toc-number">4.</span> <span class="toc-text">改善：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC的类型"><span class="toc-number">5.</span> <span class="toc-text">IOC的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数注入"><span class="toc-number">5.1.</span> <span class="toc-text">构造函数注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性注入"><span class="toc-number">5.2.</span> <span class="toc-text">属性注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口注入"><span class="toc-number">5.3.</span> <span class="toc-text">接口注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过容器完成依赖关系的注入"><span class="toc-number">5.4.</span> <span class="toc-text">通过容器完成依赖关系的注入</span></a></li></ol></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
 
 
   
@@ -420,6 +448,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -444,10 +484,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -460,15 +496,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,7 +520,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,19 +540,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">

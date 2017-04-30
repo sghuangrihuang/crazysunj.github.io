@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/01/12/类和接口(下)/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。 第6条:接口优于抽象类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;首先得说说接口与抽象类的区别：抽象类允许包含某些方法的实现，但是接口则不允">
-<meta property="og:updated_time" content="2017-04-28T08:52:08.000Z">
+<meta property="og:updated_time" content="2017-04-30T10:00:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类和接口(下)">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。 第6条:接口优于抽象类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;首先得说说接口与抽象类的区别：抽象类允许包含某些方法的实现，但是接口则不允">
@@ -295,6 +295,34 @@
 
 
 
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第6条-接口优于抽象类"><span class="toc-number">1.</span> <span class="toc-text">第6条:接口优于抽象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7条-接口只用于定义类型"><span class="toc-number">2.</span> <span class="toc-text">第7条:接口只用于定义类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8条-类层次优于标签类"><span class="toc-number">3.</span> <span class="toc-text">第8条:类层次优于标签类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第9条-用函数对象表示策略"><span class="toc-number">4.</span> <span class="toc-text">第9条:用函数对象表示策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第10条-优先考虑静态成员类"><span class="toc-number">5.</span> <span class="toc-text">第10条:优先考虑静态成员类</span></a></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
 
 
   
@@ -405,6 +433,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -429,10 +469,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -445,15 +481,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +505,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,19 +525,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
