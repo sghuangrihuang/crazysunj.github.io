@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="crazysunjの博客">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当我们要创建一个对象的时候，第一反应就是new一个啊，恩，没有错，错在对象老是在变。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因此接口编程就这么诞生了，它可以隔离掉以后系统可能发生的一大堆改变。简单解释一下，如果代码是针对接口而写，那么通过多态，它可以与任何新类实现该接口">
 <meta property="og:image" content="http://yoursite.com/img/factory1.jpeg">
-<meta property="og:updated_time" content="2017-04-29T02:29:14.000Z">
+<meta property="og:updated_time" content="2017-05-07T05:51:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工厂模式">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当我们要创建一个对象的时候，第一反应就是new一个啊，恩，没有错，错在对象老是在变。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因此接口编程就这么诞生了，它可以隔离掉以后系统可能发生的一大堆改变。简单解释一下，如果代码是针对接口而写，那么通过多态，它可以与任何新类实现该接口">
@@ -151,6 +151,7 @@
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们要创建一个对象的时候，第一反应就是new一个啊，恩，没有错，错在对象老是在变。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此接口编程就这么诞生了，它可以隔离掉以后系统可能发生的一大堆改变。简单解释一下，如果代码是针对接口而写，那么通过多态，它可以与任何新类实现该接口。但是，当代码使用大量的具体类时，等于自找麻烦，因为一旦加入新的具体类，就必须改变代码。也就是说，你的代码并非“对修改关闭”。想用新的具体类型来扩展代码，必须重新打开它。</p>
 <p>现在我们一步步来认识它。</p>
+<a id="more"></a>
 <p>故事的起源是，你有一个比萨店，而你是比萨店的主人。</p>
 <p>那么你要做一个比萨的方法就是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public Pizza orderPizza() &#123;</div><div class="line">    Pizza pizza = new Pizza();</div><div class="line">    pizza.prepare();</div><div class="line">    pizza.bake();</div><div class="line">    pizza.cut();</div><div class="line">    pizza.box();</div><div class="line">    return pizza;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -437,14 +438,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -481,11 +474,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">multiType</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RxAndroid</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HighLight</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,15 +534,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

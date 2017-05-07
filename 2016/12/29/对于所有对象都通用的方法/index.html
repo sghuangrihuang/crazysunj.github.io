@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/29/对于所有对象都通用的方法/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
 <meta property="og:description" content="第一条 覆盖equals时请遵守通用规定 类的每个实例本质上都是一样的 不关心类是否提供了“逻辑相等”的测试功能 超类已经覆盖了equals，从超类继承过来的行为对于子类也是合适的 类是私有的或是包级私有的，可以确定它的equals方法永远不会被调用 五大性质 自反性 对称性 传递性 一致性 非空性   扩展 里氏替换原则 复合优于继承   实现高质量equals方法的诀窍 使用==操作符检查“参">
-<meta property="og:updated_time" content="2017-04-30T10:11:38.000Z">
+<meta property="og:updated_time" content="2017-05-07T05:55:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对于所有对象都通用的方法">
 <meta name="twitter:description" content="第一条 覆盖equals时请遵守通用规定 类的每个实例本质上都是一样的 不关心类是否提供了“逻辑相等”的测试功能 超类已经覆盖了equals，从超类继承过来的行为对于子类也是合适的 类是私有的或是包级私有的，可以确定它的equals方法永远不会被调用 五大性质 自反性 对称性 传递性 一致性 非空性   扩展 里氏替换原则 复合优于继承   实现高质量equals方法的诀窍 使用==操作符检查“参">
@@ -172,13 +172,14 @@
 <li>当你编写完成了equals方法之后，应该问自己三个问题：它是否是对称的、传递的、一致的？<ul>
 <li>覆盖equals时总要覆盖hashCode</li>
 <li>不要企图让equals方法过于智能</li>
-<li>不要将equals声明中的Object对象替换为其他的类型<a id="more"></a>
-<h2 id="第二条-覆盖equals时总要覆盖hashCode"><a href="#第二条-覆盖equals时总要覆盖hashCode" class="headerlink" title="第二条 覆盖equals时总要覆盖hashCode"></a>第二条 覆盖equals时总要覆盖hashCode</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。原因：导致该类无法结合所有基于散列的集合一起正常运作，例如HashMap、HashSet和Hashtable</li>
+<li>不要将equals声明中的Object对象替换为其他的类型</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
+<a id="more"></a>
+<h2 id="第二条-覆盖equals时总要覆盖hashCode"><a href="#第二条-覆盖equals时总要覆盖hashCode" class="headerlink" title="第二条 覆盖equals时总要覆盖hashCode"></a>第二条 覆盖equals时总要覆盖hashCode</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在每个覆盖了equals方法的类中，也必须覆盖hashCode方法。原因：导致该类无法结合所有基于散列的集合一起正常运作，例如HashMap、HashSet和Hashtable</p>
 <h3 id="实现HASHCODE的约定"><a href="#实现HASHCODE的约定" class="headerlink" title="实现HASHCODE的约定"></a>实现HASHCODE的约定</h3><ul>
 <li>在应用程序的执行期间，只要对象的equals方法的比较操作所用到的信息没有被修改，那么对这同一个对象调用多次，hashCode方法都必须始终如一地返回同一整数。在同一个应用程序的多次执行过程中，每次执行所返回的整数可以不一致</li>
 <li>如果两个对象根据equals方法比较是相等的，那么调用这两个对象中任意一个对象的hashCode方法都必须产生同样的整数结果</li>
@@ -441,14 +442,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -485,11 +478,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">multiType</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RxAndroid</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HighLight</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +538,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

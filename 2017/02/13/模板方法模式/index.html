@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>模板方法模式 | crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现 咖啡： 1234567891011121314151617181920212223/** * Created by sunjian on 2017/">
+  <meta name="description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现">
 <meta name="keywords" content="Android,Java,模板方法模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板方法模式">
 <meta property="og:url" content="http://yoursite.com/2017/02/13/模板方法模式/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
-<meta property="og:description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现 咖啡： 1234567891011121314151617181920212223/** * Created by sunjian on 2017/">
+<meta property="og:description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现">
 <meta property="og:image" content="http://yoursite.com/img/concrete1.png">
-<meta property="og:updated_time" content="2017-04-29T02:37:15.000Z">
+<meta property="og:updated_time" content="2017-05-07T05:54:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模板方法模式">
-<meta name="twitter:description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现 咖啡： 1234567891011121314151617181920212223/** * Created by sunjian on 2017/">
+<meta name="twitter:description" content="首先，我们先来个小场景：冲泡咖啡和茶 那么冲泡方法：    咖啡 茶     1.把水煮沸 1.把水煮沸   2.用沸水冲泡咖啡 2.用沸水浸泡茶叶   3.把咖啡倒进杯子 3.把茶倒进杯子   4.加糖和咖啡 4.加柠檬    现在我们代码简单实现">
 <meta name="twitter:image" content="http://yoursite.com/img/concrete1.png">
   
     <link rel="alternative" href="/atom.xml" title="crazysunjの博客" type="application/atom+xml">
@@ -177,6 +177,7 @@
 </tbody>
 </table>
 <p>现在我们代码简单实现</p>
+<a id="more"></a>
 <p>咖啡：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by sunjian on 2017/2/13.</div><div class="line"> */</div><div class="line">public class Coffee &#123;</div><div class="line">    void prepareRecipe() &#123;</div><div class="line">        boilWater();</div><div class="line">        brewCoffeeGrinds();</div><div class="line">        pourInCup();</div><div class="line">        addSugarAndMilk();</div><div class="line">    &#125;</div><div class="line">    public void boilWater() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;boilWater&quot;);</div><div class="line">    &#125;</div><div class="line">    public void brewCoffeeGrinds() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;brewCoffeeGrinds&quot;);</div><div class="line">    &#125;</div><div class="line">    public void pourInCup() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;pourInCup&quot;);</div><div class="line">    &#125;</div><div class="line">    public void addSugarAndMilk() &#123;</div><div class="line">        Log.d(&quot;Coffee&quot;, &quot;addSugarAndMilk&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>茶：</p>
@@ -431,14 +432,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -475,11 +468,47 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">multiType</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RxAndroid</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HighLight</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,15 +528,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
