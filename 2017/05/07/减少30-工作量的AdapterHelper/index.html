@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>减少30%工作量的AdapterHelper | crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？那你不妨试试本库。">
+  <meta name="description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChang">
 <meta name="keywords" content="Android,RecyclerView,Adapter,helper,multiType,RxAndroid,RxJava,HighLight,DiffUtil">
 <meta property="og:type" content="article">
 <meta property="og:title" content="减少30%工作量的AdapterHelper">
 <meta property="og:url" content="http://yoursite.com/2017/05/07/减少30-工作量的AdapterHelper/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
-<meta property="og:description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？那你不妨试试本库。">
+<meta property="og:description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChang">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper1.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper2.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper3.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper4.gif">
-<meta property="og:updated_time" content="2017-05-07T11:12:48.000Z">
+<meta property="og:updated_time" content="2017-05-08T07:21:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="减少30%工作量的AdapterHelper">
-<meta name="twitter:description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？那你不妨试试本库。">
+<meta name="twitter:description" content="由来随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChang">
 <meta name="twitter:image" content="http://yoursite.com/img/adapterHelper1.gif">
   
     <link rel="alternative" href="/atom.xml" title="crazysunjの博客" type="application/atom+xml">
@@ -151,7 +151,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h2><p>随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？那你不妨试试本库。</p>
+        <h2 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h2><p>随着业务需求越来越多，越来越复杂，相应的UI界面随之变化。我相信RecyclerView大家已经用的不陌生了，但是它的繁琐构建，确实是件头疼的事情，特别是viewType特别多，逻辑特别复杂的情况，过几个月，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？如果你迟疑了，那你不妨试试本库。</p>
 <a id="more"></a>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
 <li>与Adapter为组合关系</li>
@@ -189,6 +189,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public interface StickyHeaderAdapter&lt;T extends RecyclerView.ViewHolder&gt; &#123;</div><div class="line"></div><div class="line">    long getHeaderId(int position);</div><div class="line"></div><div class="line">    T onCreateHeaderViewHolder(ViewGroup parent);</div><div class="line"></div><div class="line">    void onBindHeaderViewHolder(T holder, int position);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="支持异步刷新，可扩展-如配合RxAndroid"><a href="#支持异步刷新，可扩展-如配合RxAndroid" class="headerlink" title="支持异步刷新，可扩展(如配合RxAndroid)"></a>支持异步刷新，可扩展(如配合RxAndroid)</h3><p>能快速找到要刷新的数据，这里借用了DiffUtil，具体用法我就不介绍了，但是有个缺陷就是如果数据量过大的时候，计算的时候很费时，因此把它放在线程中不影响用户操作。库中的异步刷新实现是传统的handler方法，但是我把计算和处理结果的接口提供了，大家可以打造自己的异步处理，这里举个DEMO中栗子，利用RxAndroid(这里是2.0)实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Flowable.just(new HandleBase&lt;MultiHeaderEntity&gt;(newData, newHeader, type, refreshType))</div><div class="line">                .onBackpressureDrop()</div><div class="line">                .observeOn(Schedulers.computation())</div><div class="line">                .map(new Function&lt;HandleBase&lt;MultiHeaderEntity&gt;, DiffUtil.DiffResult&gt;() &#123;</div><div class="line">                    @Override</div><div class="line">                    public DiffUtil.DiffResult apply(@NonNull HandleBase&lt;MultiHeaderEntity&gt; handleBase) throws Exception &#123;</div><div class="line">                        return handleRefresh(handleBase.getNewData(), handleBase.getNewHeader(), handleBase.getType(), handleBase.getRefreshType());</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                .observeOn(AndroidSchedulers.mainThread())</div><div class="line">                .subscribe(new Consumer&lt;DiffUtil.DiffResult&gt;() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void accept(@NonNull DiffUtil.DiffResult diffResult) throws Exception &#123;</div><div class="line">                        handleResult(diffResult);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<p><strong>温馨提示:</strong> 如果你的Adapter起始并不是你的数据集合，比如你设置headerLayout等，请重写getListUpdateCallback()，在相应的位置刷新，以免数据错乱异常。</p>
 <h3 id="关键字高亮-1"><a href="#关键字高亮-1" class="headerlink" title="关键字高亮"></a>关键字高亮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">public static CharSequence handleKeyWordHighLight</div><div class="line">    (String originStr, String keyWord, @ColorInt int hightLightColor)</div></pre></td></tr></table></figure>
 <p>这里我提供一个静态方法给大家，传原始的字符串，关键字和高亮颜色即可，很多人问这个，索性在库中提供了。</p>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>说实话，我都不知道说啥，实现方便快捷，可以配合大多数RecyclerViewAdapter，我最想说的可能就是我希望大家能使用我的库，找出相应的缺陷，不管是代码逻辑还是性能也好，大家共同进步。大家动一动手指头给个star，谢谢了。</p>
@@ -464,6 +465,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -536,15 +541,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +565,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,11 +577,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
