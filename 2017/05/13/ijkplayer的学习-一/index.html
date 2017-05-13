@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: RxAndroid | crazysunjの博客</title>
+  <title>ijkplayer的学习(一) | crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="永不止步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="crazysunjの博客">
-<meta property="og:url" content="http://yoursite.com/tags/RxAndroid/index.html">
+  <meta name="description" content="ijkplayer的github地址:https://github.com/Bilibili/ijkplayer 简介ijkplayer是一个基于FFmpeg的轻量级视频播放器。FFmpeg的是全球领先的多媒体框架，能够解码，编码， 转码，复用，解复用，流，过滤器和播放大部分的视频格式。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保">
+<meta name="keywords" content="FFmpeg,ijkplayer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ijkplayer的学习(一)">
+<meta property="og:url" content="http://yoursite.com/2017/05/13/ijkplayer的学习-一/index.html">
 <meta property="og:site_name" content="crazysunjの博客">
-<meta property="og:description" content="永不止步">
+<meta property="og:description" content="ijkplayer的github地址:https://github.com/Bilibili/ijkplayer 简介ijkplayer是一个基于FFmpeg的轻量级视频播放器。FFmpeg的是全球领先的多媒体框架，能够解码，编码， 转码，复用，解复用，流，过滤器和播放大部分的视频格式。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保">
+<meta property="og:updated_time" content="2017-05-13T04:43:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="crazysunjの博客">
-<meta name="twitter:description" content="永不止步">
+<meta name="twitter:title" content="ijkplayer的学习(一)">
+<meta name="twitter:description" content="ijkplayer的github地址:https://github.com/Bilibili/ijkplayer 简介ijkplayer是一个基于FFmpeg的轻量级视频播放器。FFmpeg的是全球领先的多媒体框架，能够解码，编码， 转码，复用，解复用，流，过滤器和播放大部分的视频格式。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保">
   
     <link rel="alternative" href="/atom.xml" title="crazysunjの博客" type="application/atom+xml">
   
@@ -124,92 +126,194 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ijkplayer的学习-一" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/07/减少30-工作量的AdapterHelper/" class="archive-article-date">
-  	<time datetime="2017-05-07T05:56:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/07/减少30-工作量的AdapterHelper/">减少30%工作量的AdapterHelper</a>
+    <h1 class="article-title" itemprop="name">
+      ijkplayer的学习(一)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/13/ijkplayer的学习-一/" class="archive-article-date">
+  	<time datetime="2017-05-13T04:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ijkplayer的github地址:<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="external">https://github.com/Bilibili/ijkplayer</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>ijkplayer是一个基于FFmpeg的轻量级视频播放器。FFmpeg的是全球领先的多媒体框架，能够解码，编码， 转码，复用，解复用，流，过滤器和播放大部分的视频格式。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的</p>
+<a id="more"></a>
+<h2 id="环境搭建（MAC环境）"><a href="#环境搭建（MAC环境）" class="headerlink" title="环境搭建（MAC环境）"></a>环境搭建（MAC环境）</h2><h3 id="安装前准备工作，安装homebrew-git-yasm"><a href="#安装前准备工作，安装homebrew-git-yasm" class="headerlink" title="安装前准备工作，安装homebrew, git, yasm"></a>安装前准备工作，安装homebrew, git, yasm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># install homebrew, git, yasm</div><div class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</div><div class="line">brew install git</div><div class="line">brew install yasm</div><div class="line"></div><div class="line"># add these lines to your ~/.bash_profile or ~/.profile</div><div class="line"># export ANDROID_SDK=&lt;your sdk path&gt;</div><div class="line"># export ANDROID_NDK=&lt;your ndk path&gt;</div><div class="line"></div><div class="line"># on Cygwin (unmaintained)</div><div class="line"># install git, make, yasm</div></pre></td></tr></table></figure>
+<h3 id="clone代码"><a href="#clone代码" class="headerlink" title="clone代码"></a>clone代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android</div><div class="line">cd ijkplayer-android</div><div class="line">git checkout -B latest k0.7.9</div></pre></td></tr></table></figure>
+<h3 id="初始化android"><a href="#初始化android" class="headerlink" title="初始化android"></a>初始化android</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./init-android.sh</div></pre></td></tr></table></figure>
+<h3 id="初始化android支持https（可选）"><a href="#初始化android支持https（可选）" class="headerlink" title="初始化android支持https（可选）"></a>初始化android支持https（可选）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./init-android-openssl.sh</div></pre></td></tr></table></figure>
+<h3 id="切到ijkplayer-android-contrib-编译脚本"><a href="#切到ijkplayer-android-contrib-编译脚本" class="headerlink" title="切到ijkplayer/android/contrib(编译脚本)"></a>切到ijkplayer/android/contrib(编译脚本)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd android/contrib</div></pre></td></tr></table></figure>
+<h3 id="编译-openssl"><a href="#编译-openssl" class="headerlink" title="编译 openssl"></a>编译 openssl</h3><p>支持https，与./init-android-openssl.sh同步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./compile-openssl.sh clean</div><div class="line">./compile-openssl.sh all</div></pre></td></tr></table></figure>
+<h3 id="修改编译配置"><a href="#修改编译配置" class="headerlink" title="修改编译配置"></a>修改编译配置</h3><p>在ffmpeg编译前可以修改支持的编码格式，请切换到config目录，修改module.sh，或者让module.sh链接到module-default.sh（可以自己测试一下是否链接过去）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd config</div><div class="line">rm module.sh</div><div class="line">ln -s module-default.sh module.sh</div><div class="line">cd android/contrib</div><div class="line"># cd ios</div><div class="line">sh compile-ffmpeg.sh clean</div></pre></td></tr></table></figure>
+<h3 id="开始编译-ffmpeg"><a href="#开始编译-ffmpeg" class="headerlink" title="开始编译 ffmpeg"></a>开始编译 ffmpeg</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./compile-ffmpeg.sh clean</div><div class="line">./compile-ffmpeg.sh all</div></pre></td></tr></table></figure>
+<h3 id="编译-ijkplayer-native-code"><a href="#编译-ijkplayer-native-code" class="headerlink" title="编译 ijkplayer native code"></a>编译 ijkplayer native code</h3><p>返回到 ijkplayer/android 目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ..</div></pre></td></tr></table></figure>
+<h3 id="编译生成各CPU架构的so"><a href="#编译生成各CPU架构的so" class="headerlink" title="编译生成各CPU架构的so"></a>编译生成各CPU架构的so</h3><p>如果不加 all 默认只生成 armv7a 架构的 so</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./compile-ijk.sh all</div></pre></td></tr></table></figure>
+<h3 id="编译好的项目地址："><a href="#编译好的项目地址：" class="headerlink" title="编译好的项目地址："></a>编译好的项目地址：</h3><p><a href="https://github.com/crazysunj/ijkplayerDemo" target="_blank" rel="external">https://github.com/crazysunj/ijkplayerDemo</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">FFmpeg</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">helper</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">multiType</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">RxAndroid</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">RxJava</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HighLight</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DiffUtil</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ijkplayer</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/13/ijkplayer的学习-一/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/05/07/减少30-工作量的AdapterHelper/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          减少30%工作量的AdapterHelper
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+    			<div id="toc-article" class="toc-article">
+    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    				<strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建（MAC环境）"><span class="toc-number">2.</span> <span class="toc-text">环境搭建（MAC环境）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装前准备工作，安装homebrew-git-yasm"><span class="toc-number">2.1.</span> <span class="toc-text">安装前准备工作，安装homebrew, git, yasm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clone代码"><span class="toc-number">2.2.</span> <span class="toc-text">clone代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android"><span class="toc-number">2.3.</span> <span class="toc-text">初始化android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android支持https（可选）"><span class="toc-number">2.4.</span> <span class="toc-text">初始化android支持https（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切到ijkplayer-android-contrib-编译脚本"><span class="toc-number">2.5.</span> <span class="toc-text">切到ijkplayer/android/contrib(编译脚本)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-openssl"><span class="toc-number">2.6.</span> <span class="toc-text">编译 openssl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改编译配置"><span class="toc-number">2.7.</span> <span class="toc-text">修改编译配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始编译-ffmpeg"><span class="toc-number">2.8.</span> <span class="toc-text">开始编译 ffmpeg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-ijkplayer-native-code"><span class="toc-number">2.9.</span> <span class="toc-text">编译 ijkplayer native code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译生成各CPU架构的so"><span class="toc-number">2.10.</span> <span class="toc-text">编译生成各CPU架构的so</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译好的项目地址："><span class="toc-number">2.11.</span> <span class="toc-text">编译好的项目地址：</span></a></li></ol></li></ol>
+   </div>
+   <script type="text/javascript">
+   			function showToc(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:block");
+   				show_toc_btn.setAttribute("style","display:none");
+   				};
+   			function showBtn(){
+   				var toc_article = document.getElementById("toc-article");
+   				var show_toc_btn = document.getElementById("show-toc-btn");
+   				toc_article.setAttribute("style","display:none");
+   				show_toc_btn.setAttribute("style","display:block");
+   				};
+   		   </script>
+
+<!-- 目录内容结束 -->
+
+
+
   
 
-    
+  
+
+  
+
+  <!-- 网易云跟帖 -->
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "787a2e39df104be3850defe82ada2ef7",
+    target: "cloud-tie-wrapper"
+  };
+  var yunManualLoad = true;
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+  </script>
 
 
           </div>
@@ -241,9 +345,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
