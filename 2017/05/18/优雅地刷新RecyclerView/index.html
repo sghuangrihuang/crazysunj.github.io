@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper4.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper5.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper6.gif">
-<meta property="og:updated_time" content="2017-05-18T06:30:47.000Z">
+<meta property="og:updated_time" content="2017-05-18T06:42:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅地刷新RecyclerView">
 <meta name="twitter:description" content="前言还是那句话，RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView,dataView,errorView自如切换吗？如果你迟疑了">
@@ -199,6 +199,7 @@
 <p>常量差值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//头类型差值</div><div class="line">public static final int HEADER_TYPE_DIFFER = 1000;</div><div class="line">//shimmer数据类型差值</div><div class="line">public static final int SHIMMER_DATA_TYPE_DIFFER = 2000;</div><div class="line">//shimmer头类型差值</div><div class="line">public static final int SHIMMER_HEADER_TYPE_DIFFER = 3000;</div><div class="line">//错误类型差值</div><div class="line">public static final int ERROR_TYPE_DIFFER = 4000;</div></pre></td></tr></table></figure>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>库多多少少也更新几个版本了，不管你是刚入门也好，还是转行的也好，还是老鸟，甚至是大牛，恳请你们能反馈该库的缺陷，我会更近，让更多的人体验优雅的刷新机制，可以把意见发给我的谷歌邮箱或者说QQ邮箱(就是我的QQ），下面给出，请动一动手指分享出去。还有一点要说的就是现在关于LayoutManager，RecyclerView,Adapter的流派很多，我们更关注于数据的优雅刷新。</p>
+<p>如果对本库还不是很了解的同学可以到我的github查看更多版本进行了解。</p>
 <h2 id="gradle依赖"><a href="#gradle依赖" class="headerlink" title="gradle依赖"></a>gradle依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.crazysunj:multitypeadapter:1.3.0&apos;</div></pre></td></tr></table></figure>
 <h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
 <p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
@@ -454,6 +455,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -478,10 +491,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -491,14 +500,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,14 +547,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Animator</a>
               </li>
              
@@ -570,7 +563,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,11 +575,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +587,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
             
             <div class="clearfix"></div>
