@@ -147,56 +147,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>还是那句话，RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView,dataView,errorView自如切换吗？如果你迟疑了，那你不妨试试本库。</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>与Adapter为组合关系，可配合大多数Adapter</li>
-<li>一行代码刷新相应viewType</li>
-<li>支持facebook的shimmer加载效果</li>
-<li>支持粘性头</li>
-<li>支持异步刷新，可扩展(如配合RxAndroid)</li>
-<li>支持加载相应type错误页面</li>
-<li>支持高频率刷新(流畅,异步执行)</li>
-</ul>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><h3 id="线性排布"><a href="#线性排布" class="headerlink" title="线性排布"></a>线性排布</h3><p><img src="/img/adapterHelper1.gif" alt=""></p>
-<h3 id="方格排布"><a href="#方格排布" class="headerlink" title="方格排布"></a>方格排布</h3><p><img src="/img/adapterHelper3.gif" alt=""></p>
-<h3 id="关键字高亮"><a href="#关键字高亮" class="headerlink" title="关键字高亮"></a>关键字高亮</h3><p><img src="/img/adapterHelper4.gif" alt=""></p>
-<h3 id="刷新错误页面"><a href="#刷新错误页面" class="headerlink" title="刷新错误页面"></a>刷新错误页面</h3><p><img src="/img/adapterHelper5.gif" alt=""></p>
-<h3 id="高频率刷新"><a href="#高频率刷新" class="headerlink" title="高频率刷新"></a>高频率刷新</h3><p><img src="/img/adapterHelper6.gif" alt=""></p>
-<h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><ul>
-<li>支持刷新type错误页面(可自定义)</li>
-<li>支持同时刷新多个type(异步，高频率)</li>
-<li>链式注册资源</li>
-<li>支持刷新单个数据</li>
-<li>提供helper的清除单个type，清除整个界面api</li>
-</ul>
-<h3 id="支持刷新type错误页面-可自定义"><a href="#支持刷新type错误页面-可自定义" class="headerlink" title="支持刷新type错误页面(可自定义)"></a>支持刷新type错误页面(可自定义)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public void notifyMoudleErrorChanged(ErrorEntity errorData, int type);</div><div class="line"></div><div class="line">public void notifyMoudleErrorChanged(int type);</div></pre></td></tr></table></figure>
-<p>一行代码搞定，前者提供实体类是考虑有些用户需要根据实体数据属性去更新，因此错误页面的layoutId是用户提供的。</p>
-<h3 id="支持同时刷新多个type-异步，高频率"><a href="#支持同时刷新多个type-异步，高频率" class="headerlink" title="支持同时刷新多个type(异步，高频率)"></a>支持同时刷新多个type(异步，高频率)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> //刷新队列，支持高频率刷新</div><div class="line">private Queue&lt;HandleBase&lt;T&gt;&gt; mRefreshQueue;</div></pre></td></tr></table></figure>
-<p>这里采用的是队列的形式管理刷新，提供清空队列的Api。</p>
-<h3 id="链式注册资源"><a href="#链式注册资源" class="headerlink" title="链式注册资源"></a>链式注册资源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">registerMoudle(@IntRange(from = 0, to = 999) int type)</div><div class="line">                .level(@IntRange(from = 0) int level)</div><div class="line">                .layoutResId(@LayoutRes int layoutResId)</div><div class="line">                .headerResId(@LayoutRes int headerResId)</div><div class="line">                .loading()</div><div class="line">                .loadingLayoutResId(@LayoutRes int loadingLayoutResId)</div><div class="line">                .loadingHeaderResId(@LayoutRes int loadingHeaderResId)</div><div class="line">                .error()</div><div class="line">                .errorLayoutResId(@LayoutRes int errorLayoutResId)</div><div class="line">                .register();</div></pre></td></tr></table></figure>
-<p>由于参数越来越多，这里采用了较为流行的链式注册，内部通过ResourcesManager管理所有资源。</p>
-<p><strong>注：</strong>原来的注册方式已设置为过时，请及时更新，不出2个版本将移除。</p>
-<h3 id="支持刷新单个数据"><a href="#支持刷新单个数据" class="headerlink" title="支持刷新单个数据"></a>支持刷新单个数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void notifyMoudleDataAndHeaderChanged(T data, T header, int type)</div></pre></td></tr></table></figure>
-<p>可能某个type只有一个实体数据管理着整个type</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public void notifyMoudleDataAndHeaderChanged(List&lt;? extends T&gt; data, T header, int type)</div></pre></td></tr></table></figure>
-<p>可传T的子类集合</p>
-<h3 id="提供helper的清除单个type，清除整个界面api"><a href="#提供helper的清除单个type，清除整个界面api" class="headerlink" title="提供helper的清除单个type，清除整个界面api"></a>提供helper的清除单个type，清除整个界面api</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 清除单个type数据</div><div class="line"> *</div><div class="line"> * @param type 数据类型</div><div class="line"> */</div><div class="line">public void clearMoudle(int type);</div><div class="line"></div><div class="line">/**</div><div class="line"> * 清除所有数据</div><div class="line"> */</div><div class="line">public void clear();</div></pre></td></tr></table></figure>
-<h3 id="使用注意点"><a href="#使用注意点" class="headerlink" title="使用注意点"></a>使用注意点</h3><p> type 取值范围</p>
-<ul>
-<li>level [0,+∞)</li>
-<li>数据类型 [0,1000)</li>
-<li>头类型 [-1000,0)</li>
-<li>shimmer数据类型 [-2000,-1000)</li>
-<li>shimmer头类型 [-3000,-2000)</li>
-<li>error类型 [-4000,-3000)</li>
-</ul>
-<p>常量差值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//头类型差值</div><div class="line">public static final int HEADER_TYPE_DIFFER = 1000;</div><div class="line">//shimmer数据类型差值</div><div class="line">public static final int SHIMMER_DATA_TYPE_DIFFER = 2000;</div><div class="line">//shimmer头类型差值</div><div class="line">public static final int SHIMMER_HEADER_TYPE_DIFFER = 3000;</div><div class="line">//错误类型差值</div><div class="line">public static final int ERROR_TYPE_DIFFER = 4000;</div></pre></td></tr></table></figure>
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>库多多少少也更新几个版本了，不管你是刚入门也好，还是转行的也好，还是老鸟，甚至是大牛，恳请你们能反馈该库的缺陷，我会更近，让更多的人体验优雅的刷新机制，可以把意见发给我的谷歌邮箱或者说QQ邮箱(就是我的QQ），下面给出，请动一动手指分享出去。还有一点要说的就是现在关于LayoutManager，RecyclerView,Adapter的流派很多，我们更关注于数据的优雅刷新。</p>
-<h2 id="gradle依赖"><a href="#gradle依赖" class="headerlink" title="gradle依赖"></a>gradle依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.crazysunj:multitypeadapter:1.3.0&apos;</div></pre></td></tr></table></figure>
-<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
-<p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
-<p>谷歌邮箱:twsunj@gmail.com<br>QQ邮箱:387953660@qq.com</p>
-
+        
+          <a class="article-more-a" href="/2017/05/18/优雅地刷新RecyclerView/#more">more >></a>
+        
       
 
       
@@ -1045,39 +998,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1105,6 +1030,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1117,11 +1046,31 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1146,6 +1095,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,19 +1134,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
