@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper5.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper7.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper6.gif">
-<meta property="og:updated_time" content="2017-05-29T08:22:27.000Z">
+<meta property="og:updated_time" content="2017-05-29T11:24:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅地刷新RecyclerView（1.4.0）">
 <meta name="twitter:description" content="前言RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还">
@@ -182,6 +182,8 @@
 <li>支持加载相应type空页面</li>
 <li>优化清除数据</li>
 <li>优化异常命名</li>
+<li>优化getHeaderId()</li>
+<li>泛型规范Adapter</li>
 <li>支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</li>
 <li>……</li>
 </ul>
@@ -193,6 +195,10 @@
 <p>用法同error。</p>
 <h3 id="优化清除数据"><a href="#优化清除数据" class="headerlink" title="优化清除数据"></a>优化清除数据</h3><p>在清除数据前都做了空判断。</p>
 <h3 id="优化异常命名"><a href="#优化异常命名" class="headerlink" title="优化异常命名"></a>优化异常命名</h3><p>库中抛出的异常都为自定义，很友爱，嘿嘿。</p>
+<h3 id="优化getHeaderId"><a href="#优化getHeaderId" class="headerlink" title="优化getHeaderId()"></a>优化getHeaderId()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public long getHeaderId(int position) &#123;</div><div class="line"></div><div class="line">    int preDataCount = getPreDataCount();</div><div class="line">    if (position &lt; preDataCount) &#123;</div><div class="line">        return StickyHeaderDecoration.NO_HEADER_ID;</div><div class="line">    &#125;</div><div class="line">    return mData.get(position - preDataCount).getHeaderId();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>兼容Adapter，保持position一致。</p>
+<h3 id="泛型规范Adapter"><a href="#泛型规范Adapter" class="headerlink" title="泛型规范Adapter"></a>泛型规范Adapter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public abstract class RecyclerViewAdapterHelper&lt;T extends MultiHeaderEntity, A extends RecyclerView.Adapter&gt;</div></pre></td></tr></table></figure>
+<p>自己用着挺舒服的，待考验。</p>
 <h3 id="支持标准-一个type对应一个集合-和混合-一般的多类型集合-自如切换-自动排序集合"><a href="#支持标准-一个type对应一个集合-和混合-一般的多类型集合-自如切换-自动排序集合" class="headerlink" title="支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)"></a>支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void switchMode(@RefreshMode int mode, boolean isSort);</div><div class="line"></div><div class="line">public void switchMode(@RefreshMode int mode);</div><div class="line"></div><div class="line">private List&lt;T&gt; initStandardNewData(List&lt;T&gt; newData);</div></pre></td></tr></table></figure>
 <p>isSort标志是否要排序，如果你能确保数据的有序性，可填false，默认为true。排序会调用initStandardNewData进行排序，上面的notifyDataSetChanged和notifyDataByDiff也可切换刷新模式。</p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>还有一些细节优化就不作介绍了。</p>
@@ -313,7 +319,7 @@
     			<div id="toc-article" class="toc-article">
     			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性排布"><span class="toc-number">3.1.</span> <span class="toc-text">线性排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方格排布"><span class="toc-number">3.2.</span> <span class="toc-text">方格排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字高亮"><span class="toc-number">3.3.</span> <span class="toc-text">关键字高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误页面"><span class="toc-number">3.4.</span> <span class="toc-text">错误页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空页面"><span class="toc-number">3.5.</span> <span class="toc-text">空页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高频率刷新"><span class="toc-number">3.6.</span> <span class="toc-text">高频率刷新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">4.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持add-set-remove-全局等方法刷新"><span class="toc-number">4.1.</span> <span class="toc-text">支持add,set,remove,全局等方法刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持加载相应type空页面"><span class="toc-number">4.2.</span> <span class="toc-text">支持加载相应type空页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化清除数据"><span class="toc-number">4.3.</span> <span class="toc-text">优化清除数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化异常命名"><span class="toc-number">4.4.</span> <span class="toc-text">优化异常命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持标准-一个type对应一个集合-和混合-一般的多类型集合-自如切换-自动排序集合"><span class="toc-number">4.5.</span> <span class="toc-text">支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">4.6.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">5.</span> <span class="toc-text">注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-取值范围"><span class="toc-number">5.1.</span> <span class="toc-text">Type 取值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#差值常量"><span class="toc-number">5.2.</span> <span class="toc-text">差值常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他-1"><span class="toc-number">5.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">6.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">7.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">8.</span> <span class="toc-text">传送门</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性排布"><span class="toc-number">3.1.</span> <span class="toc-text">线性排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方格排布"><span class="toc-number">3.2.</span> <span class="toc-text">方格排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字高亮"><span class="toc-number">3.3.</span> <span class="toc-text">关键字高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误页面"><span class="toc-number">3.4.</span> <span class="toc-text">错误页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空页面"><span class="toc-number">3.5.</span> <span class="toc-text">空页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高频率刷新"><span class="toc-number">3.6.</span> <span class="toc-text">高频率刷新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">4.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持add-set-remove-全局等方法刷新"><span class="toc-number">4.1.</span> <span class="toc-text">支持add,set,remove,全局等方法刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持加载相应type空页面"><span class="toc-number">4.2.</span> <span class="toc-text">支持加载相应type空页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化清除数据"><span class="toc-number">4.3.</span> <span class="toc-text">优化清除数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化异常命名"><span class="toc-number">4.4.</span> <span class="toc-text">优化异常命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化getHeaderId"><span class="toc-number">4.5.</span> <span class="toc-text">优化getHeaderId()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型规范Adapter"><span class="toc-number">4.6.</span> <span class="toc-text">泛型规范Adapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持标准-一个type对应一个集合-和混合-一般的多类型集合-自如切换-自动排序集合"><span class="toc-number">4.7.</span> <span class="toc-text">支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">4.8.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">5.</span> <span class="toc-text">注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-取值范围"><span class="toc-number">5.1.</span> <span class="toc-text">Type 取值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#差值常量"><span class="toc-number">5.2.</span> <span class="toc-text">差值常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他-1"><span class="toc-number">5.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">6.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">7.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">8.</span> <span class="toc-text">传送门</span></a></li></ol>
    </div>
    <script type="text/javascript">
    			function showToc(){
@@ -450,10 +456,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -478,6 +480,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -490,15 +500,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,14 +509,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,6 +533,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,18 +576,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -590,7 +584,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
             
             <div class="clearfix"></div>
