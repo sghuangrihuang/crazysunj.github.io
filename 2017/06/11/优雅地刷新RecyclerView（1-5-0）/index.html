@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper7.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper6.gif">
 <meta property="og:image" content="http://yoursite.com/img/adapterHelper8.gif">
-<meta property="og:updated_time" content="2017-06-11T05:43:03.832Z">
+<meta property="og:updated_time" content="2017-06-11T07:04:35.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅地刷新RecyclerView（1.5.0）">
 <meta name="twitter:description" content="前言RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还">
@@ -192,7 +192,7 @@
 <h3 id="支持刷新生命周期回调"><a href="#支持刷新生命周期回调" class="headerlink" title="支持刷新生命周期回调"></a>支持刷新生命周期回调</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">protected void onStart();</div><div class="line"></div><div class="line">protected void onEnd();</div><div class="line"></div><div class="line">public int getCurrentRefreshType();</div></pre></td></tr></table></figure>
 <p>需要使用生命周期回调方法的时候重写，再熟悉不过了，我知道回调的时候比较依赖当前type，因此提供了getCurrentRefreshType，用例比如需要在刷新前清除缓存，刷新后需要通知其他界面等。</p>
 <h3 id="支持注解生成类，减少工作量"><a href="#支持注解生成类，减少工作量" class="headerlink" title="支持注解生成类，减少工作量"></a>支持注解生成类，减少工作量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">@AdapterHelper()</div><div class="line">String superObj() default &quot;...&quot;;</div><div class="line">String entity() default &quot;...&quot;;</div><div class="line">String adapter() default &quot;...&quot;;</div><div class="line"></div><div class="line">@BindType(）</div><div class="line">int level();</div><div class="line"></div><div class="line">@BindAllType()</div><div class="line">int level();</div><div class="line">int layoutResId();</div><div class="line">int headerResId() default 0;</div><div class="line">int loadingLayoutResId() default 0;</div><div class="line">int loadingHeaderResId() default 0;</div><div class="line">int errorLayoutResId() default 0;</div><div class="line">int emptyLayoutResId() default 0;</div><div class="line"></div><div class="line">@BindDefaultType()</div><div class="line">int headerResId() default 0;</div><div class="line">int loadingLayoutResId() default 0;</div><div class="line">int loadingHeaderResId() default 0;</div><div class="line">int errorLayoutResId() default 0;</div><div class="line">int emptyLayoutResId() default 0;</div><div class="line"></div><div class="line">@PreDataCount()</div><div class="line"></div><div class="line">@BindLayoutRes()</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindHeaderRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindLoadingLayoutRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindLoadingHeaderRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindErrorLayoutRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindEmptyLayoutRes</div><div class="line">int[] type();</div></pre></td></tr></table></figure>
-<p>仔细看完的同学内心独白：WTF？放下菜刀，听我慢慢讲来，注解PreDataCount我就不用说了吧，注意点一直强调；该注解以下的注解更强调多个type共用了同个资源；注解BindDefaultType用来注解只有一种type的时候；注解AdapterHelper用来注解需要生成helper的adapter，其中参数superObj为生成helper的父类，entity为实体类，adapter为绑定adapter，参数类型为类引用路径。如何生成，不用我说了吧，我猜你已经轻车熟路。</p>
+<p>仔细看完的同学内心独白：WTF？放下菜刀，听我慢慢讲来，注解PreDataCount我就不用说了吧，注意点一直强调；该注解以下的注解更强调多个type共用了同个资源；注解BindDefaultType用来注解只有一种type的时候；注解AdapterHelper用来注解需要生成helper的adapter，其中参数superObj为生成helper的父类，entity为实体类，adapter为绑定adapter，参数类型为类引用路径。如何生成，不用我说了吧，我猜你已经轻车熟路，生成类名暂时为Adapter类型+Helper。</p>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><h3 id="Type-取值范围"><a href="#Type-取值范围" class="headerlink" title="Type 取值范围"></a>Type 取值范围</h3><ul>
 <li>level [0,+∞)</li>
 <li>数据类型 [0,1000)</li>
@@ -472,6 +472,18 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
@@ -481,18 +493,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,19 +528,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,7 +576,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,6 +596,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
@@ -600,11 +608,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,14 +621,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
             
             <div class="clearfix"></div>
