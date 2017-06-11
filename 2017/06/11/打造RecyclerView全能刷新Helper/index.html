@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>IOC思想 | 欢迎来到crazysunjの博客</title>
+  <title>打造RecyclerView全能刷新Helper | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta name="keywords" content="Android,Java,Butterknife,DI,Dagger2,IOC,Spring,xUtils">
+  <meta name="description" content="前言我们已经越来越离不开RecyclerView，业务的复杂导致界面的复杂，而RecyclerView无疑是最佳之选。RecyclerView如何打造出复杂的布局，如何打造高性能，多功能的RecyclerView，如何打造高复用，灵活的Adapter等，这些问题，这篇文章都不涉及（手动滑稽）。这篇文章讲的是似乎被忽略的RecyclerView的刷新，各种姿势的刷新，妈妈再也不用担心产品的各种奇葩刷">
+<meta name="keywords" content="Android,RecyclerView,Adapter,Helper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IOC思想">
-<meta property="og:url" content="http://yoursite.com/2016/12/29/IOC思想/index.html">
+<meta property="og:title" content="打造RecyclerView全能刷新Helper">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/打造RecyclerView全能刷新Helper/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta property="og:image" content="http://yoursite.com/img/ioc1.png">
-<meta property="og:image" content="http://yoursite.com/img/ioc2.png">
-<meta property="og:image" content="http://yoursite.com/img/ioc3.png">
-<meta property="og:updated_time" content="2017-04-30T10:02:34.000Z">
+<meta property="og:description" content="前言我们已经越来越离不开RecyclerView，业务的复杂导致界面的复杂，而RecyclerView无疑是最佳之选。RecyclerView如何打造出复杂的布局，如何打造高性能，多功能的RecyclerView，如何打造高复用，灵活的Adapter等，这些问题，这篇文章都不涉及（手动滑稽）。这篇文章讲的是似乎被忽略的RecyclerView的刷新，各种姿势的刷新，妈妈再也不用担心产品的各种奇葩刷">
+<meta property="og:image" content="http://yoursite.com/img/jihe.jpg">
+<meta property="og:image" content="http://yoursite.com/img/rizi.jpeg">
+<meta property="og:image" content="http://yoursite.com/img/weiju.jpg">
+<meta property="og:updated_time" content="2017-06-11T05:42:57.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IOC思想">
-<meta name="twitter:description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta name="twitter:image" content="http://yoursite.com/img/ioc1.png">
+<meta name="twitter:title" content="打造RecyclerView全能刷新Helper">
+<meta name="twitter:description" content="前言我们已经越来越离不开RecyclerView，业务的复杂导致界面的复杂，而RecyclerView无疑是最佳之选。RecyclerView如何打造出复杂的布局，如何打造高性能，多功能的RecyclerView，如何打造高复用，灵活的Adapter等，这些问题，这篇文章都不涉及（手动滑稽）。这篇文章讲的是似乎被忽略的RecyclerView的刷新，各种姿势的刷新，妈妈再也不用担心产品的各种奇葩刷">
+<meta name="twitter:image" content="http://yoursite.com/img/jihe.jpg">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
   
@@ -134,65 +134,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IOC思想" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-打造RecyclerView全能刷新Helper" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      IOC思想
+      打造RecyclerView全能刷新Helper
     </h1>
   
 
         
-        <a href="/2016/12/29/IOC思想/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
+        <a href="/2017/06/11/打造RecyclerView全能刷新Helper/" class="archive-article-date">
+  	<time datetime="2017-06-11T05:41:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><pre><code>Spring容器来实现这些相互依赖对象的创建、协调工作。
-</code></pre><h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>西游记中六小龄童大闹天宫。</p>
-<h3 id="一般实现："><a href="#一般实现：" class="headerlink" title="一般实现："></a>一般实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi&#123;</div><div class="line">   public void tianGong()&#123;</div><div class="line">       //①演员直接侵入剧本</div><div class="line">       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();</div><div class="line">       lxlt.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们会发现以上剧本在①处，作为具体角色饰演者的六小龄童直接侵入到剧本中，使剧本和演员直接耦合在一起。<br><img src="/img/ioc1.png" alt=""></p>
-<h3 id="改善："><a href="#改善：" class="headerlink" title="改善："></a>改善：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个明智的编剧在剧情创作时应围绕故事的角色进行，而不应考虑角色的具体饰演者，这样才可能在剧本投拍时自由地遴选任何适合的演员，而非绑定在六小龄童一人身上。通过以上的分析，我们知道需要为该剧本主人公孙悟空定义一个接口：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   public void tianGong()</div><div class="line">   &#123;</div><div class="line">        //①引入孙悟空角色接口</div><div class="line">       SunWuKong sunWuKong = new LiuXiaoLingTong();</div><div class="line">        //②通过接口开展剧情</div><div class="line">        sunWuKong.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在①处引入了剧本的角色——孙悟空，剧本的情节通过角色展开，在拍摄时角色由演员饰演，如②处所示。因此西游记、孙悟空、六小龄童三者的类图关系如图所示：</p>
-<p><img src="/img/ioc2.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以看出XiYouJi同时依赖于SunWuKong接口和LiuXiaoLingTong类，并没有达到我们所期望的剧本仅依赖于角色的目的。但是角色最终必须通过具体的演员才能完成拍摄，如何让LiuXiaoLingTong和剧本无关而又能完成SunWuKong的具体动作呢？当然是在影片投拍时，导演将LiuXiaoLingTong安排在SunWuKong的角色上，导演将剧本、角色、饰演者装配起来。</p>
-<p><img src="/img/ioc3.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过引入导演，使剧本和具体饰演者解耦了。对应到软件中，导演像是一个装配器，安排演员表演具体的角色。<br>现在我们可以反过来讲解IoC的概念了。IoC（Inverse of Control）的字面意思是控制反转，它包括两个内容：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们已经越来越离不开RecyclerView，业务的复杂导致界面的复杂，而RecyclerView无疑是最佳之选。RecyclerView如何打造出复杂的布局，如何打造高性能，多功能的RecyclerView，如何打造高复用，灵活的Adapter等，这些问题，这篇文章都不涉及（手动滑稽）。这篇文章讲的是似乎被忽略的RecyclerView的刷新，各种姿势的刷新，妈妈再也不用担心产品的各种奇葩刷新了。</p>
+<a id="more"></a>
+<h2 id="库的由来"><a href="#库的由来" class="headerlink" title="库的由来"></a>库的由来</h2><p>项目开发周期短让我们没时间自己去实现或者封装库，最好有现成的库（切记重复造轮子），但我找了一圈也没找到，这就尴尬了。只能自己动手丰衣足食，好的东西不能自己享用，因此开源，大家一起享受。</p>
+<p>本库沿着几条需求进行展开，现在一一分析。</p>
+<p> <img src="/img/jihe.jpg" width="180" height="140"></p>
+<h3 id="RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？"><a href="#RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？" class="headerlink" title="RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？"></a>RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？</h3><p>多type的实现，常规做法就是每个type对应一个集合，然后在adapter中处理这些集合，一个两个还好，更多呢？而且在开发周期比较短的情况，总是避免不了后期的重构，最尴尬的是重构的时候，自己写的是啥忘了（多注释啊）。如果不用考虑刷新时数据处理逻辑多好啊。</p>
+<h3 id="假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？"><a href="#假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？" class="headerlink" title="假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？"></a>假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？</h3><p>我们总是避免不了服务端会分接口返回，因此我们的全局刷新梦想也破灭了。我们不得不完美地把控每个position对应的ViewType,一旦出错，可能导致条目错乱，甚至崩溃，这太影响用户体验了。</p>
+<h3 id="想一个RecyclerView高效快捷管理整个界面吗？"><a href="#想一个RecyclerView高效快捷管理整个界面吗？" class="headerlink" title="想一个RecyclerView高效快捷管理整个界面吗？"></a>想一个RecyclerView高效快捷管理整个界面吗？</h3><p>其实这条跟我们的刷新库并无多大关系，更考验的是对RecyclerView的理解，但是管理整个界面总是避免不了有各种各样的type。</p>
+<h3 id="你还在使用notifyDataSetChanged无脑刷新吗？"><a href="#你还在使用notifyDataSetChanged无脑刷新吗？" class="headerlink" title="你还在使用notifyDataSetChanged无脑刷新吗？"></a>你还在使用notifyDataSetChanged无脑刷新吗？</h3><p>什么？无脑？但是简单好用啊，而且很少出错。notifyDataSetChanged方法刷新是没有动画的，给人感觉很生硬，使用带动画的刷新又容易出错，还有一个更致命的缺点是不需要刷新的也强制刷新了。因此本库集合了各自的优点。</p>
+<h3 id="你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？"><a href="#你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？" class="headerlink" title="你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？"></a>你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？</h3><p>厉害了，我的哥，服务端多接口返回数据的时候，可能某个接口出错了，我们总不能整个页面出错吧？不显示又太low了，搞个轻提示吧，用户还不一定看见。放心，有我在，这都不是问题。</p>
+<h3 id="你还在为刷新导致数据错乱而烦恼吗？"><a href="#你还在为刷新导致数据错乱而烦恼吗？" class="headerlink" title="你还在为刷新导致数据错乱而烦恼吗？"></a>你还在为刷新导致数据错乱而烦恼吗？</h3><p>这种错误往往出现在使用Adapter的范围型刷新，比如notifyItemRangeInserted，用户一刷新，发现有2个一样的type，死的新都有了，这其实还算好，如果你的app拥有切换条件的功能，比如区域等，不同区域不同数据，可是，用户切换的时候，2个区域的数据都出现了。我的天，被开除的节奏。</p>
+<p><img src="/img/rizi.jpeg" alt=""></p>
+<h2 id="引入库"><a href="#引入库" class="headerlink" title="引入库"></a>引入库</h2><p>本库很好地解决了上述问题，具体使用这里就不介绍了，给出库的部分功能：</p>
 <ul>
-<li>其一是控制</li>
-<li>其二是反转</li>
+<li>简单快捷，可配合大多数Adapter</li>
+<li>一行代码刷新相应viewType</li>
+<li>支持粘性头</li>
+<li>支持异步刷新，可扩展(如配合RxAndroid)</li>
+<li>支持高频率刷新(流畅,异步执行)</li>
+<li>支持加载facebook的shimmer效果loading页面</li>
+<li>支持加载相应type错误页面</li>
+<li>支持加载相应type空页面</li>
+<li>支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</li>
+<li>支持集合set,add,remove,clear等操作刷新</li>
+<li>支持注解生成类，减少工作量</li>
+<li><p>支持刷新生命周期回调</p>
+<p><img src="/img/weiju.jpg" width="180" height="160"></p>
+</li>
 </ul>
-<h3 id="IOC的类型"><a href="#IOC的类型" class="headerlink" title="IOC的类型"></a>IOC的类型</h3><h4 id="构造函数注入"><a href="#构造函数注入" class="headerlink" title="构造函数注入"></a>构造函数注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   private SunWuKong swk;</div><div class="line">   //①注入孙悟空的具体扮演者</div><div class="line">   public XiYouJi(SunWuKong swk)&#123;</div><div class="line">       this.swk = swk;</div><div class="line">   &#125;</div><div class="line">    public void tianGong()&#123;</div><div class="line">       swk.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">        //①指定角色的扮演者</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">        //②注入具体扮演者到剧本中</div><div class="line">       XiYouJi xyj = new XiYouJi(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="属性注入"><a href="#属性注入" class="headerlink" title="属性注入"></a>属性注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①属性注入方法</div><div class="line">    public void setSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">        //①调用属性Setter方法注入</div><div class="line">       xyj.setSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="接口注入"><a href="#接口注入" class="headerlink" title="接口注入"></a>接口注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public interface ActorArrangable &#123;</div><div class="line">   void injectSunWuKong(SunWuKong swk);</div><div class="line">&#125;</div><div class="line">public class XiYouJi implements ActorArrangable &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①实现接口方法</div><div class="line">    public void injectSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">       xyj.injectSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="通过容器完成依赖关系的注入"><a href="#通过容器完成依赖关系的注入" class="headerlink" title="通过容器完成依赖关系的注入"></a>通过容器完成依赖关系的注入</h4><p>java:spring;android:xutils（java反射和动态代理）</p>
-<p>反射（配置文件的读取、利用反射机制注入对象）：</p>
-<ol>
-<li>在运行时判断任意一个对象所属的类。</li>
-<li>在运行时构造任意一个类的对象。</li>
-<li>在运行时判断任意一个类所具有的成员变量和方法。</li>
-<li>在运行时调用任意一个对象的方法</li>
-</ol>
-<p>动态代理</p>
-<p>程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言。尽管在这样的定义与分类下Java不是动态语言，它却有着一个非常突出的动态相关机制：Reflection。这个字的意思是“反射、映象、倒影”，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。</p>
-<p>动态代理类</p>
-<p>1.Interface InvocationHandler<br>2.Proxy</p>
-<p>android dagger2 butterknife（java mirror编译期根据注解动态生成代码）<br>这里以butterknife为例。</p>
-<p>JDK 5中提供了apt工具用来对注解进行处理。apt是一个命令行工具，与之配套的还有一套用来描述程序语义结构的Mirror API。Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构。通过Mirror API可以获取到被注解的Java类型元素的信息，从而提供相应的处理逻辑。具体的处理工作交给apt工具来完成。编写注解处理器的核心是AnnotationProcessorFactory和AnnotationProcessor两个接口。后者表示的是注解处理器，而前者则是为某些注解类型创建注解处理器的工厂。</p>
-<p>生成代码步骤</p>
-<ol>
-<li>自己的java处理器 extends AbstractProcessor</li>
-<li>通过查找解析注解（findAndParseTargets）形成集合Map（复杂，不贴源代码）</li>
-<li>遍历集合，通过javaoet(代码生成库，jake大神写的)生成java源码文件。</li>
-</ol>
-<p>扫描源代码（源代码中的每一部分都是Element的一个特定类型，而这些信息是由Mirror获取到）</p>
-<p>Element<br>类为TypeElement，变量为VariableElement，方法为ExecuteableElement</p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p><font color="red">你的意见，你的建议，你的star，你的分享，一直是我前进的动力。</font>现在关于LayoutManager，RecyclerView,Adapter的流派很多，我们更关注于数据的优雅刷新。</p>
+<p>如果对本库还不是很了解的同学可以到我的github查看具体版本进行了解。</p>
+<p><strong>欢迎大家的star(fork)和反馈(可发issues或者我的邮箱）。</strong></p>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
+<p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
+<p>谷歌邮箱:twsunj@gmail.com</p>
+<p>QQ邮箱:387953660@qq.com</p>
 
       
 
@@ -210,31 +207,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Butterknife</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">xUtils</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Helper</a>
         		</li>
       		
 		</ul>
@@ -290,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/IOC思想/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/11/打造RecyclerView全能刷新Helper/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,11 +285,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2016/12/29/对于所有对象都通用的方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">对于所有对象都通用的方法</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2017/06/11/优雅地刷新RecyclerView（1-5-0）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          优雅地刷新RecyclerView（1.5.0）
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -323,7 +308,7 @@
     			<div id="toc-article" class="toc-article">
     			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介："><span class="toc-number">1.</span> <span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子："><span class="toc-number">2.</span> <span class="toc-text">例子：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般实现："><span class="toc-number">3.</span> <span class="toc-text">一般实现：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改善："><span class="toc-number">4.</span> <span class="toc-text">改善：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC的类型"><span class="toc-number">5.</span> <span class="toc-text">IOC的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数注入"><span class="toc-number">5.1.</span> <span class="toc-text">构造函数注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性注入"><span class="toc-number">5.2.</span> <span class="toc-text">属性注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口注入"><span class="toc-number">5.3.</span> <span class="toc-text">接口注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过容器完成依赖关系的注入"><span class="toc-number">5.4.</span> <span class="toc-text">通过容器完成依赖关系的注入</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#库的由来"><span class="toc-number">2.</span> <span class="toc-text">库的由来</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？"><span class="toc-number">2.1.</span> <span class="toc-text">RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？"><span class="toc-number">2.2.</span> <span class="toc-text">假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#想一个RecyclerView高效快捷管理整个界面吗？"><span class="toc-number">2.3.</span> <span class="toc-text">想一个RecyclerView高效快捷管理整个界面吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你还在使用notifyDataSetChanged无脑刷新吗？"><span class="toc-number">2.4.</span> <span class="toc-text">你还在使用notifyDataSetChanged无脑刷新吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？"><span class="toc-number">2.5.</span> <span class="toc-text">你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你还在为刷新导致数据错乱而烦恼吗？"><span class="toc-number">2.6.</span> <span class="toc-text">你还在为刷新导致数据错乱而烦恼吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入库"><span class="toc-number">3.</span> <span class="toc-text">引入库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">5.</span> <span class="toc-text">传送门</span></a></li></ol>
    </div>
    <script type="text/javascript">
    			function showToc(){

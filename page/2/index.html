@@ -130,6 +130,181 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-装饰者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/装饰者模式/">装饰者模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/13/装饰者模式/" class="archive-article-date">
+  	<time datetime="2017-02-13T07:47:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><pre><code>动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从定义中，我们知道其实继承也可以达到“同样的”效果，那又为什么会出现装饰者模式呢？</p>
+<p>首先我们先来了解开放封闭原则。</p>
+<pre><code>类应该对扩展开放，对修改封闭。
+</code></pre><p>问题来了，为什么会出现这样的原则呢？</p>
+<p>这样的设计具有弹性可以应对改变，可以接受新的功能来应对改变的需求。</p>
+<p>这样说，确实不好理解，太官话了。那么我来解答几个关于开放封闭的问题。</p>
+<h3 id="如何将某件东西设计成可以扩展，又禁止修改？"><a href="#如何将某件东西设计成可以扩展，又禁止修改？" class="headerlink" title="如何将某件东西设计成可以扩展，又禁止修改？"></a>如何将某件东西设计成可以扩展，又禁止修改？</h3><pre><code>许多模式是长期经验的实证，可通过提供扩展的方法来保护代码免于被修改。在本章，将看到使用装饰者模式的一个好例子，完全遵循开放封闭原则。
+</code></pre><h3 id="如何让设计的每个部分都遵循开放封闭原则？"><a href="#如何让设计的每个部分都遵循开放封闭原则？" class="headerlink" title="如何让设计的每个部分都遵循开放封闭原则？"></a>如何让设计的每个部分都遵循开放封闭原则？</h3><pre><code>通常，你办不到。要让oo设计同时具备开放性和封闭性，又不修改现有的代码，需要花费许多时间和努力。一般来说，我们实在没有闲工夫把设计的每个部分都这么设计(而且，就算做得到，也可能只是一种浪费)。遵循开放封闭原则，通常会引入新的抽象层次，增加代码的复杂度。你需要把注意力集中在设计中最有可能改变的地方，然后应用开放封闭原则。
+</code></pre>
+        
+          <a class="article-more-a" href="/2017/02/13/装饰者模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">装饰者模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+  
+    <article id="post-模板方法模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/模板方法模式/">模板方法模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/13/模板方法模式/" class="archive-article-date">
+  	<time datetime="2017-02-13T06:17:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，我们先来个小场景：冲泡咖啡和茶</p>
+<p>那么冲泡方法：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">咖啡</th>
+<th style="text-align:center">茶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.把水煮沸</td>
+<td style="text-align:center">1.把水煮沸</td>
+</tr>
+<tr>
+<td style="text-align:center">2.用沸水冲泡咖啡</td>
+<td style="text-align:center">2.用沸水浸泡茶叶</td>
+</tr>
+<tr>
+<td style="text-align:center">3.把咖啡倒进杯子</td>
+<td style="text-align:center">3.把茶倒进杯子</td>
+</tr>
+<tr>
+<td style="text-align:center">4.加糖和咖啡</td>
+<td style="text-align:center">4.加柠檬</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们代码简单实现</p>
+        
+          <a class="article-more-a" href="/2017/02/13/模板方法模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">模板方法模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+  
     <article id="post-史上最炫酷控件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -355,11 +530,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
         		</li>
       		
 		</ul>
@@ -430,11 +605,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
         		</li>
       		
 		</ul>
@@ -780,202 +955,9 @@
 
 
   
-    <article id="post-对于所有对象都通用的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/对于所有对象都通用的方法/">对于所有对象都通用的方法</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/对于所有对象都通用的方法/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:24:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一条-覆盖equals时请遵守通用规定"><a href="#第一条-覆盖equals时请遵守通用规定" class="headerlink" title="第一条 覆盖equals时请遵守通用规定"></a>第一条 覆盖equals时请遵守通用规定</h2><ol>
-<li>类的每个实例本质上都是一样的</li>
-<li>不关心类是否提供了“逻辑相等”的测试功能</li>
-<li>超类已经覆盖了equals，从超类继承过来的行为对于子类也是合适的</li>
-<li>类是私有的或是包级私有的，可以确定它的equals方法永远不会被调用</li>
-<li>五大性质<ul>
-<li>自反性</li>
-<li>对称性</li>
-<li>传递性</li>
-<li>一致性</li>
-<li>非空性</li>
-</ul>
-</li>
-<li>扩展<ul>
-<li>里氏替换原则</li>
-<li>复合优于继承</li>
-</ul>
-</li>
-<li>实现高质量equals方法的诀窍<ul>
-<li>使用==操作符检查“参数是否为这个对象的引用”</li>
-<li>使用instanceof操作符检查“参数是否为正确的类型”</li>
-<li>把参数转换成正确的类型</li>
-<li>对于该类中的每个“关键”域，检查参数中的域是否与该对象中对应的域相匹配(域就是属性)</li>
-<li>当你编写完成了equals方法之后，应该问自己三个问题：它是否是对称的、传递的、一致的？<ul>
-<li>覆盖equals时总要覆盖hashCode</li>
-<li>不要企图让equals方法过于智能</li>
-<li>不要将equals声明中的Object对象替换为其他的类型</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-        
-          <a class="article-more-a" href="/2016/12/29/对于所有对象都通用的方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">对象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-
-
-
-  
-    <article id="post-IOC思想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/IOC思想/">IOC思想</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/29/IOC思想/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><pre><code>Spring容器来实现这些相互依赖对象的创建、协调工作。
-</code></pre><h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>西游记中六小龄童大闹天宫。</p>
-<h3 id="一般实现："><a href="#一般实现：" class="headerlink" title="一般实现："></a>一般实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi&#123;</div><div class="line">   public void tianGong()&#123;</div><div class="line">       //①演员直接侵入剧本</div><div class="line">       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();</div><div class="line">       lxlt.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们会发现以上剧本在①处，作为具体角色饰演者的六小龄童直接侵入到剧本中，使剧本和演员直接耦合在一起。<br><img src="/img/ioc1.png" alt=""></p>
-<h3 id="改善："><a href="#改善：" class="headerlink" title="改善："></a>改善：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个明智的编剧在剧情创作时应围绕故事的角色进行，而不应考虑角色的具体饰演者，这样才可能在剧本投拍时自由地遴选任何适合的演员，而非绑定在六小龄童一人身上。通过以上的分析，我们知道需要为该剧本主人公孙悟空定义一个接口：<br>
-        
-          <a class="article-more-a" href="/2016/12/29/IOC思想/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Butterknife</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">xUtils</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1079,15 +1061,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,23 +1105,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1171,7 +1149,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1191,10 +1169,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
@@ -1203,11 +1177,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1216,6 +1190,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
             
             <div class="clearfix"></div>

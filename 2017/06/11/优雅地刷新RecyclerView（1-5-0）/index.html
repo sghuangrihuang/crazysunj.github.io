@@ -6,23 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>IOC思想 | 欢迎来到crazysunjの博客</title>
+  <title>优雅地刷新RecyclerView（1.5.0） | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta name="keywords" content="Android,Java,Butterknife,DI,Dagger2,IOC,Spring,xUtils">
+  <meta name="description" content="前言RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还">
+<meta name="keywords" content="Android,RecyclerView,Adapter,Helper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IOC思想">
-<meta property="og:url" content="http://yoursite.com/2016/12/29/IOC思想/index.html">
+<meta property="og:title" content="优雅地刷新RecyclerView（1.5.0）">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/优雅地刷新RecyclerView（1-5-0）/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta property="og:image" content="http://yoursite.com/img/ioc1.png">
-<meta property="og:image" content="http://yoursite.com/img/ioc2.png">
-<meta property="og:image" content="http://yoursite.com/img/ioc3.png">
-<meta property="og:updated_time" content="2017-04-30T10:02:34.000Z">
+<meta property="og:description" content="前言RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper1.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper3.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper4.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper5.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper7.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper6.gif">
+<meta property="og:image" content="http://yoursite.com/img/adapterHelper8.gif">
+<meta property="og:updated_time" content="2017-06-11T05:43:03.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IOC思想">
-<meta name="twitter:description" content="简介：Spring容器来实现这些相互依赖对象的创建、协调工作。 例子：西游记中六小龄童大闹天宫。 一般实现：1234567public class XiYouJi&amp;#123;   public void tianGong()&amp;#123;       //①演员直接侵入剧本       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();       lxlt.">
-<meta name="twitter:image" content="http://yoursite.com/img/ioc1.png">
+<meta name="twitter:title" content="优雅地刷新RecyclerView（1.5.0）">
+<meta name="twitter:description" content="前言RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还">
+<meta name="twitter:image" content="http://yoursite.com/img/adapterHelper1.gif">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
   
@@ -134,65 +138,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IOC思想" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-优雅地刷新RecyclerView（1-5-0）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      IOC思想
+      优雅地刷新RecyclerView（1.5.0）
     </h1>
   
 
         
-        <a href="/2016/12/29/IOC思想/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:19:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
+        <a href="/2017/06/11/优雅地刷新RecyclerView（1-5-0）/" class="archive-article-date">
+  	<time datetime="2017-06-11T05:37:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><pre><code>Spring容器来实现这些相互依赖对象的创建、协调工作。
-</code></pre><h3 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h3><p>西游记中六小龄童大闹天宫。</p>
-<h3 id="一般实现："><a href="#一般实现：" class="headerlink" title="一般实现："></a>一般实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi&#123;</div><div class="line">   public void tianGong()&#123;</div><div class="line">       //①演员直接侵入剧本</div><div class="line">       LiuXiaoLingTong lxlt = new LiuXiaoLingTong();</div><div class="line">       lxlt.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们会发现以上剧本在①处，作为具体角色饰演者的六小龄童直接侵入到剧本中，使剧本和演员直接耦合在一起。<br><img src="/img/ioc1.png" alt=""></p>
-<h3 id="改善："><a href="#改善：" class="headerlink" title="改善："></a>改善：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个明智的编剧在剧情创作时应围绕故事的角色进行，而不应考虑角色的具体饰演者，这样才可能在剧本投拍时自由地遴选任何适合的演员，而非绑定在六小龄童一人身上。通过以上的分析，我们知道需要为该剧本主人公孙悟空定义一个接口：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   public void tianGong()</div><div class="line">   &#123;</div><div class="line">        //①引入孙悟空角色接口</div><div class="line">       SunWuKong sunWuKong = new LiuXiaoLingTong();</div><div class="line">        //②通过接口开展剧情</div><div class="line">        sunWuKong.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在①处引入了剧本的角色——孙悟空，剧本的情节通过角色展开，在拍摄时角色由演员饰演，如②处所示。因此西游记、孙悟空、六小龄童三者的类图关系如图所示：</p>
-<p><img src="/img/ioc2.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以看出XiYouJi同时依赖于SunWuKong接口和LiuXiaoLingTong类，并没有达到我们所期望的剧本仅依赖于角色的目的。但是角色最终必须通过具体的演员才能完成拍摄，如何让LiuXiaoLingTong和剧本无关而又能完成SunWuKong的具体动作呢？当然是在影片投拍时，导演将LiuXiaoLingTong安排在SunWuKong的角色上，导演将剧本、角色、饰演者装配起来。</p>
-<p><img src="/img/ioc3.png" alt=""></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过引入导演，使剧本和具体饰演者解耦了。对应到软件中，导演像是一个装配器，安排演员表演具体的角色。<br>现在我们可以反过来讲解IoC的概念了。IoC（Inverse of Control）的字面意思是控制反转，它包括两个内容：</p>
-<ul>
-<li>其一是控制</li>
-<li>其二是反转</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView，dataView，errorView，emptyView自如切换吗？你还在为刷新导致数据错乱而烦恼吗？如果你迟疑了，那你不妨试试本库。</p>
+<a id="more"></a>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>简单快捷，可配合大多数Adapter</li>
+<li>一行代码刷新相应viewType</li>
+<li>支持粘性头</li>
+<li>支持异步刷新，可扩展(如配合RxAndroid)</li>
+<li>支持高频率刷新(流畅,异步执行)</li>
+<li>支持加载facebook的shimmer效果loading页面</li>
+<li>支持加载相应type错误页面</li>
+<li>支持加载相应type空页面</li>
+<li>支持标准(一个type对应一个集合)和混合(一般的多类型集合)自如切换(自动排序集合)</li>
+<li>支持集合set,add,remove,clear等操作刷新</li>
+<li>支持注解生成类，减少工作量</li>
+<li>支持刷新生命周期回调</li>
 </ul>
-<h3 id="IOC的类型"><a href="#IOC的类型" class="headerlink" title="IOC的类型"></a>IOC的类型</h3><h4 id="构造函数注入"><a href="#构造函数注入" class="headerlink" title="构造函数注入"></a>构造函数注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">   private SunWuKong swk;</div><div class="line">   //①注入孙悟空的具体扮演者</div><div class="line">   public XiYouJi(SunWuKong swk)&#123;</div><div class="line">       this.swk = swk;</div><div class="line">   &#125;</div><div class="line">    public void tianGong()&#123;</div><div class="line">       swk.action(&quot;大闹天宫！&quot;);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">        //①指定角色的扮演者</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">        //②注入具体扮演者到剧本中</div><div class="line">       XiYouJi xyj = new XiYouJi(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="属性注入"><a href="#属性注入" class="headerlink" title="属性注入"></a>属性注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class XiYouJi &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①属性注入方法</div><div class="line">    public void setSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">        //①调用属性Setter方法注入</div><div class="line">       xyj.setSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="接口注入"><a href="#接口注入" class="headerlink" title="接口注入"></a>接口注入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public interface ActorArrangable &#123;</div><div class="line">   void injectSunWuKong(SunWuKong swk);</div><div class="line">&#125;</div><div class="line">public class XiYouJi implements ActorArrangable &#123;</div><div class="line">    private SunWuKong swk;</div><div class="line">     //①实现接口方法</div><div class="line">    public void injectSunWuKong(SunWuKong swk) &#123;</div><div class="line">        this.swk = swk;</div><div class="line">    &#125;</div><div class="line">    public void tianGong() &#123;</div><div class="line">        swk.action(&quot;大闹天宫！&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public class Director &#123;</div><div class="line">   public void direct()&#123;</div><div class="line">       SunWuKong swk = new LiuXiaoLingTong();</div><div class="line">       XiYouJi xyj = new XiYouJi();</div><div class="line">       xyj.injectSunWuKong(swk);</div><div class="line">       xyj.tianGong();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="通过容器完成依赖关系的注入"><a href="#通过容器完成依赖关系的注入" class="headerlink" title="通过容器完成依赖关系的注入"></a>通过容器完成依赖关系的注入</h4><p>java:spring;android:xutils（java反射和动态代理）</p>
-<p>反射（配置文件的读取、利用反射机制注入对象）：</p>
-<ol>
-<li>在运行时判断任意一个对象所属的类。</li>
-<li>在运行时构造任意一个类的对象。</li>
-<li>在运行时判断任意一个类所具有的成员变量和方法。</li>
-<li>在运行时调用任意一个对象的方法</li>
-</ol>
-<p>动态代理</p>
-<p>程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言。尽管在这样的定义与分类下Java不是动态语言，它却有着一个非常突出的动态相关机制：Reflection。这个字的意思是“反射、映象、倒影”，用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。</p>
-<p>动态代理类</p>
-<p>1.Interface InvocationHandler<br>2.Proxy</p>
-<p>android dagger2 butterknife（java mirror编译期根据注解动态生成代码）<br>这里以butterknife为例。</p>
-<p>JDK 5中提供了apt工具用来对注解进行处理。apt是一个命令行工具，与之配套的还有一套用来描述程序语义结构的Mirror API。Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构。通过Mirror API可以获取到被注解的Java类型元素的信息，从而提供相应的处理逻辑。具体的处理工作交给apt工具来完成。编写注解处理器的核心是AnnotationProcessorFactory和AnnotationProcessor两个接口。后者表示的是注解处理器，而前者则是为某些注解类型创建注解处理器的工厂。</p>
-<p>生成代码步骤</p>
-<ol>
-<li>自己的java处理器 extends AbstractProcessor</li>
-<li>通过查找解析注解（findAndParseTargets）形成集合Map（复杂，不贴源代码）</li>
-<li>遍历集合，通过javaoet(代码生成库，jake大神写的)生成java源码文件。</li>
-</ol>
-<p>扫描源代码（源代码中的每一部分都是Element的一个特定类型，而这些信息是由Mirror获取到）</p>
-<p>Element<br>类为TypeElement，变量为VariableElement，方法为ExecuteableElement</p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><h3 id="线性排布"><a href="#线性排布" class="headerlink" title="线性排布"></a>线性排布</h3><p><img src="/img/adapterHelper1.gif" alt=""></p>
+<h3 id="方格排布"><a href="#方格排布" class="headerlink" title="方格排布"></a>方格排布</h3><p><img src="/img/adapterHelper3.gif" alt=""></p>
+<h3 id="关键字高亮"><a href="#关键字高亮" class="headerlink" title="关键字高亮"></a>关键字高亮</h3><p><img src="/img/adapterHelper4.gif" alt=""></p>
+<h3 id="错误页面"><a href="#错误页面" class="headerlink" title="错误页面"></a>错误页面</h3><p><img src="/img/adapterHelper5.gif" alt=""></p>
+<h3 id="空页面"><a href="#空页面" class="headerlink" title="空页面"></a>空页面</h3><p><img src="/img/adapterHelper7.gif" alt=""></p>
+<h3 id="高频率刷新"><a href="#高频率刷新" class="headerlink" title="高频率刷新"></a>高频率刷新</h3><p><img src="/img/adapterHelper6.gif" alt=""></p>
+<h3 id="loading页面"><a href="#loading页面" class="headerlink" title="loading页面"></a>loading页面</h3><p><img src="/img/adapterHelper8.gif" alt=""></p>
+<h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><ul>
+<li>支持配置全局loading页面</li>
+<li>支持刷新生命周期回调</li>
+<li>支持注解生成类，减少工作量</li>
+<li>……</li>
+</ul>
+<h3 id="支持配置全局loading页面"><a href="#支持配置全局loading页面" class="headerlink" title="支持配置全局loading页面"></a>支持配置全局loading页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public void initGlobalLoadingConfig(LoadingConfig loadingConfig);</div><div class="line"></div><div class="line">public void notifyShimmerChanged(int type);</div><div class="line"></div><div class="line">public void notifyShimmerChanged();</div><div class="line"></div><div class="line">helper.initGlobalLoadingConfig(new LoadingConfig.Builder()</div><div class="line">                .setLoading(true, SimpleHelper.TYPE_ONE, 3, true)</div><div class="line">                .setLoading(true, SimpleHelper.TYPE_TWO, 2)</div><div class="line">                .setLoading(true, SimpleHelper.TYPE_THREE, true)</div><div class="line">                .setLoading(true, SimpleHelper.TYPE_FOUR, 4, true)</div><div class="line">                .build());</div></pre></td></tr></table></figure>
+<p>调用initGlobalLoadingConfig方法配置每个type的loading页面属性，上面为demo中的调用语句，其中LoadingConfig采用构建者模式，那么怎么用呢？带参数notifyShimmerChanged方法只会刷新相应type的loading页面（数据源为配置时的），如果想不用配置数据源可调用原来的<br>notifyShimmerChanged方法。不带参数的notifyShimmerChanged方法是根据配置刷新全局。</p>
+<h3 id="支持刷新生命周期回调"><a href="#支持刷新生命周期回调" class="headerlink" title="支持刷新生命周期回调"></a>支持刷新生命周期回调</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">protected void onStart();</div><div class="line"></div><div class="line">protected void onEnd();</div><div class="line"></div><div class="line">public int getCurrentRefreshType();</div></pre></td></tr></table></figure>
+<p>需要使用生命周期回调方法的时候重写，再熟悉不过了，我知道回调的时候比较依赖当前type，因此提供了getCurrentRefreshType，用例比如需要在刷新前清除缓存，刷新后需要通知其他界面等。</p>
+<h3 id="支持注解生成类，减少工作量"><a href="#支持注解生成类，减少工作量" class="headerlink" title="支持注解生成类，减少工作量"></a>支持注解生成类，减少工作量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">@AdapterHelper()</div><div class="line">String superObj() default &quot;...&quot;;</div><div class="line">String entity() default &quot;...&quot;;</div><div class="line">String adapter() default &quot;...&quot;;</div><div class="line"></div><div class="line">@BindType(）</div><div class="line">int level();</div><div class="line"></div><div class="line">@BindAllType()</div><div class="line">int level();</div><div class="line">int layoutResId();</div><div class="line">int headerResId() default 0;</div><div class="line">int loadingLayoutResId() default 0;</div><div class="line">int loadingHeaderResId() default 0;</div><div class="line">int errorLayoutResId() default 0;</div><div class="line">int emptyLayoutResId() default 0;</div><div class="line"></div><div class="line">@BindDefaultType()</div><div class="line">int headerResId() default 0;</div><div class="line">int loadingLayoutResId() default 0;</div><div class="line">int loadingHeaderResId() default 0;</div><div class="line">int errorLayoutResId() default 0;</div><div class="line">int emptyLayoutResId() default 0;</div><div class="line"></div><div class="line">@PreDataCount()</div><div class="line"></div><div class="line">@BindLayoutRes()</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindHeaderRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindLoadingLayoutRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindLoadingHeaderRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindErrorLayoutRes</div><div class="line">int[] type();</div><div class="line"></div><div class="line">@BindEmptyLayoutRes</div><div class="line">int[] type();</div></pre></td></tr></table></figure>
+<p>仔细看完的同学内心独白：WTF？放下菜刀，听我慢慢讲来，注解PreDataCount我就不用说了吧，注意点一直强调；该注解以下的注解更强调多个type共用了同个资源；注解BindDefaultType用来注解只有一种type的时候；注解AdapterHelper用来注解需要生成helper的adapter，其中参数superObj为生成helper的父类，entity为实体类，adapter为绑定adapter，参数类型为类引用路径。如何生成，不用我说了吧，我猜你已经轻车熟路。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><h3 id="Type-取值范围"><a href="#Type-取值范围" class="headerlink" title="Type 取值范围"></a>Type 取值范围</h3><ul>
+<li>level [0,+∞)</li>
+<li>数据类型 [0,1000)</li>
+<li>头类型 [-1000,0)</li>
+<li>shimmer数据类型 [-2000,-1000)</li>
+<li>shimmer头类型 [-3000,-2000)</li>
+<li>error类型 [-4000,-3000)</li>
+<li>empty类型 [-5000,-4000)</li>
+</ul>
+<h3 id="差值常量"><a href="#差值常量" class="headerlink" title="差值常量"></a>差值常量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//头类型差值</div><div class="line">public static final int HEADER_TYPE_DIFFER = 1000;</div><div class="line">//shimmer数据类型差值</div><div class="line">public static final int SHIMMER_DATA_TYPE_DIFFER = 2000;</div><div class="line">//shimmer头类型差值</div><div class="line">public static final int SHIMMER_HEADER_TYPE_DIFFER = 3000;</div><div class="line">//错误类型差值</div><div class="line">public static final int ERROR_TYPE_DIFFER = 4000;</div><div class="line">//空类型差值</div><div class="line">public static final int EMPTY_TYPE_DIFFER = 5000;</div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">protected int getPreDataCount();</div></pre></td></tr></table></figure>
+<p>获取数据前条目数量，保持数据与adapter一致，比如adapter的position=0添加的是headerview，如果你的adapter有这样的条件，请重写该方法或者自己处理数据的时候注意，否则数据混乱，甚至崩溃都是有可能的。</p>
+<p>调用刷新方法的时候请注意刷新模式，有些方法只支持相应刷新模式，需要注意的都加有check语句。</p>
+<p>关于entity的id为long类型是考虑刷新效率，你大可采用多类型的UUID的hashcode或者就是普通hashcode作为主键（注意缓存）。倘若还支持不了你的数据，就自定义DiffCallback。</p>
+<p>具体可参考Demo，建议把helper封装在Adapter中。</p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p><font color="red">你的意见，你的建议，你的star，你的分享，一直是我前进的动力。</font>现在关于LayoutManager，RecyclerView,Adapter的流派很多，我们更关注于数据的优雅刷新。</p>
+<p>如果对本库还不是很了解的同学可以到我的github查看具体版本进行了解。</p>
+<p><strong>欢迎大家的star(fork)和反馈(可发issues或者我的邮箱）。</strong></p>
+<h2 id="gradle依赖"><a href="#gradle依赖" class="headerlink" title="gradle依赖"></a>gradle依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.crazysunj:multitypeadapter:1.5.0&apos;</div><div class="line">apt &apos;com.crazysunj:multitypeadapter-compiler:1.5.0&apos;</div></pre></td></tr></table></figure>
+<p>如果想用注解生成可依赖，记得在项目gradle中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;</div></pre></td></tr></table></figure>
+<p>主Module中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;</div></pre></td></tr></table></figure>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
+<p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
+<p>谷歌邮箱:twsunj@gmail.com</p>
+<p>QQ邮箱:387953660@qq.com</p>
 
       
 
@@ -210,31 +237,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Butterknife</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IOC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">xUtils</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Helper</a>
         		</li>
       		
 		</ul>
@@ -290,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/IOC思想/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/11/优雅地刷新RecyclerView（1-5-0）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,9 +315,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/05/29/优雅地刷新RecyclerView（1-4-0）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          优雅地刷新RecyclerView（1.4.0）
+        
+      </div>
+    </a>
   
-    <a href="/2016/12/29/对于所有对象都通用的方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">对于所有对象都通用的方法</div>
+  
+    <a href="/2017/06/11/打造RecyclerView全能刷新Helper/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">打造RecyclerView全能刷新Helper</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,7 +343,7 @@
     			<div id="toc-article" class="toc-article">
     			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
     				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介："><span class="toc-number">1.</span> <span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子："><span class="toc-number">2.</span> <span class="toc-text">例子：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般实现："><span class="toc-number">3.</span> <span class="toc-text">一般实现：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改善："><span class="toc-number">4.</span> <span class="toc-text">改善：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IOC的类型"><span class="toc-number">5.</span> <span class="toc-text">IOC的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数注入"><span class="toc-number">5.1.</span> <span class="toc-text">构造函数注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性注入"><span class="toc-number">5.2.</span> <span class="toc-text">属性注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接口注入"><span class="toc-number">5.3.</span> <span class="toc-text">接口注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过容器完成依赖关系的注入"><span class="toc-number">5.4.</span> <span class="toc-text">通过容器完成依赖关系的注入</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性排布"><span class="toc-number">3.1.</span> <span class="toc-text">线性排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方格排布"><span class="toc-number">3.2.</span> <span class="toc-text">方格排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字高亮"><span class="toc-number">3.3.</span> <span class="toc-text">关键字高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误页面"><span class="toc-number">3.4.</span> <span class="toc-text">错误页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空页面"><span class="toc-number">3.5.</span> <span class="toc-text">空页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高频率刷新"><span class="toc-number">3.6.</span> <span class="toc-text">高频率刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loading页面"><span class="toc-number">3.7.</span> <span class="toc-text">loading页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">4.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持配置全局loading页面"><span class="toc-number">4.1.</span> <span class="toc-text">支持配置全局loading页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新生命周期回调"><span class="toc-number">4.2.</span> <span class="toc-text">支持刷新生命周期回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持注解生成类，减少工作量"><span class="toc-number">4.3.</span> <span class="toc-text">支持注解生成类，减少工作量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">5.</span> <span class="toc-text">注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-取值范围"><span class="toc-number">5.1.</span> <span class="toc-text">Type 取值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#差值常量"><span class="toc-number">5.2.</span> <span class="toc-text">差值常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">5.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">6.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">7.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">8.</span> <span class="toc-text">传送门</span></a></li></ol>
    </div>
    <script type="text/javascript">
    			function showToc(){
