@@ -148,6 +148,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建（MAC环境）"><span class="toc-number">2.</span> <span class="toc-text">环境搭建（MAC环境）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装前准备工作，安装homebrew-git-yasm"><span class="toc-number">2.1.</span> <span class="toc-text">安装前准备工作，安装homebrew, git, yasm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clone代码"><span class="toc-number">2.2.</span> <span class="toc-text">clone代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android"><span class="toc-number">2.3.</span> <span class="toc-text">初始化android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android支持https（可选）"><span class="toc-number">2.4.</span> <span class="toc-text">初始化android支持https（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切到ijkplayer-android-contrib-编译脚本"><span class="toc-number">2.5.</span> <span class="toc-text">切到ijkplayer/android/contrib(编译脚本)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-openssl"><span class="toc-number">2.6.</span> <span class="toc-text">编译 openssl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改编译配置"><span class="toc-number">2.7.</span> <span class="toc-text">修改编译配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始编译-ffmpeg"><span class="toc-number">2.8.</span> <span class="toc-text">开始编译 ffmpeg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-ijkplayer-native-code"><span class="toc-number">2.9.</span> <span class="toc-text">编译 ijkplayer native code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译生成各CPU架构的so"><span class="toc-number">2.10.</span> <span class="toc-text">编译生成各CPU架构的so</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译好的项目地址："><span class="toc-number">2.11.</span> <span class="toc-text">编译好的项目地址：</span></a></li></ol></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>ijkplayer的github地址:<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="external">https://github.com/Bilibili/ijkplayer</a></p>
@@ -274,35 +303,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建（MAC环境）"><span class="toc-number">2.</span> <span class="toc-text">环境搭建（MAC环境）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装前准备工作，安装homebrew-git-yasm"><span class="toc-number">2.1.</span> <span class="toc-text">安装前准备工作，安装homebrew, git, yasm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clone代码"><span class="toc-number">2.2.</span> <span class="toc-text">clone代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android"><span class="toc-number">2.3.</span> <span class="toc-text">初始化android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化android支持https（可选）"><span class="toc-number">2.4.</span> <span class="toc-text">初始化android支持https（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切到ijkplayer-android-contrib-编译脚本"><span class="toc-number">2.5.</span> <span class="toc-text">切到ijkplayer/android/contrib(编译脚本)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-openssl"><span class="toc-number">2.6.</span> <span class="toc-text">编译 openssl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改编译配置"><span class="toc-number">2.7.</span> <span class="toc-text">修改编译配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始编译-ffmpeg"><span class="toc-number">2.8.</span> <span class="toc-text">开始编译 ffmpeg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译-ijkplayer-native-code"><span class="toc-number">2.9.</span> <span class="toc-text">编译 ijkplayer native code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译生成各CPU架构的so"><span class="toc-number">2.10.</span> <span class="toc-text">编译生成各CPU架构的so</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译好的项目地址："><span class="toc-number">2.11.</span> <span class="toc-text">编译好的项目地址：</span></a></li></ol></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -420,7 +420,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,43 +488,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,7 +524,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,27 +556,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">

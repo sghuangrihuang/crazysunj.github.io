@@ -148,6 +148,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一条-覆盖equals时请遵守通用规定"><span class="toc-number">1.</span> <span class="toc-text">第一条 覆盖equals时请遵守通用规定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二条-覆盖equals时总要覆盖hashCode"><span class="toc-number">2.</span> <span class="toc-text">第二条 覆盖equals时总要覆盖hashCode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现HASHCODE的约定"><span class="toc-number">2.1.</span> <span class="toc-text">实现HASHCODE的约定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三条-始终要覆盖toString"><span class="toc-number">3.</span> <span class="toc-text">第三条 始终要覆盖toString</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现高质量TOSTRING方法的诀窍"><span class="toc-number">3.1.</span> <span class="toc-text">实现高质量TOSTRING方法的诀窍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四条-谨慎地覆盖clone"><span class="toc-number">4.</span> <span class="toc-text">第四条 谨慎地覆盖clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五条-考虑实现Comparable接口"><span class="toc-number">5.</span> <span class="toc-text">第五条 考虑实现Comparable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="第一条-覆盖equals时请遵守通用规定"><a href="#第一条-覆盖equals时请遵守通用规定" class="headerlink" title="第一条 覆盖equals时请遵守通用规定"></a>第一条 覆盖equals时请遵守通用规定</h2><ol>
@@ -308,35 +337,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一条-覆盖equals时请遵守通用规定"><span class="toc-number">1.</span> <span class="toc-text">第一条 覆盖equals时请遵守通用规定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二条-覆盖equals时总要覆盖hashCode"><span class="toc-number">2.</span> <span class="toc-text">第二条 覆盖equals时总要覆盖hashCode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现HASHCODE的约定"><span class="toc-number">2.1.</span> <span class="toc-text">实现HASHCODE的约定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三条-始终要覆盖toString"><span class="toc-number">3.</span> <span class="toc-text">第三条 始终要覆盖toString</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现高质量TOSTRING方法的诀窍"><span class="toc-number">3.1.</span> <span class="toc-text">实现高质量TOSTRING方法的诀窍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四条-谨慎地覆盖clone"><span class="toc-number">4.</span> <span class="toc-text">第四条 谨慎地覆盖clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五条-考虑实现Comparable接口"><span class="toc-number">5.</span> <span class="toc-text">第五条 考虑实现Comparable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -454,7 +454,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,43 +522,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,7 +558,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,27 +590,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">

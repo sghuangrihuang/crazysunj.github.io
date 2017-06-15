@@ -148,6 +148,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一条-考虑用静态工厂方法代替构造器"><span class="toc-number">1.</span> <span class="toc-text">第一条 考虑用静态工厂方法代替构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优势："><span class="toc-number">1.1.</span> <span class="toc-text">优势：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点："><span class="toc-number">1.2.</span> <span class="toc-text">缺点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">1.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二条：遇到多个构造器参数时要考虑用构建器"><span class="toc-number">2.</span> <span class="toc-text">第二条：遇到多个构造器参数时要考虑用构建器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原因："><span class="toc-number">2.1.</span> <span class="toc-text">原因：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案："><span class="toc-number">2.2.</span> <span class="toc-text">解决方案：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结：-1"><span class="toc-number">2.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三条：用私有构造器或者枚举类型强化Singleton属性"><span class="toc-number">3.</span> <span class="toc-text">第三条：用私有构造器或者枚举类型强化Singleton属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四条：通过私有构造器强化不可实例化的能力"><span class="toc-number">4.</span> <span class="toc-text">第四条：通过私有构造器强化不可实例化的能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五条：避免创建不必要的对象"><span class="toc-number">5.</span> <span class="toc-text">第五条：避免创建不必要的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个重点"><span class="toc-number">5.1.</span> <span class="toc-text">几个重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">5.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六条：消除过期的对象引用"><span class="toc-number">6.</span> <span class="toc-text">第六条：消除过期的对象引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个注意点"><span class="toc-number">6.1.</span> <span class="toc-text">几个注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七条：避免使用终结方法"><span class="toc-number">7.</span> <span class="toc-text">第七条：避免使用终结方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-1"><span class="toc-number">7.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="第一条-考虑用静态工厂方法代替构造器"><a href="#第一条-考虑用静态工厂方法代替构造器" class="headerlink" title="第一条 考虑用静态工厂方法代替构造器"></a>第一条 考虑用静态工厂方法代替构造器</h2><h3 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h3><ul>
@@ -300,35 +329,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一条-考虑用静态工厂方法代替构造器"><span class="toc-number">1.</span> <span class="toc-text">第一条 考虑用静态工厂方法代替构造器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优势："><span class="toc-number">1.1.</span> <span class="toc-text">优势：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点："><span class="toc-number">1.2.</span> <span class="toc-text">缺点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">1.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二条：遇到多个构造器参数时要考虑用构建器"><span class="toc-number">2.</span> <span class="toc-text">第二条：遇到多个构造器参数时要考虑用构建器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原因："><span class="toc-number">2.1.</span> <span class="toc-text">原因：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案："><span class="toc-number">2.2.</span> <span class="toc-text">解决方案：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结：-1"><span class="toc-number">2.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三条：用私有构造器或者枚举类型强化Singleton属性"><span class="toc-number">3.</span> <span class="toc-text">第三条：用私有构造器或者枚举类型强化Singleton属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四条：通过私有构造器强化不可实例化的能力"><span class="toc-number">4.</span> <span class="toc-text">第四条：通过私有构造器强化不可实例化的能力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五条：避免创建不必要的对象"><span class="toc-number">5.</span> <span class="toc-text">第五条：避免创建不必要的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个重点"><span class="toc-number">5.1.</span> <span class="toc-text">几个重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">5.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六条：消除过期的对象引用"><span class="toc-number">6.</span> <span class="toc-text">第六条：消除过期的对象引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几个注意点"><span class="toc-number">6.1.</span> <span class="toc-text">几个注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七条：避免使用终结方法"><span class="toc-number">7.</span> <span class="toc-text">第七条：避免使用终结方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结-1"><span class="toc-number">7.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -446,7 +446,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,43 +514,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,7 +550,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,27 +582,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">

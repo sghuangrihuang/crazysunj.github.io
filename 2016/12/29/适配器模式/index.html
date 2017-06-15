@@ -151,6 +151,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生活中的适配器"><span class="toc-number">2.</span> <span class="toc-text">生活中的适配器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">3.</span> <span class="toc-text">结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器模式"><span class="toc-number">3.1.</span> <span class="toc-text">类适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象适配器"><span class="toc-number">3.2.</span> <span class="toc-text">对象适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器和对象适配器的权衡"><span class="toc-number">3.3.</span> <span class="toc-text">类适配器和对象适配器的权衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式的优缺点"><span class="toc-number">4.</span> <span class="toc-text">适配器模式的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器的扩展模式-缺省适配模式"><span class="toc-number">5.</span> <span class="toc-text">适配器的扩展模式-缺省适配模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相似设计模式比较"><span class="toc-number">6.</span> <span class="toc-text">相似设计模式比较</span></a></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;适配器模式把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口不匹配而无法在一起工作的两个类能够在一起工作。</p>
@@ -312,35 +341,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生活中的适配器"><span class="toc-number">2.</span> <span class="toc-text">生活中的适配器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构"><span class="toc-number">3.</span> <span class="toc-text">结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器模式"><span class="toc-number">3.1.</span> <span class="toc-text">类适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象适配器"><span class="toc-number">3.2.</span> <span class="toc-text">对象适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类适配器和对象适配器的权衡"><span class="toc-number">3.3.</span> <span class="toc-text">类适配器和对象适配器的权衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式的优缺点"><span class="toc-number">4.</span> <span class="toc-text">适配器模式的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器的扩展模式-缺省适配模式"><span class="toc-number">5.</span> <span class="toc-text">适配器的扩展模式-缺省适配模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相似设计模式比较"><span class="toc-number">6.</span> <span class="toc-text">相似设计模式比较</span></a></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -458,7 +458,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,43 +526,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,7 +562,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,27 +594,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">

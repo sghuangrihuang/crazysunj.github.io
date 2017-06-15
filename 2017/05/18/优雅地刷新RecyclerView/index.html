@@ -154,6 +154,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性排布"><span class="toc-number">3.1.</span> <span class="toc-text">线性排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方格排布"><span class="toc-number">3.2.</span> <span class="toc-text">方格排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字高亮"><span class="toc-number">3.3.</span> <span class="toc-text">关键字高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新错误页面"><span class="toc-number">3.4.</span> <span class="toc-text">刷新错误页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高频率刷新"><span class="toc-number">3.5.</span> <span class="toc-text">高频率刷新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">4.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新type错误页面-可自定义"><span class="toc-number">4.1.</span> <span class="toc-text">支持刷新type错误页面(可自定义)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持同时刷新多个type-异步，高频率"><span class="toc-number">4.2.</span> <span class="toc-text">支持同时刷新多个type(异步，高频率)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链式注册资源"><span class="toc-number">4.3.</span> <span class="toc-text">链式注册资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新单个数据"><span class="toc-number">4.4.</span> <span class="toc-text">支持刷新单个数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提供helper的清除单个type，清除整个界面api"><span class="toc-number">4.5.</span> <span class="toc-text">提供helper的清除单个type，清除整个界面api</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提供getHeaderId的默认实现抽象类"><span class="toc-number">4.6.</span> <span class="toc-text">提供getHeaderId的默认实现抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注意点"><span class="toc-number">4.7.</span> <span class="toc-text">使用注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">5.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">6.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">7.</span> <span class="toc-text">传送门</span></a></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>还是那句话，RecyclerView的viewType增多，逻辑变复杂，几个月后，你确定还能理清思路吗？假设我们服务端是多个接口返回数据，你确定能正确刷新相应type吗？想一个RecyclerView高效快捷管理整个界面吗？你还在使用notifyDataSetChanged无脑刷新吗？你想单个viewType在loadingView,dataView,errorView自如切换吗？如果你迟疑了，那你不妨试试本库。</p>
@@ -328,35 +357,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性排布"><span class="toc-number">3.1.</span> <span class="toc-text">线性排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方格排布"><span class="toc-number">3.2.</span> <span class="toc-text">方格排布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字高亮"><span class="toc-number">3.3.</span> <span class="toc-text">关键字高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新错误页面"><span class="toc-number">3.4.</span> <span class="toc-text">刷新错误页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高频率刷新"><span class="toc-number">3.5.</span> <span class="toc-text">高频率刷新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">4.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新type错误页面-可自定义"><span class="toc-number">4.1.</span> <span class="toc-text">支持刷新type错误页面(可自定义)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持同时刷新多个type-异步，高频率"><span class="toc-number">4.2.</span> <span class="toc-text">支持同时刷新多个type(异步，高频率)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链式注册资源"><span class="toc-number">4.3.</span> <span class="toc-text">链式注册资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新单个数据"><span class="toc-number">4.4.</span> <span class="toc-text">支持刷新单个数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提供helper的清除单个type，清除整个界面api"><span class="toc-number">4.5.</span> <span class="toc-text">提供helper的清除单个type，清除整个界面api</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提供getHeaderId的默认实现抽象类"><span class="toc-number">4.6.</span> <span class="toc-text">提供getHeaderId的默认实现抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注意点"><span class="toc-number">4.7.</span> <span class="toc-text">使用注意点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">5.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">6.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">7.</span> <span class="toc-text">传送门</span></a></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -474,7 +474,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,43 +542,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +578,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,27 +610,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">

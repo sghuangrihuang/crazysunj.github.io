@@ -148,6 +148,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-源文件基础"><span class="toc-number">1.</span> <span class="toc-text">1.源文件基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-文件名"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 文件名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-文件编码：UTF-8"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 文件编码：UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-特殊字符"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 特殊字符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-空白字符"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 空白字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-特殊转义序列"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 特殊转义序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-非ASCII字符"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 非ASCII字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-源文件结构"><span class="toc-number">2.</span> <span class="toc-text">2. 源文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-许可证或版权信息"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 许可证或版权信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-package语句"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 package语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-import语句"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 import语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-IMPORT不要使用通配符"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 IMPORT不要使用通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-不要换行"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 不要换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-顺序和间距"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 顺序和间距</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-类声明"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-只有一个顶级"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1 只有一个顶级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-类成员顺序"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2 类成员顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-1-区块划分"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">2.4.2.1 区块划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-2-类成员排列通用规则"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">2.4.2.2 类成员排列通用规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-3-重载：永不分离"><span class="toc-number">2.4.2.3.</span> <span class="toc-text">2.4.2.3 重载：永不分离</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-格式术语"><span class="toc-number">3.</span> <span class="toc-text">3. 格式术语</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-大括号"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 大括号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-使用大括号-即使是可选的"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1 使用大括号(即使是可选的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-非空块：K-amp-R-风格"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2 非空块：K & R 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-空块：可以用简洁版本"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 空块：可以用简洁版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-块缩进：4个空格"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 块缩进：4个空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-一行一个语句"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 一行一个语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-列限制：80或100"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 列限制：80或100</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-自动换行"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 自动换行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-从哪里断开"><span class="toc-number">3.5.1.</span> <span class="toc-text">3.5.1 从哪里断开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-自动换行时缩进至少-8个空格"><span class="toc-number">3.5.2.</span> <span class="toc-text">3.5.2 自动换行时缩进至少+8个空格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-空白"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 空白</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-垂直空白"><span class="toc-number">3.6.1.</span> <span class="toc-text">3.6.1 垂直空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-2-水平空白"><span class="toc-number">3.6.2.</span> <span class="toc-text">3.6.2 水平空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-3-水平对齐：不做要求"><span class="toc-number">3.6.3.</span> <span class="toc-text">3.6.3 水平对齐：不做要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-用小括号来限定组：推荐"><span class="toc-number">3.7.</span> <span class="toc-text">3.7 用小括号来限定组：推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-具体结构"><span class="toc-number">3.8.</span> <span class="toc-text">3.8 具体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-1-枚举类-（不推荐用枚举类，耗性能）"><span class="toc-number">3.8.1.</span> <span class="toc-text">3.8.1 枚举类 （不推荐用枚举类，耗性能）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-2-变量声明"><span class="toc-number">3.8.2.</span> <span class="toc-text">3.8.2 变量声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-2-1-每次只声明一个变量"><span class="toc-number">3.8.2.1.</span> <span class="toc-text">3.8.2.1 每次只声明一个变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-2-2-需要时才声明，并尽快进行初始化"><span class="toc-number">3.8.2.2.</span> <span class="toc-text">3.8.2.2 需要时才声明，并尽快进行初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-3-数组"><span class="toc-number">3.8.3.</span> <span class="toc-text">3.8.3 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-3-1-数组初始化：可写成块状结构"><span class="toc-number">3.8.3.1.</span> <span class="toc-text">3.8.3.1 数组初始化：可写成块状结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-3-2-非C风格的数组声明"><span class="toc-number">3.8.3.2.</span> <span class="toc-text">3.8.3.2 非C风格的数组声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-4-SWITCH语句"><span class="toc-number">3.8.4.</span> <span class="toc-text">3.8.4 SWITCH语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-1-缩进"><span class="toc-number">3.8.4.1.</span> <span class="toc-text">3.8.4.1 缩进</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-2-Fall-through：注释"><span class="toc-number">3.8.4.2.</span> <span class="toc-text">3.8.4.2 Fall-through：注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-3-default的情况要写出来"><span class="toc-number">3.8.4.3.</span> <span class="toc-text">3.8.4.3 default的情况要写出来</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-5-注解-ANNOTATIONS"><span class="toc-number">3.8.5.</span> <span class="toc-text">3.8.5 注解(ANNOTATIONS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-6-注释"><span class="toc-number">3.8.6.</span> <span class="toc-text">3.8.6 注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-6-1-块注释风格"><span class="toc-number">3.8.6.1.</span> <span class="toc-text">3.8.6.1 块注释风格</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-7-MODIFIERS"><span class="toc-number">3.8.7.</span> <span class="toc-text">3.8.7 MODIFIERS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-命名约定"><span class="toc-number">4.</span> <span class="toc-text">4. 命名约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-对所有标识符都通用的规则"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 对所有标识符都通用的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-标识符类型的规则"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 标识符类型的规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-包名"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 包名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-类名"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 类名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-方法名"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-常量名"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 常量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-非常量字段名"><span class="toc-number">4.2.5.</span> <span class="toc-text">4.2.5 非常量字段名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-参数名"><span class="toc-number">4.2.6.</span> <span class="toc-text">4.2.6 参数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-7-局部变量名"><span class="toc-number">4.2.7.</span> <span class="toc-text">4.2.7 局部变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-8-类型变量名"><span class="toc-number">4.2.8.</span> <span class="toc-text">4.2.8 类型变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-9-资源文件命名规范"><span class="toc-number">4.2.9.</span> <span class="toc-text">4.2.9 资源文件命名规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-编程实践"><span class="toc-number">5.</span> <span class="toc-text">5. 编程实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Override：能用则用"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 @Override：能用则用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-捕获的异常：不能忽视"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 捕获的异常：不能忽视</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-静态成员：使用类进行调用"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 静态成员：使用类进行调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Javadoc"><span class="toc-number">6.</span> <span class="toc-text">6. Javadoc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-格式"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-一般形式"><span class="toc-number">6.1.1.</span> <span class="toc-text">6.1.1 一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-段落"><span class="toc-number">6.1.2.</span> <span class="toc-text">6.1.2 段落</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-3-JAVADOC标记"><span class="toc-number">6.1.3.</span> <span class="toc-text">6.1.3 JAVADOC标记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-摘要片段"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 摘要片段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-哪里需要使用Javadoc"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 哪里需要使用Javadoc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-1-例外：不言自明的方法"><span class="toc-number">6.3.1.</span> <span class="toc-text">6.3.1 例外：不言自明的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-2-例外：重载"><span class="toc-number">6.3.2.</span> <span class="toc-text">6.3.2 例外：重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-3-可选的JAVADOC"><span class="toc-number">6.3.3.</span> <span class="toc-text">6.3.3 可选的JAVADOC</span></a></li></ol></li></ol></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-源文件基础"><a href="#1-源文件基础" class="headerlink" title="1.源文件基础"></a>1.源文件基础</h1><h2 id="1-1-文件名"><a href="#1-1-文件名" class="headerlink" title="1.1 文件名"></a>1.1 文件名</h2><p>源文件以其最顶层的类名来命名，大小写敏感，文件扩展名为.java。</p>
@@ -1052,35 +1081,6 @@
 
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-    			<div id="toc-article" class="toc-article">
-    			    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    				<strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-源文件基础"><span class="toc-number">1.</span> <span class="toc-text">1.源文件基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-文件名"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 文件名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-文件编码：UTF-8"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 文件编码：UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-特殊字符"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 特殊字符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-空白字符"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 空白字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-特殊转义序列"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 特殊转义序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-非ASCII字符"><span class="toc-number">1.3.3.</span> <span class="toc-text">1.3.3 非ASCII字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-源文件结构"><span class="toc-number">2.</span> <span class="toc-text">2. 源文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-许可证或版权信息"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 许可证或版权信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-package语句"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 package语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-import语句"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 import语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-IMPORT不要使用通配符"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 IMPORT不要使用通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-不要换行"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 不要换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-顺序和间距"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3 顺序和间距</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-类声明"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 类声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-只有一个顶级"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1 只有一个顶级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-类成员顺序"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2 类成员顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-1-区块划分"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">2.4.2.1 区块划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-2-类成员排列通用规则"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">2.4.2.2 类成员排列通用规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-3-重载：永不分离"><span class="toc-number">2.4.2.3.</span> <span class="toc-text">2.4.2.3 重载：永不分离</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-格式术语"><span class="toc-number">3.</span> <span class="toc-text">3. 格式术语</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-大括号"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 大括号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-使用大括号-即使是可选的"><span class="toc-number">3.1.1.</span> <span class="toc-text">3.1.1 使用大括号(即使是可选的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-非空块：K-amp-R-风格"><span class="toc-number">3.1.2.</span> <span class="toc-text">3.1.2 非空块：K & R 风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-空块：可以用简洁版本"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.1.3 空块：可以用简洁版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-块缩进：4个空格"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 块缩进：4个空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-一行一个语句"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 一行一个语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-列限制：80或100"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 列限制：80或100</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-自动换行"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 自动换行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-从哪里断开"><span class="toc-number">3.5.1.</span> <span class="toc-text">3.5.1 从哪里断开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-自动换行时缩进至少-8个空格"><span class="toc-number">3.5.2.</span> <span class="toc-text">3.5.2 自动换行时缩进至少+8个空格</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-空白"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 空白</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-垂直空白"><span class="toc-number">3.6.1.</span> <span class="toc-text">3.6.1 垂直空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-2-水平空白"><span class="toc-number">3.6.2.</span> <span class="toc-text">3.6.2 水平空白</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-3-水平对齐：不做要求"><span class="toc-number">3.6.3.</span> <span class="toc-text">3.6.3 水平对齐：不做要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-用小括号来限定组：推荐"><span class="toc-number">3.7.</span> <span class="toc-text">3.7 用小括号来限定组：推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-具体结构"><span class="toc-number">3.8.</span> <span class="toc-text">3.8 具体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-1-枚举类-（不推荐用枚举类，耗性能）"><span class="toc-number">3.8.1.</span> <span class="toc-text">3.8.1 枚举类 （不推荐用枚举类，耗性能）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-2-变量声明"><span class="toc-number">3.8.2.</span> <span class="toc-text">3.8.2 变量声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-2-1-每次只声明一个变量"><span class="toc-number">3.8.2.1.</span> <span class="toc-text">3.8.2.1 每次只声明一个变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-2-2-需要时才声明，并尽快进行初始化"><span class="toc-number">3.8.2.2.</span> <span class="toc-text">3.8.2.2 需要时才声明，并尽快进行初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-3-数组"><span class="toc-number">3.8.3.</span> <span class="toc-text">3.8.3 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-3-1-数组初始化：可写成块状结构"><span class="toc-number">3.8.3.1.</span> <span class="toc-text">3.8.3.1 数组初始化：可写成块状结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-3-2-非C风格的数组声明"><span class="toc-number">3.8.3.2.</span> <span class="toc-text">3.8.3.2 非C风格的数组声明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-4-SWITCH语句"><span class="toc-number">3.8.4.</span> <span class="toc-text">3.8.4 SWITCH语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-1-缩进"><span class="toc-number">3.8.4.1.</span> <span class="toc-text">3.8.4.1 缩进</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-2-Fall-through：注释"><span class="toc-number">3.8.4.2.</span> <span class="toc-text">3.8.4.2 Fall-through：注释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-4-3-default的情况要写出来"><span class="toc-number">3.8.4.3.</span> <span class="toc-text">3.8.4.3 default的情况要写出来</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-5-注解-ANNOTATIONS"><span class="toc-number">3.8.5.</span> <span class="toc-text">3.8.5 注解(ANNOTATIONS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-6-注释"><span class="toc-number">3.8.6.</span> <span class="toc-text">3.8.6 注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-8-6-1-块注释风格"><span class="toc-number">3.8.6.1.</span> <span class="toc-text">3.8.6.1 块注释风格</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-7-MODIFIERS"><span class="toc-number">3.8.7.</span> <span class="toc-text">3.8.7 MODIFIERS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-命名约定"><span class="toc-number">4.</span> <span class="toc-text">4. 命名约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-对所有标识符都通用的规则"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 对所有标识符都通用的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-标识符类型的规则"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 标识符类型的规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-包名"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 包名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-类名"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 类名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-方法名"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-常量名"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 常量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-非常量字段名"><span class="toc-number">4.2.5.</span> <span class="toc-text">4.2.5 非常量字段名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-参数名"><span class="toc-number">4.2.6.</span> <span class="toc-text">4.2.6 参数名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-7-局部变量名"><span class="toc-number">4.2.7.</span> <span class="toc-text">4.2.7 局部变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-8-类型变量名"><span class="toc-number">4.2.8.</span> <span class="toc-text">4.2.8 类型变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-9-资源文件命名规范"><span class="toc-number">4.2.9.</span> <span class="toc-text">4.2.9 资源文件命名规范</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-编程实践"><span class="toc-number">5.</span> <span class="toc-text">5. 编程实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Override：能用则用"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 @Override：能用则用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-捕获的异常：不能忽视"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 捕获的异常：不能忽视</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-静态成员：使用类进行调用"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 静态成员：使用类进行调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Javadoc"><span class="toc-number">6.</span> <span class="toc-text">6. Javadoc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-格式"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-一般形式"><span class="toc-number">6.1.1.</span> <span class="toc-text">6.1.1 一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-段落"><span class="toc-number">6.1.2.</span> <span class="toc-text">6.1.2 段落</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-3-JAVADOC标记"><span class="toc-number">6.1.3.</span> <span class="toc-text">6.1.3 JAVADOC标记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-摘要片段"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 摘要片段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-哪里需要使用Javadoc"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 哪里需要使用Javadoc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-1-例外：不言自明的方法"><span class="toc-number">6.3.1.</span> <span class="toc-text">6.3.1 例外：不言自明的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-2-例外：重载"><span class="toc-number">6.3.2.</span> <span class="toc-text">6.3.2 例外：重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-3-可选的JAVADOC"><span class="toc-number">6.3.3.</span> <span class="toc-text">6.3.3 可选的JAVADOC</span></a></li></ol></li></ol></li></ol>
-   </div>
-   <script type="text/javascript">
-   			function showToc(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:block");
-   				show_toc_btn.setAttribute("style","display:none");
-   				};
-   			function showBtn(){
-   				var toc_article = document.getElementById("toc-article");
-   				var show_toc_btn = document.getElementById("show-toc-btn");
-   				toc_article.setAttribute("style","display:none");
-   				show_toc_btn.setAttribute("style","display:block");
-   				};
-   		   </script>
-
-<!-- 目录内容结束 -->
-
-
 
   
 
@@ -1198,7 +1198,47 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,43 +1266,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1294,7 +1302,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1314,27 +1334,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
