@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/img/rizi.jpeg">
 <meta property="og:image" content="http://yoursite.com/img/weiju.jpg">
 <meta property="og:image" content="http://yoursite.com/img/jiayou.jpg">
-<meta property="og:updated_time" content="2017-06-17T10:15:52.416Z">
+<meta property="og:updated_time" content="2017-06-17T10:54:30.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="打造RecyclerView全能刷新Helper">
 <meta name="twitter:description" content="前言我们已经越来越离不开RecyclerView，业务的复杂导致界面的复杂，而RecyclerView无疑是最佳之选。RecyclerView如何打造出复杂的布局，如何打造高性能，多功能的RecyclerView，如何打造高复用，灵活的Adapter等，这些问题，这篇文章都不涉及（手动滑稽）。这篇文章讲的是似乎被忽略的RecyclerView的刷新，各种姿势的刷新，妈妈再也不用担心产品的各种奇葩刷">
@@ -246,7 +246,7 @@
 <p>最后在adapter回调方法onBindViewHolder中取出Bundle，根据Bundle来局部更新，不用全部走一遍。</p>
 <p>好了，这里栗子用的Bundle，大家可以看到数据类型其实是Object，之所以用Bundle是因为我们要跟随谷歌爸爸的脚步，Bundle在Android数据通信这一块作用还是很大的。</p>
 <h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><p>上面result与diffResult不一致是我采用了两个方法，原因是DiffUtil造成的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* If the lists are large, this operation may take significant time so you are advised to run this</div><div class="line">* on a background thread, get the &#123;@link DiffResult&#125; then apply it on the RecyclerView on the main</div><div class="line">* thread.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If the lists are large, this operation may take significant time so you are advised to run this on a background thread, get the DiffUtil.DiffResult then apply it on the RecyclerView on the main thread.</div></pre></td></tr></table></figure>
 <p>大概意思说，数据量太大的时候，计算最好放到子线程，计算结束再到主线程更新UI。没毛病，因此拆成2个方法，如果是异步，则先调用前者，再切到主线程调用后者。但这其实是线程不安全的，与Android引入Handler更新UI有点类似（不理解的同学，可以去看看Handler的相关文章）。这里我们选择了串行的方法并引入了以单链表结构的队列来管理每次刷新的数据源。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HandleBase&lt;T&gt; pollData = mRefreshQueue.poll();</div><div class="line">if (pollData != null) &#123;</div><div class="line">    startRefresh(pollData);</div><div class="line">&#125; else &#123;</div><div class="line">    onEnd();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们这里没有Looper的概念，因为我知道它什么时候开始，什么时候结束。</p>
@@ -488,15 +488,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
