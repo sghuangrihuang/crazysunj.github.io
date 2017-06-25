@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>一行代码实现ViewPager卡片效果 | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，在这年代，不一行代码搞定，根本体现不了我们优秀程序员的逼格啊！因此我封装了常见的卡片效果，达到一行代码就能使用。no picture，say a J8！全程采用图文并茂的形式分析。">
+  <meta name="description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，不是说写得不好，都是这方面的先驱者，值得学习。关键是在这三天一小需求，一周一大需求的年代里，不一行代码搞定，怎么完成任务啊，更何况这体现不了我们优秀程序员的逼格啊！开个玩笑，哈哈！我封装了常见的卡片效果，达到一行代码">
 <meta name="keywords" content="ViewPager,CardView,Card,PageTransformer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一行代码实现ViewPager卡片效果">
 <meta property="og:url" content="http://yoursite.com/2017/06/25/一行代码实现ViewPager卡片效果/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，在这年代，不一行代码搞定，根本体现不了我们优秀程序员的逼格啊！因此我封装了常见的卡片效果，达到一行代码就能使用。no picture，say a J8！全程采用图文并茂的形式分析。">
+<meta property="og:description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，不是说写得不好，都是这方面的先驱者，值得学习。关键是在这三天一小需求，一周一大需求的年代里，不一行代码搞定，怎么完成任务啊，更何况这体现不了我们优秀程序员的逼格啊！开个玩笑，哈哈！我封装了常见的卡片效果，达到一行代码">
 <meta property="og:image" content="http://yoursite.com/img/vp_card5.gif">
 <meta property="og:image" content="http://yoursite.com/img/vp_card1.gif">
 <meta property="og:image" content="http://yoursite.com/img/vp_card2.gif">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://yoursite.com/img/vp_card3.gif">
 <meta property="og:image" content="http://yoursite.com/img/vp_card4.gif">
 <meta property="og:image" content="http://yoursite.com/img/vp_card5.gif">
-<meta property="og:updated_time" content="2017-06-25T14:34:31.508Z">
+<meta property="og:updated_time" content="2017-06-25T15:25:47.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一行代码实现ViewPager卡片效果">
-<meta name="twitter:description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，在这年代，不一行代码搞定，根本体现不了我们优秀程序员的逼格啊！因此我封装了常见的卡片效果，达到一行代码就能使用。no picture，say a J8！全程采用图文并茂的形式分析。">
+<meta name="twitter:description" content="前言最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，不是说写得不好，都是这方面的先驱者，值得学习。关键是在这三天一小需求，一周一大需求的年代里，不一行代码搞定，怎么完成任务啊，更何况这体现不了我们优秀程序员的逼格啊！开个玩笑，哈哈！我封装了常见的卡片效果，达到一行代码">
 <meta name="twitter:image" content="http://yoursite.com/img/vp_card5.gif">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
@@ -189,7 +189,7 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，在这年代，不一行代码搞定，根本体现不了我们优秀程序员的逼格啊！因此我封装了常见的卡片效果，达到一行代码就能使用。no picture，say a J8！全程采用图文并茂的形式分析。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近看到越来越多ViewPager卡片效果，甚至自己公司的产品也用到了。正如自己看到这个效果时，内心的想法是，这个简单，github一搜一箩筐，看了不下4个库，使用起来都比较麻烦，不是说写得不好，都是这方面的先驱者，值得学习。关键是在这三天一小需求，一周一大需求的年代里，不一行代码搞定，怎么完成任务啊，更何况这体现不了我们优秀程序员的逼格啊！开个玩笑，哈哈！我封装了常见的卡片效果，达到一行代码就能使用。No picture，say a J8！全程采用图文并茂的形式分析，帮助你理解。</p>
 <a id="more"></a>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">viewPager.bind(getSupportFragmentManager(), new MyCardHandler(), Arrays.asList(imageArray));</div></pre></td></tr></table></figure>
 <p>其中ViewPager是我们自定义的，名曰CardViewPager。可能比较纠结的就是MyCardHandler。</p>
@@ -468,15 +468,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,14 +504,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
@@ -533,6 +525,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PageTransformer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
