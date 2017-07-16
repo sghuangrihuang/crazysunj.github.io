@@ -130,6 +130,157 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-图解Activity启动流程，进阶高级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/16/图解Activity启动流程，进阶高级/">图解Activity启动流程，进阶高级</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/16/图解Activity启动流程，进阶高级/" class="archive-article-date">
+  	<time datetime="2017-07-16T03:39:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-16</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。</p>
+<p>以下内容紧张吃鸡，请系好保险带，我们要开车了。</p>
+<div style="text-align:right"> <font color="#EE4000">—  No picture,say a J8!</font></div>
+
+<p><img src="/img/kaiche.gif" alt=""></p>
+<h2 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h2><p><strong>以下解析基于SDK25</strong></p>
+<h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>到这里，你是不是以为我会介绍一下Activity？错，直接进入正题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void startActivity(Intent intent) &#123;</div><div class="line">    this.startActivity(intent, null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> @Override</div><div class="line">public void startActivity(Intent intent, @Nullable Bundle options) &#123;</div><div class="line">    if (options != null) &#123;</div><div class="line">        startActivityForResult(intent, -1, options);</div><div class="line">    &#125; else &#123;</div><div class="line">        startActivityForResult(intent, -1);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public void startActivityForResult(@RequiresPermission Intent intent, int requestCode) &#123;</div><div class="line">    startActivityForResult(intent, requestCode, null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public void startActivityForResult(@RequiresPermission Intent intent, int requestCode,</div><div class="line">            @Nullable Bundle options) &#123;</div><div class="line">    if (mParent == null) &#123;</div><div class="line">        options = transferSpringboardActivityOptions(options);</div><div class="line">        Instrumentation.ActivityResult ar =</div><div class="line">            mInstrumentation.execStartActivity(</div><div class="line">                this, mMainThread.getApplicationThread(), mToken, this,</div><div class="line">                intent, requestCode, options);</div><div class="line">        if (ar != null) &#123;</div><div class="line">            mMainThread.sendActivityResult(</div><div class="line">                mToken, mEmbeddedID, requestCode, ar.getResultCode(),</div><div class="line">                ar.getResultData());</div><div class="line">        &#125;</div><div class="line">        if (requestCode &gt;= 0) &#123;</div><div class="line">            mStartedActivity = true;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        cancelInputsAndStartExitTransition(options);</div><div class="line">    &#125; else &#123;</div><div class="line">        if (options != null) &#123;</div><div class="line">            mParent.startActivityFromChild(this, intent, requestCode, options);</div><div class="line">        &#125; else &#123;</div><div class="line">            mParent.startActivityFromChild(this, intent, requestCode);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们直接看mParent == null就行了，下面的已经是远古级别了，已经被fragment淘汰，暂且不论。前者关键方法mInstrumentation.execStartActivity（），返回回调结果。Instrumentation拿来测试过的同学并不陌生，这里且当它是个黑科技工具。</p>
+<p><img src="/img/activity1.png" alt=""></p>
+<p>进入execStartActivity方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public ActivityResult execStartActivity(</div><div class="line">            Context who, IBinder contextThread, IBinder token, Activity target,</div><div class="line">            Intent intent, int requestCode, Bundle options) &#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    int result = ActivityManagerNative.getDefault()</div><div class="line">        .startActivity(whoThread, who.getBasePackageName(), intent,</div><div class="line">                intent.resolveTypeIfNeeded(who.getContentResolver()),</div><div class="line">                token, target != null ? target.mEmbeddedID : null,</div><div class="line">                requestCode, 0, null, options);</div><div class="line">    checkStartActivityResult(result, intent);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里解释下前4个参数：</p>
+<ul>
+<li>who：正在启动该Activity的上下文</li>
+<li>contextThread：正在启动该Activity的上下文线程，这里为ApplicationThread</li>
+<li>token：正在启动该Activity的标识</li>
+<li>target：正在启动该Activity的Activity，也就是回调结果的Activity</li>
+</ul>
+<p><img src="/img/activity2.png" alt=""></p>
+<p>我们先来看看下面的checkStartActivityResult方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">public static void checkStartActivityResult(int res, Object intent) &#123;</div><div class="line">    if (res &gt;= ActivityManager.START_SUCCESS) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    switch (res) &#123;</div><div class="line">        case ActivityManager.START_INTENT_NOT_RESOLVED:</div><div class="line">        case ActivityManager.START_CLASS_NOT_FOUND:</div><div class="line">            if (intent instanceof Intent &amp;&amp; ((Intent)intent).getComponent() != null)</div><div class="line">                throw new ActivityNotFoundException(</div><div class="line">                        &quot;Unable to find explicit activity class &quot;</div><div class="line">                        + ((Intent)intent).getComponent().toShortString()</div><div class="line">                        + &quot;; have you declared this activity in your AndroidManifest.xml?&quot;);</div><div class="line">            throw new ActivityNotFoundException(</div><div class="line">                    &quot;No Activity found to handle &quot; + intent);</div><div class="line">        case ActivityManager.START_PERMISSION_DENIED:</div><div class="line">            throw new SecurityException(&quot;Not allowed to start activity &quot;</div><div class="line">                    + intent);</div><div class="line">        case ActivityManager.START_FORWARD_AND_REQUEST_CONFLICT:</div><div class="line">            throw new AndroidRuntimeException(</div><div class="line">                    &quot;FORWARD_RESULT_FLAG used while also requesting a result&quot;);</div><div class="line">        case ActivityManager.START_NOT_ACTIVITY:</div><div class="line">            throw new IllegalArgumentException(</div><div class="line">                    &quot;PendingIntent is not an activity&quot;);</div><div class="line">        case ActivityManager.START_NOT_VOICE_COMPATIBLE:</div><div class="line">            throw new SecurityException(</div><div class="line">                    &quot;Starting under voice control not allowed for: &quot; + intent);</div><div class="line">        case ActivityManager.START_VOICE_NOT_ACTIVE_SESSION:</div><div class="line">            throw new IllegalStateException(</div><div class="line">                    &quot;Session calling startVoiceActivity does not match active session&quot;);</div><div class="line">        case ActivityManager.START_VOICE_HIDDEN_SESSION:</div><div class="line">            throw new IllegalStateException(</div><div class="line">                    &quot;Cannot start voice activity on a hidden session&quot;);</div><div class="line">        case ActivityManager.START_CANCELED:</div><div class="line">            throw new AndroidRuntimeException(&quot;Activity could not be started for &quot;</div><div class="line">                    + intent);</div><div class="line">        default:</div><div class="line">            throw new AndroidRuntimeException(&quot;Unknown error code &quot;</div><div class="line">                    + res + &quot; when starting &quot; + intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这些异常你都见过吗？它就是根据返回码和intent抛出相应异常，最熟悉的就是activity没有在AndroidManifest里面注册了。</p>
+<p>这其实不是我们今天要讲的关键，在这个方法中，我们还发现了熟悉的字眼startActivity，但调用者却很陌生ActivityManagerNative.getDefault()，这到底是什么玩意？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">static public IActivityManager getDefault() &#123;</div><div class="line">    return gDefault.get();</div><div class="line">&#125;</div><div class="line"></div><div class="line">private static final Singleton&lt;IActivityManager&gt; gDefault = new Singleton&lt;IActivityManager&gt;() &#123;</div><div class="line">    protected IActivityManager create() &#123;</div><div class="line">        IBinder b = ServiceManager.getService(&quot;activity&quot;);</div><div class="line">        ...</div><div class="line">        IActivityManager am = asInterface(b);</div><div class="line">        ...</div><div class="line">        return am;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">static public IActivityManager asInterface(IBinder obj) &#123;</div><div class="line">    ...</div><div class="line">    return new ActivityManagerProxy(obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样看下来好像是ServiceManager构建了一个key为activity的对象，该对象作为ActivityManagerProxy的参数实例化创建单例并get返回。<br>这里先不作解析，继续连接上面的流程ActivityManagerNative.getDefault()<br>        .startActivity(…)。我们已经知道startActivity方法其实是ActivityManagerProxy调的，我们再来看看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public int startActivity(IApplicationThread caller, String callingPackage, Intent intent,</div><div class="line">            String resolvedType, IBinder resultTo, String resultWho, int requestCode,</div><div class="line">            int startFlags, ProfilerInfo profilerInfo, Bundle options) throws RemoteException &#123;</div><div class="line">    Parcel data = Parcel.obtain();</div><div class="line">    Parcel reply = Parcel.obtain();</div><div class="line">    ...</div><div class="line">    mRemote.transact(START_ACTIVITY_TRANSACTION, data, reply, 0);</div><div class="line">    ...</div><div class="line">    reply.recycle();</div><div class="line">    data.recycle();</div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果对transact比较熟悉的话，那就很棒了，可以直接跳到下一节。不懂的同学继续，这里引入了Binder的概念，那么Android为什么要引入呢？这样说来ActivityManagerProxy是不是个代理类啊？为什么要引入，我不正面回答，假如我们要跨进程服务通信，你是不是先创建一个xx.aidl文件，然后会自动生成一个xx.java文件。你有没有仔细看过里面的内容呢？没看过的可以去看看。你会发现惊人的相似，如果是同一进程，我相信没人会这么做吧？从这些我们平时的开发经验来看，这玩意貌似用在跨进程通信上，就上面栗子来说，我们可以通过Service返回的Binder（其实就是个代理类）调用远程的方法，我们的Activity相当于客户端，而Service相当于服务端，这里也是一样，代理类就是ActivityManagerProxy。而真正传输数据的是mRemote.transact，简单介绍下，第一个参数code是告诉服务端，我们请求的方法是什么， 第二个参数data就是我们所传递的数据。这里比较纠人的是为什么要跨进程？这个你得了解下应用的启动过程了，这里我针对本篇文章简单的科普一下，应用启动会初始化一个init进程，而init进程会产生Zygote进程，从名字上看就是一个受精卵，它会fork很重要的SystemServer进程，比较著名的AMS，WMS，PMS都是这玩意启动的，而我们的应用进程也是靠AMS通信告诉Zygote进程fork出来的，因此需要跨进程通信，顺便解答下上面没回答的问题，ServiceManager构建的就是我们传说中的AMS。</p>
+<p>花了比较长的篇幅介绍Binder，也是无奈之举，帮助你们理解，但只是简单的介绍，有些细节并没有介绍，大家大可文外系统化地了解，很复杂，嘿嘿。</p>
+<p>小总结：</p>
+<p><img src="/img/activity3.png" alt=""></p>
+<h3 id="ActivityManagerService"><a href="#ActivityManagerService" class="headerlink" title="ActivityManagerService"></a>ActivityManagerService</h3><p>差不多该进入今天的主题了，我知道你想说MMP，但为了逼格，为了高薪，这又算得了什么？</p>
+<p><img src="/img/zhuangbi.jpg" alt=""></p>
+<p>开搞，回顾上一节最后我们通过代理类ActivityManagerProxy调用了startActivity方法，让我们来搜寻一下AMS的startActivity方法。仔细找找，好像是这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public final int startActivity(IApplicationThread caller, String callingPackage,</div><div class="line">        Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode,</div><div class="line">        int startFlags, ProfilerInfo profilerInfo, Bundle bOptions) &#123;</div><div class="line">    return startActivityAsUser(caller, callingPackage, intent, resolvedType, resultTo,resulUserHandle.getCallingUserId());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>诶？对比一下参数，哈哈差不多？那应该就是这个？参数什么意思啊？如果你愿意不如打开AS找到Instrumentation类中execStartActivity方法，也就是我们上面所提到的，但很多细节省略了，我这里简单介绍一下，不然篇幅实在太长。</p>
+<ul>
+<li>caller：就是我们的whoThread，见Instrumentation参数分析</li>
+<li>callingPackage：包名</li>
+<li>intent：意图</li>
+<li>resolvedType：就是我们AndroidManifest注册时的MIME类型</li>
+<li>resultTo：就是我们的token，见Instrumentation参数分析</li>
+<li>resultWho：就是我们target的id</li>
+<li>requestCode：这个就不说了</li>
+<li>startFlags：启动标志，默认传0</li>
+<li>profilerInfo：默认传null</li>
+<li>options：略过</li>
+</ul>
+<p>由于篇幅过长，接下来可能不会仔细分析参数，请大家顺着参数的走向或者参数名理解。<br>AMS的startActivity方法什么都没做，直接调了startActivityAsUser方法，我们来看看这是什么东西？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public final int startActivityAsUser(IApplicationThread caller, String callingPackage,</div><div class="line">        Intent intent, String resolvedType, IBinder resultTo, String resultWho, int requestCode,</div><div class="line">        int startFlags, ProfilerInfo profilerInfo, Bundle bOptions, int userId) &#123;</div><div class="line">	enforceNotIsolatedCaller(&quot;startActivity&quot;);</div><div class="line">	userId = mUserController.handleIncomingUser(Binder.getCallingPid(), Binder.getCallingUid(),userId, false, ALLOW_FULL_ONLY, &quot;startActivity&quot;, null);</div><div class="line">	return mActivityStarter.startActivityMayWait(caller, -1, callingPackage, intent,resolvedType, null, null, resultTo, resultWho, requestCode, startFlags,profilerInfo, null, null, bOptions, false, userId, null, null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中enforceNotIsolatedCaller方法是检查是否属于被隔离的对象。mUserController.handleIncomingUser检查操作权限然后返回一个用户id（涉及到Linux，有兴趣的同学可以翻阅翻阅，这不是我们的重点），startActivityAsUser方法大概就是检测下权限，然后返回由mActivityStarter(ActivityStarter，可以这么说，关于Activity启动的所有信息都在这了，然后根据信息把Activity具体分配到哪个任务栈)调用的startActivityMayWait方法。</p>
+<p><img src="/img/activity4.png" alt=""></p>
+<p>继续跟踪ActivityStarter的startActivityMayWait的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">final int startActivityMayWait(IApplicationThread caller, int callingUid,</div><div class="line">            String callingPackage, Intent intent, String resolvedType,</div><div class="line">            IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,</div><div class="line">            IBinder resultTo, String resultWho, int requestCode, int startFlags,</div><div class="line">            ProfilerInfo profilerInfo, IActivityManager.WaitResult outResult, Configuration config,</div><div class="line">            Bundle bOptions, boolean ignoreTargetSecurity, int userId,</div><div class="line">            IActivityContainer iContainer, TaskRecord inTask) &#123;</div><div class="line">    ...</div><div class="line">    ResolveInfo rInfo = mSupervisor.resolveIntent(intent, resolvedType, userId);</div><div class="line">	...</div><div class="line">    ActivityInfo aInfo = mSupervisor.resolveActivity(intent, rInfo, startFlags, profilerInfo);</div><div class="line">    ...</div><div class="line">    final ProcessRecord heavy = mService.mHeavyWeightProcess;</div><div class="line">    if (heavy != null &amp;&amp; (heavy.info.uid != aInfo.applicationInfo.uid</div><div class="line">            || !heavy.processName.equals(aInfo.processName))) &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    int res = startActivityLocked(caller, intent, ephemeralIntent, resolvedType,</div><div class="line">            aInfo, rInfo, voiceSession, voiceInteractor,</div><div class="line">            resultTo, resultWho, requestCode, callingPid,</div><div class="line">            callingUid, callingPackage, realCallingPid, realCallingUid, startFlags,</div><div class="line">            options, ignoreTargetSecurity, componentSpecified, outRecord, container,</div><div class="line">            inTask);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我的天，又多出了一个玩意，mmp，还能不能好好分析啦？mSupervisor(ActivityStackSupervisor)简单来说就是用来管理ActivityStack的，后来新增的。resolveIntent和resolveActivity方法用来确定此次启动activity信息的。关于heavy(ResolveInfo)涉及到重量级进程(SystemServer, MediaServer,ServiceManager)，如果当前系统中已经存在的重量级进程且不是即将要启动的这个，那么就要给Intent赋值。接下来继续走我们的探索之路startActivityLocked。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">final int startActivityLocked(IApplicationThread caller, Intent intent, Intent ephemeralIntent,</div><div class="line">            String resolvedType, ActivityInfo aInfo, ResolveInfo rInfo,</div><div class="line">            IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,</div><div class="line">            IBinder resultTo, String resultWho, int requestCode, int callingPid, int callingUid,</div><div class="line">            String callingPackage, int realCallingPid, int realCallingUid, int startFlags,</div><div class="line">            ActivityOptions options, boolean ignoreTargetSecurity, boolean componentSpecified,</div><div class="line">            ActivityRecord[] outActivity, ActivityStackSupervisor.ActivityContainer container,</div><div class="line">            TaskRecord inTask) &#123;</div><div class="line">    ...</div><div class="line">    ProcessRecord callerApp = null;</div><div class="line">    ...</div><div class="line">    ActivityRecord sourceRecord = null;</div><div class="line">    ActivityRecord resultRecord = null;</div><div class="line">    ...</div><div class="line">    ActivityRecord r = new ActivityRecord(mService, callerApp, callingUid, callingPackage,</div><div class="line">            intent, resolvedType, aInfo, mService.mConfiguration, resultRecord, resultWho,</div><div class="line">            requestCode, componentSpecified, voiceSession != null, mSupervisor, container,</div><div class="line">            options, sourceRecord);</div><div class="line">    ...</div><div class="line">    err = startActivityUnchecked(r, sourceRecord, voiceSession, voiceInteractor, startFlags,</div><div class="line">            true, options, inTask);</div><div class="line">    ...</div><div class="line">    return err;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>又是一个贼JB长的方法，喝杯冰镇可乐，继续继续。</p>
+<p><img src="/img/kele.jpg" alt=""></p>
+<p>callerApp ，sourceRecord，resultRecord是当中比较关键的变量，但都是为变量r服务，因为它记录着整个方法杂七杂八的各种判断结果，然后带着变量r调用startActivityUnchecked方法，继续跟进。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">private int startActivityUnchecked(final ActivityRecord r, ActivityRecord sourceRecord,</div><div class="line">            IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor,</div><div class="line">            int startFlags, boolean doResume, ActivityOptions options, TaskRecord inTask) &#123;</div><div class="line">    setInitialState(r, options, inTask, doResume, startFlags, sourceRecord, voiceSession,</div><div class="line">    voiceInteractor);</div><div class="line">    computeLaunchingTaskFlags();</div><div class="line">    ...</div><div class="line">    mIntent.setFlags(mLaunchFlags);</div><div class="line">    mReusedActivity = getReusableIntentActivity();</div><div class="line">	...</div><div class="line">	boolean newTask = false;</div><div class="line">	...</div><div class="line"> 	if (mStartActivity.resultTo == null &amp;&amp; mInTask == null &amp;&amp; !mAddingToTask</div><div class="line">        &amp;&amp; (mLaunchFlags &amp; FLAG_ACTIVITY_NEW_TASK) != 0) &#123;</div><div class="line">    	newTask = true;</div><div class="line">    	...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    mTargetStack.startActivityLocked(mStartActivity, newTask, mKeepCurTransition, mOptions);</div><div class="line">    ...</div><div class="line">    mSupervisor.resumeFocusedStackTopActivityLocked(mTargetStack, mStartActivity,</div><div class="line">                        mOptions);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法相对重要，但还不是重头戏，先看setInitialState，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">private void setInitialState(ActivityRecord r, ActivityOptions options, TaskRecord inTask,</div><div class="line">            boolean doResume, int startFlags, ActivityRecord sourceRecord,</div><div class="line">            IVoiceInteractionSession voiceSession, IVoiceInteractor voiceInteractor) &#123;</div><div class="line">    reset();</div><div class="line">    mStartActivity = r;</div><div class="line">    mIntent = r.intent;</div><div class="line">    mOptions = options;</div><div class="line">    mCallingUid = r.launchedFromUid;</div><div class="line">    mSourceRecord = sourceRecord;</div><div class="line">    mVoiceSession = voiceSession;</div><div class="line">    ...</div><div class="line">    mLaunchSingleTop = r.launchMode == LAUNCH_SINGLE_TOP;</div><div class="line">    mLaunchSingleInstance = r.launchMode == LAUNCH_SINGLE_INSTANCE;</div><div class="line">    mLaunchSingleTask = r.launchMode == LAUNCH_SINGLE_TASK;</div><div class="line">    mLaunchFlags = adjustLaunchFlagsToDocumentMode(</div><div class="line">            r, mLaunchSingleInstance, mLaunchSingleTask, mIntent.getFlags());</div><div class="line"> 	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里初始化了比较重要的mStartActivity，mIntent，mCallingUid，<br>mSourceRecord，mLaunchFlags。mLaunchFlags用来记录我们Activity的启动方式，省略部分都是根据启动方式来初始化一堆变量或进行操作。下面的方法computeLaunchingTaskFlags还是用来初始化启动标志位的，我的天！真正初始化启动方式标志位后进行设置mIntent.setFlags(mLaunchFlags)。初始化启动方式后，那么我们需要初始化Tack了，如果对启动模式有了解的同学下面的就比较好理解了，在<br>getReusableIntentActivity方法中，我们需要去找一个可复用的ActivityRecord，那么只有启动模式为SingleInstance才能真正的复用，因为整个系统就只有一个实例。这里也列举了相邻地启动同一个Activity的情况，为什么有这种情况呢？感兴趣的同学可以试试（主要还是考验启动模式的理解）。startActivityUnchecked方法细说真的是三天三夜都说不完。继续看下面的方法吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">final void startActivityLocked(ActivityRecord r, boolean newTask, boolean keepCurTransition,</div><div class="line">            ActivityOptions options) &#123;</div><div class="line">    ...</div><div class="line">    mWindowManager.setAppVisibility(r.appToken, true);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>卧槽，忍不住爆出了粗口，终于看见WMS，离出狱的日子不远了，去tm的高薪，我写写xml就行了，要求这么多。</p>
+<p><img src="/img/qutm.gif" alt=""></p>
+<p>mWindowManager.setAppVisibility(r.appToken, true);这句话表示这个Activity已经具备了显示的条件。接下来我们长话短说，大体来看已经差不多了，通知后，我们会调用ActivityStackSupervisor的resumeFocusedStackTopActivityLocked方法，接着调ActivityStack的resumeTopActivityUncheckedLocked方法，再调自己的resumeTopActivityInnerLocked方法，如果Activity已存在需要可见状态，那么会调IApplicationThread的scheduleResumeActivity方法，且经过一系列判断可见Activity；反之调ActivityStackSupervisor的startSpecificActivityLocked的方法，那么继续会调realStartActivityLocked的方法，看见这个方法的名字，我内心毫无波动，甚至想打人。</p>
+<p><img src="/img/activity5.png" alt=""></p>
+<h3 id="ActivityThread"><a href="#ActivityThread" class="headerlink" title="ActivityThread"></a>ActivityThread</h3><p>终于调IApplicationThread的scheduleLaunchActivity方法啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public final void scheduleLaunchActivity(Intent intent, IBinder token, int ident,</div><div class="line">        ActivityInfo info, Configuration curConfig, Configuration overrideConfig,</div><div class="line">        CompatibilityInfo compatInfo, String referrer, IVoiceInteractor voiceInteractor,</div><div class="line">        int procState, Bundle state, PersistableBundle persistentState,</div><div class="line">        List&lt;ResultInfo&gt; pendingResults, List&lt;ReferrerIntent&gt; pendingNewIntents,</div><div class="line">        boolean notResumed, boolean isForward, ProfilerInfo profilerInfo) &#123;</div><div class="line"></div><div class="line">    updateProcessState(procState, false);</div><div class="line"></div><div class="line">    ActivityClientRecord r = new ActivityClientRecord();</div><div class="line"></div><div class="line">    r.token = token;</div><div class="line">    r.ident = ident;</div><div class="line">    r.intent = intent;</div><div class="line">    r.referrer = referrer;</div><div class="line">    r.voiceInteractor = voiceInteractor;</div><div class="line">    r.activityInfo = info;</div><div class="line">    r.compatInfo = compatInfo;</div><div class="line">    r.state = state;</div><div class="line">    r.persistentState = persistentState;</div><div class="line"></div><div class="line">    r.pendingResults = pendingResults;</div><div class="line">    r.pendingIntents = pendingNewIntents;</div><div class="line"></div><div class="line">    r.startsNotResumed = notResumed;</div><div class="line">    r.isForward = isForward;</div><div class="line"></div><div class="line">    r.profilerInfo = profilerInfo;</div><div class="line"></div><div class="line">    r.overrideConfig = overrideConfig;</div><div class="line">    updatePendingConfiguration(curConfig);</div><div class="line"></div><div class="line">    sendMessage(H.LAUNCH_ACTIVITY, r);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看最后，熟悉的味道，handler发送message，那么这个handler是什么呢？有请天字第一号Handler，H。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">private class H extends Handler &#123;</div><div class="line">	...</div><div class="line">	public void handleMessage(Message msg) &#123;</div><div class="line">        if (DEBUG_MESSAGES) Slog.v(TAG, &quot;&gt;&gt;&gt; handling: &quot; + codeToString(msg.what));</div><div class="line">        switch (msg.what) &#123;</div><div class="line">            case LAUNCH_ACTIVITY: &#123;</div><div class="line">                Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, &quot;activityStart&quot;);</div><div class="line">                final ActivityClientRecord r = (ActivityClientRecord) msg.obj;</div><div class="line"></div><div class="line">                r.packageInfo = getPackageInfoNoCheck(</div><div class="line">                        r.activityInfo.applicationInfo, r.compatInfo);</div><div class="line">                handleLaunchActivity(r, null, &quot;LAUNCH_ACTIVITY&quot;);</div><div class="line">                Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);</div><div class="line">            &#125; break;</div><div class="line">            ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们直接看我们发的消息，它调用了自己的handleLaunchActivity方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WindowManagerGlobal.initialize();//初始化WMS</div><div class="line"></div><div class="line">Activity a = performLaunchActivity(r, customIntent);//创建并启动</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) &#123;</div><div class="line">	ActivityInfo aInfo = r.activityInfo;//取出组件信息，并一顿操作</div><div class="line">	...</div><div class="line">	Activity activity = null;</div><div class="line">	try &#123;</div><div class="line">        java.lang.ClassLoader cl = r.packageInfo.getClassLoader();</div><div class="line">        activity = mInstrumentation.newActivity(</div><div class="line">                cl, component.getClassName(), r.intent);</div><div class="line">         //开始创建Activity实例，通过类加载器创建，看参数就知道了</div><div class="line">         ...</div><div class="line">         Application app = r.packageInfo.makeApplication(false, mInstrumentation);</div><div class="line">         //获取Application</div><div class="line">         ...</div><div class="line">         activity.attach(appContext, this, getInstrumentation(), r.token,</div><div class="line">                        r.ident, app, r.intent, r.activityInfo, title, r.parent,</div><div class="line">                        r.embeddedID, r.lastNonConfigurationInstances, config,</div><div class="line">                        r.referrer, r.voiceInteractor, window);</div><div class="line">         //与window建立关联</div><div class="line">         ...</div><div class="line">         mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);</div><div class="line">         //callActivityOnCreate-&gt;activity.performCreate-&gt;onCreate，之后就很熟悉了</div><div class="line">         ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public Application makeApplication(boolean forceDefaultAppClass,</div><div class="line">            Instrumentation instrumentation) &#123;</div><div class="line">    if (mApplication != null) &#123;</div><div class="line">        return mApplication;</div><div class="line">    &#125;</div><div class="line">    //如果mApplication不为空则直接返回，这也是为什么Application为单例</div><div class="line">    ...</div><div class="line">    Application app = null;</div><div class="line">    ...</div><div class="line">    ContextImpl appContext = ContextImpl.createAppContext(mActivityThread, this);</div><div class="line">    app = mActivityThread.mInstrumentation.newApplication(</div><div class="line">                cl, appClass, appContext);</div><div class="line">    //创建Application，跟Activity一样，都是用类加载器创建</div><div class="line">    ...</div><div class="line">    mApplication = app;//保存下来</div><div class="line">    ...</div><div class="line">    instrumentation.callApplicationOnCreate(app);</div><div class="line">    //callApplicationOnCreate-&gt;onCreate</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>小总结：</p>
+<p><img src="/img/activity6.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/img/activity7.png" alt=""><br>谁吐槽我的作图，我打谁。<br><img src="/img/cao.jpg" alt=""></p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>到这里，有一种高考结束的感觉。我要去坑一把王者农药，不，鸡吧，额，几把。言归正传，今天的流程只是一种主流程，理想中的流程，实际有可能半路就已经结束了。虽然说AMS后期的分析，省略确实有点过分了。<br><img src="/img/ganga.jpg" alt=""></p>
+<p>源码分析是需要耐心的活，到这里的同学，我相信都是认真看完一遍的，然后大家掏出AS，顺着自己的理解再走一遍，不要看偷看我的文章哦，这样效果更好，甚至被我省略的地方也能给你些许帮助，甚至比我理解的还透彻，If so，我是开心的！如果有什么问题，可以发我邮箱，我会及时回复。源码戳<a href="https://android.googlesource.com/platform/frameworks/" target="_blank" rel="external">这里</a>，需要翻墙。<br><img src="/img/lang.gif" alt=""></p>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>GitHub：<a href="https://github.com/crazysunj" target="_blank" rel="external">https://github.com/crazysunj</a><br>博客：<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a><br>邮箱：twsunj@gmail.com</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Framework</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Activity</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+  
     <article id="post-优雅地刷新RecyclerView（1-6-0）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -778,6 +929,10 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DiffUtil</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">helper</a>
         		</li>
       		 
@@ -795,85 +950,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HighLight</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DiffUtil</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-  
-    <article id="post-打造炫酷的多类型RecyclerView的Adapter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/">打造炫酷的多类型RecyclerView的Adapter</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/" class="archive-article-date">
-  	<time datetime="2017-04-01T06:10:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-01</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RecyclerView渐渐地走进了我们的项目里面，UI越来越复杂，高效快捷开发出复杂的页面是我们所追求的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相信大家对BaseRecyclerViewAdapterHelper应该不陌生吧，它能帮助我们快捷地使用RecyclerView，这也是我为什么没有重新写一个库的原因，远离重复造轮子，追求创新，哪怕是微创新，都是很好的。话说我打了波广告，能不能给我点个star啊，开个玩笑。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在我来大致介绍下我新写的库，主要是项目中这种界面太多了，我们要有面向组件的思想，拿来就用，支持扩展。废话不多说，进入主题。</p>
-        
-          <a class="article-more-a" href="/2017/04/01/打造炫酷的多类型RecyclerView的Adapter/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DiffUtil</a>
         		</li>
       		
 		</ul>
@@ -1003,7 +1079,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1031,39 +1123,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ViewPager</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CardView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Card</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PageTransformer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1083,6 +1143,30 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ViewPager</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CardView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Card</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PageTransformer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Expand</a>
               </li>
              
@@ -1091,31 +1175,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">multiType</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">RxAndroid</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HighLight</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1139,7 +1203,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1147,11 +1211,27 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color2">helper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color5">multiType</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RxAndroid</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HighLight</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1159,11 +1239,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
             
             <div class="clearfix"></div>
