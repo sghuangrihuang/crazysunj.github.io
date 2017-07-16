@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>图解Activity启动流程，进阶高级 | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!   启动流程以下解析基于SDK25 Activity到这里，你是不是以为我会介绍一下Activity？错，直接进入正">
+  <meta name="description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!">
 <meta name="keywords" content="Android,Framework,Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解Activity启动流程，进阶高级">
 <meta property="og:url" content="http://yoursite.com/2017/07/16/图解Activity启动流程，进阶高级/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!   启动流程以下解析基于SDK25 Activity到这里，你是不是以为我会介绍一下Activity？错，直接进入正">
+<meta property="og:description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!">
 <meta property="og:image" content="http://yoursite.com/img/kaiche.gif">
 <meta property="og:image" content="http://yoursite.com/img/activity1.png">
 <meta property="og:image" content="http://yoursite.com/img/activity2.png">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="http://yoursite.com/img/cao.jpg">
 <meta property="og:image" content="http://yoursite.com/img/ganga.jpg">
 <meta property="og:image" content="http://yoursite.com/img/lang.gif">
-<meta property="og:updated_time" content="2017-07-16T06:56:11.796Z">
+<meta property="og:updated_time" content="2017-07-16T07:02:08.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解Activity启动流程，进阶高级">
-<meta name="twitter:description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!   启动流程以下解析基于SDK25 Activity到这里，你是不是以为我会介绍一下Activity？错，直接进入正">
+<meta name="twitter:description" content="前言首先申明一下，觉得Activity用的贼6的，想求职面试的，想进阶高级工程师的，想深入理解Activity的（感兴趣）同学请往下看，不符合的没关系，请收藏一下，想看了再点出来研究。 以下内容紧张吃鸡，请系好保险带，我们要开车了。  —  No picture,say a J8!">
 <meta name="twitter:image" content="http://yoursite.com/img/kaiche.gif">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
@@ -199,6 +199,7 @@
 <div style="text-align:right"> <font color="#EE4000">—  No picture,say a J8!</font></div>
 
 <p><img src="/img/kaiche.gif" alt=""></p>
+<a id="more"></a>
 <h2 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h2><p><strong>以下解析基于SDK25</strong></p>
 <h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>到这里，你是不是以为我会介绍一下Activity？错，直接进入正题。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void startActivity(Intent intent) &#123;</div><div class="line">    this.startActivity(intent, null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -505,30 +506,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -553,23 +530,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,11 +570,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,42 +595,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Footer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Animator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Cool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">View</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,11 +618,51 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color4">DiffUtil</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Animator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Cool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">View</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +670,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
