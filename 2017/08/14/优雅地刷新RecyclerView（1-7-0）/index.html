@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/14/优雅地刷新RecyclerView（1-7-0）/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
 <meta property="og:description" content="前言距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。">
-<meta property="og:updated_time" content="2017-08-14T03:33:51.000Z">
+<meta property="og:updated_time" content="2017-08-14T03:40:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅地刷新RecyclerView（1.7.0）">
 <meta name="twitter:description" content="前言距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。">
@@ -202,7 +202,7 @@
 <p>很巧，类也只有一个，CommonHelperAdapter类的泛型结构改变，具体：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CommonHelperAdapter&lt;T extends MultiTypeEntity, K extends CommonViewHolder, H extends RecyclerViewAdapterHelper&lt;T, CommonHelperAdapter&gt;&gt; extends RecyclerView.Adapter&lt;K&gt;</div><div class="line"></div><div class="line">CommonHelperAdapter(H helper)</div></pre></td></tr></table></figure>
 <h3 id="修复初始化全局Loading数据bug"><a href="#修复初始化全局Loading数据bug" class="headerlink" title="修复初始化全局Loading数据bug"></a>修复初始化全局Loading数据bug</h3><p>原来如果先初始化LoadingData全局，然后刷新全局LoadingData，再刷新部分type，会发现loading页面还在，因为在刷新全局Loading数据时，并没有把loadData缓存下来，核心方法就当它不存在的情况，只会在原来的基础上添加，并不会移除或者替换LoadingData。</p>
-<h3 id="增加新demo"><a href="#增加新demo" class="headerlink" title="增加新demo"></a>增加新demo</h3><p>请参考这篇文章<a href="/2016/12/29/IOC思想/">《BRVAH+MTRVA，复杂？不存在的》</a></p>
+<h3 id="增加新demo"><a href="#增加新demo" class="headerlink" title="增加新demo"></a>增加新demo</h3><p>请参考这篇文章<a href="/2017/08/14/BRVAH-MTRVA，复杂？不存在的/">《BRVAH+MTRVA，复杂？不存在的》</a></p>
 <h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>这次的更新说多不多，说少也不少，只是希望能让大家减少更多的工作量，不再为刷新而烦恼，能够有更多的时间陪媳妇。</p>
 <p><font color="red">你的意见，你的建议，你的star，你的分享，一直是我前进的动力。</font>现在关于LayoutManager，RecyclerView，Adapter的流派很多，我们更关注于RecyclerView的优雅刷新（数据源处理）。</p>
 <p>如果对本库还不是很了解的同学可以到我的github查看具体版本进行了解。</p>
@@ -312,6 +312,11 @@
     </a>
   
   
+    <a href="/2017/08/14/BRVAH-MTRVA，复杂？不存在的/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BRVAH+MTRVA，复杂？不存在的</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
 </nav>
 
 
@@ -415,6 +420,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -455,14 +468,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
@@ -471,11 +476,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,27 +504,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Helper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,6 +536,22 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Animator</a>
               </li>
              
@@ -556,10 +565,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +592,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
              
               <li class="article-tag-list-item">
