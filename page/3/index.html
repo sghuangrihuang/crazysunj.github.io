@@ -130,6 +130,162 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-类和接口(下)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/12/类和接口(下)/">类和接口(下)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/12/类和接口(下)/" class="archive-article-date">
+  	<time datetime="2017-01-12T02:59:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。</p>
+<h2 id="第6条-接口优于抽象类"><a href="#第6条-接口优于抽象类" class="headerlink" title="第6条:接口优于抽象类"></a>第6条:接口优于抽象类</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先得说说接口与抽象类的区别：抽象类允许包含某些方法的实现，但是接口则不允许；更重要的一个区别在于，为了实现由抽象类定义的类型，类必须成为抽象类的一个子类，而继承只能单继承。</p>
+<ul>
+<li>现有的类可以很容易被更新，以实现新的接口:就是说A和B两个类分别继承抽象类和实现接口，假设我们要增加新方法，实现接口的很容易实现新的方法</li>
+<li>接口是定义mixin(混合类型)的理想选择:mixin就是混合类型的意思，很明显了，说的就是抽象类只能单继承，想拥有更多的功能只能提高类的层次结构，而接口可以多实现</li>
+<li>接口允许我们构造非层次结构的类型框架:说的跟第二条差不多，就是说多实现，不打破类的层次结构</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然接口不允许包含方法的实现，但是接口来定义类型并不妨碍你为程序员提供实现上的帮助。通过对你导出的每个重要接口都提供一个抽象的骨架实现类，把接口和抽象类的优点结合起来。</p>
+<p>例如：<br>
+        
+          <a class="article-more-a" href="/2017/01/12/类和接口(下)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+  
+    <article id="post-类和接口(上)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/09/类和接口(上)/">类和接口(上)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/09/类和接口(上)/" class="archive-article-date">
+  	<time datetime="2017-01-09T07:28:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-09</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类和接口是Java程序设计语言的核心，也是Java语言的基本抽象单元。那如何更好地利用这些元素，设计出更加有用、健壮和灵活的类和接口。</p>
+<h2 id="第1条-使类和成员的可访问性最小化"><a href="#第1条-使类和成员的可访问性最小化" class="headerlink" title="第1条:使类和成员的可访问性最小化"></a>第1条:使类和成员的可访问性最小化</h2><h3 id="什么是设计良好的模块？"><a href="#什么是设计良好的模块？" class="headerlink" title="什么是设计良好的模块？"></a>什么是设计良好的模块？</h3><p>这个模块对于外部的其他模块而言，是否隐藏其内部数据和其他实现细节。</p>
+<h3 id="那么问题来了，为什么要进行信息隐藏呢？"><a href="#那么问题来了，为什么要进行信息隐藏呢？" class="headerlink" title="那么问题来了，为什么要进行信息隐藏呢？"></a>那么问题来了，为什么要进行信息隐藏呢？</h3>
+        
+          <a class="article-more-a" href="/2017/01/09/类和接口(上)/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+  
     <article id="post-创建和销毁对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -750,6 +906,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -774,11 +938,27 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,31 +978,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -831,6 +987,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,22 +1026,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Animator</a>
               </li>
              
@@ -887,6 +1039,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -906,7 +1062,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -914,7 +1070,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -922,7 +1078,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
             
             <div class="clearfix"></div>
