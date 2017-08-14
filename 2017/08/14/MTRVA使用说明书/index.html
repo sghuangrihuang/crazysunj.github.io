@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/14/MTRVA使用说明书/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
 <meta property="og:description" content="介绍MTRVA是对RecyclerViewAdapter的扩展，可以配合大多数的Adapter，核心功能是接管了Adapter中的资源和数据源。让用户真正的在Adapter中关心自己的业务逻辑。配合BRVAH更加简单，因此以下的示例都以BRVAH为例。">
-<meta property="og:updated_time" content="2017-08-14T04:47:05.000Z">
+<meta property="og:updated_time" content="2017-08-14T05:07:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MTRVA使用说明书">
 <meta name="twitter:description" content="介绍MTRVA是对RecyclerViewAdapter的扩展，可以配合大多数的Adapter，核心功能是接管了Adapter中的资源和数据源。让用户真正的在Adapter中关心自己的业务逻辑。配合BRVAH更加简单，因此以下的示例都以BRVAH为例。">
@@ -158,7 +158,7 @@
         			<div id="toc-article" class="toc-article">
         			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
         				<strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单快捷，可配合大多数Adapter"><span class="toc-number">2.1.</span> <span class="toc-text">简单快捷，可配合大多数Adapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一行代码刷新单个type，支持一般的set，add，remove，clear等刷新"><span class="toc-number">2.2.</span> <span class="toc-text">一行代码刷新单个type，支持一般的set，add，remove，clear等刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持异步，高频率刷新，可扩展-如配合RxJava"><span class="toc-number">2.3.</span> <span class="toc-text">支持异步，高频率刷新，可扩展(如配合RxJava)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持Loading，Empty，Error页面切换"><span class="toc-number">2.4.</span> <span class="toc-text">单个type支持Loading，Empty，Error页面切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持header，footer"><span class="toc-number">2.5.</span> <span class="toc-text">单个type支持header，footer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持展开和合拢-可设置合拢最小值"><span class="toc-number">2.6.</span> <span class="toc-text">单个type支持展开和合拢(可设置合拢最小值)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持注解生成类，减少工作量"><span class="toc-number">2.7.</span> <span class="toc-text">支持注解生成类，减少工作量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新生命周期回调"><span class="toc-number">2.8.</span> <span class="toc-text">支持刷新生命周期回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#兼容低版本RecyclerView"><span class="toc-number">2.9.</span> <span class="toc-text">兼容低版本RecyclerView</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">3.</span> <span class="toc-text">注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-取值范围"><span class="toc-number">3.1.</span> <span class="toc-text">Type 取值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#差值常量"><span class="toc-number">3.2.</span> <span class="toc-text">差值常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">3.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">4.</span> <span class="toc-text">gradle依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传送门"><span class="toc-number">4.1.</span> <span class="toc-text">传送门</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单快捷，可配合大多数Adapter"><span class="toc-number">2.1.</span> <span class="toc-text">简单快捷，可配合大多数Adapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一行代码刷新单个type，支持一般的set，add，remove，clear等刷新"><span class="toc-number">2.2.</span> <span class="toc-text">一行代码刷新单个type，支持一般的set，add，remove，clear等刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持异步，高频率刷新，可扩展-如配合RxJava"><span class="toc-number">2.3.</span> <span class="toc-text">支持异步，高频率刷新，可扩展(如配合RxJava)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持Loading，Empty，Error页面切换"><span class="toc-number">2.4.</span> <span class="toc-text">单个type支持Loading，Empty，Error页面切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持header，footer"><span class="toc-number">2.5.</span> <span class="toc-text">单个type支持header，footer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单个type支持展开和合拢-可设置合拢最小值"><span class="toc-number">2.6.</span> <span class="toc-text">单个type支持展开和合拢(可设置合拢最小值)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持注解生成类，减少工作量"><span class="toc-number">2.7.</span> <span class="toc-text">支持注解生成类，减少工作量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持刷新生命周期回调"><span class="toc-number">2.8.</span> <span class="toc-text">支持刷新生命周期回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#兼容低版本RecyclerView"><span class="toc-number">2.9.</span> <span class="toc-text">兼容低版本RecyclerView</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">3.</span> <span class="toc-text">注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-取值范围"><span class="toc-number">3.1.</span> <span class="toc-text">Type 取值范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#差值常量"><span class="toc-number">3.2.</span> <span class="toc-text">差值常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">3.3.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gradle依赖"><span class="toc-number">4.</span> <span class="toc-text">gradle依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">5.</span> <span class="toc-text">传送门</span></a></li></ol>
        </div>
        <script type="text/javascript">
        			function showToc(){
@@ -248,7 +248,7 @@
 <p>关于entity的id为long类型是考虑刷新效率，你大可采用多种属性的加密（MD5）的hashCode或者就是普通hashCode作为主键。倘若还支持不了你的数据(出现哈希冲突，并不是没刷新，可打日志调试)，就自定义DiffCallback(可参数demo)。</p>
 <p>具体可参考Demo，建议把helper封装在Adapter中。</p>
 <h2 id="gradle依赖"><a href="#gradle依赖" class="headerlink" title="gradle依赖"></a>gradle依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.crazysunj:multitypeadapter:1.7.0&apos;</div><div class="line">compile &apos;com.android.support:recyclerview-v7:xxx&apos;</div></pre></td></tr></table></figure>
-<h3 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h3><p>Github：<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github：<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
 <p>博客：<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
 <p>谷歌邮箱：twsunj@gmail.com</p>
 <p>QQ邮箱：387953660@qq.com</p>
@@ -485,6 +485,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -509,14 +517,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">用户态</a>
               </li>
              
@@ -526,6 +526,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,14 +546,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PageTransformer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,6 +573,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Expand</a>
               </li>
              
@@ -585,11 +585,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -621,10 +621,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -633,11 +629,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
