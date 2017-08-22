@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://yoursite.com/img/lizi.jpeg">
 <meta property="og:image" content="http://yoursite.com/img/huaji.jpg">
 <meta property="og:image" content="http://yoursite.com/img/biekaiqiang.jpeg">
-<meta property="og:updated_time" content="2017-08-22T08:30:06.000Z">
+<meta property="og:updated_time" content="2017-08-22T08:39:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BRVAH+MTRVA，复杂？不存在的">
 <meta name="twitter:description" content="前言遥想Android当年，UI出来了，两眼一定，一Bean一XML，谈笑间，设计师瑟瑟发抖。额，不要在意这首尬诗，请忽略- -!物是人非啊，现在动不动掏出个淘宝页面，还条目不固定，还能愉快玩耍吗？再加上各种其它需求，比如说埋点，初始化展示Loading页面，错误时又要切换错误页面等，UI框架越来越沉重，都是泪啊！如果我们能回到过去那该多好，来吧，朋友，这是真的这不是梦。  实战就算是以前，很多基">
@@ -220,7 +220,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class MyAdapterHelper extends AsynAdapterHelper&lt;MutiTypeTitleEntity, BaseAdapter&gt; &#123;</div><div class="line"></div><div class="line"></div><div class="line">    public MyAdapterHelper() &#123;</div><div class="line">        super(null);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void registerMoudle() &#123;</div><div class="line"></div><div class="line">		...</div><div class="line">        registerMoudle(ItemEntity3.TYPE_3)</div><div class="line">                .level(2)</div><div class="line">                .layoutResId(R.layout.item_3)</div><div class="line">                .register();</div><div class="line">		...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最简单的时候，只要这样就行了，这里的工作量就是每一个Adapter可能会多创建一个Helper，这里用可能是因为我们有时候可以复用。在构造函数中注入数据源，当然你也可以像示例代码中传null，它会默认创建一个空集合。我们可以为每个ItemType注册对应xml视图，正如过去每个Activity对应一个xml，当然资源注册功能远远不止这些，比如我们的库把一个ItemType视图，分为header，data，footer三个部分，你可以分别填充不同的资源，单个Type你又可以在data，loading，empty，error这几个视图自如切换，毫无压力，如果你用嵌套这种布局，会不会加班到天明啊。。。行行行，放下，我不说了。关于库的其它功能还有很多，我就不介绍了，不然篇幅太长，很多手机党要骂娘了。</p>
 <h3 id="回归Adapter"><a href="#回归Adapter" class="headerlink" title="回归Adapter"></a>回归Adapter</h3><p>Helper创建完资源后总是要回归于Adapter，在BaseAdapter封装中，我们已经知道，Helper是如何和Adapter绑定在一起的。来看下Adapter的示例代码，结合代码更加形象直观。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">public class MyAdapter extends BaseAdapter&lt;MutiTypeTitleEntity, BaseViewHolder, MyAdapterHelper&gt; &#123;</div><div class="line"></div><div class="line">    public MyAdapter() &#123;</div><div class="line">        super(new MyAdapterHelper());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void convert(BaseViewHolder helper, MutiTypeTitleEntity item) &#123;</div><div class="line">        int itemType = item.getItemType();</div><div class="line">        switch (itemType) &#123;</div><div class="line">            case ItemEntity1.TYPE_1:</div><div class="line">                renderEntity1(helper, (ItemEntity1) item);</div><div class="line">                break;</div><div class="line">          	...</div><div class="line">            case ItemEntity1.TYPE_1 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">            case ItemEntity2.TYPE_2 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">            case ItemEntity4.TYPE_4 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">                renderHeader(helper, (CommonHeadEntity) item);</div><div class="line">                break;</div><div class="line">            case ItemEntity1.TYPE_1 - RecyclerViewAdapterHelper.FOOTER_TYPE_DIFFER:</div><div class="line">                renderFooter(helper, (CommonFooterEntity) item);</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void renderEntity1(BaseViewHolder helper, ItemEntity1 item) &#123;</div><div class="line">    	 ...</div><div class="line">    	 渲染Entity1</div><div class="line">    	 ...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	...</div><div class="line"></div><div class="line">    private void renderHeader(BaseViewHolder helper, CommonHeadEntity item) &#123;</div><div class="line">    	 渲染header</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void renderFooter(BaseViewHolder helper, final CommonFooterEntity item) &#123;</div><div class="line">	     ...</div><div class="line">	     渲染footer</div><div class="line">	     ...</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">    public void notifyType1(List&lt;ItemEntity1&gt; itemEntity1s) &#123;</div><div class="line">        mHelper.notifyMoudleDataAndHeaderAndFooterChanged(entity1Header, itemEntity1s, entity1Footer, ItemEntity1.TYPE_1);</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">public class MyAdapter extends BaseAdapter&lt;MutiTypeTitleEntity, BaseViewHolder, MyAdapterHelper&gt; &#123;</div><div class="line"></div><div class="line">    public MyAdapter() &#123;</div><div class="line">        super(new MyAdapterHelper());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void convert(BaseViewHolder helper, MutiTypeTitleEntity item) &#123;</div><div class="line">        int itemType = item.getItemType();</div><div class="line">        switch (itemType) &#123;</div><div class="line">            case ItemEntity1.TYPE_1:</div><div class="line">                renderEntity1(helper, (ItemEntity1) item);</div><div class="line">                break;</div><div class="line">          	...</div><div class="line">            case ItemEntity1.TYPE_1 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">            case ItemEntity2.TYPE_2 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">            case ItemEntity4.TYPE_4 - RecyclerViewAdapterHelper.HEADER_TYPE_DIFFER:</div><div class="line">                renderHeader(helper, (CommonHeadEntity) item);</div><div class="line">                break;</div><div class="line">            case ItemEntity1.TYPE_1 - RecyclerViewAdapterHelper.FOOTER_TYPE_DIFFER:</div><div class="line">                renderFooter(helper, (CommonFooterEntity) item);</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void renderEntity1(BaseViewHolder helper, ItemEntity1 item) &#123;</div><div class="line">    	...</div><div class="line">    	渲染Entity1</div><div class="line">    	...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	...</div><div class="line"></div><div class="line">    private void renderHeader(BaseViewHolder helper, CommonHeadEntity item) &#123;</div><div class="line">    	渲染header</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private void renderFooter(BaseViewHolder helper, final CommonFooterEntity item) &#123;</div><div class="line">    	...</div><div class="line">    	渲染footer</div><div class="line">    	...</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">    public void notifyType1(List&lt;ItemEntity1&gt; itemEntity1s) &#123;</div><div class="line">        mHelper.notifyMoudleDataAndHeaderAndFooterChanged(entity1Header, itemEntity1s, entity1Footer, ItemEntity1.TYPE_1);</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这么一个复杂视图，就这么点代码，你没有看错。核心方法就是convert()方法，根据ItemType渲染相对应的视图，这正如对应不同的Activity有相对应的xml，Bean和渲染逻辑，在这里你只要关心View层的渲染逻辑就行了。关于render()方法，我就不说了吧，估计大家都写吐了。Helper除了支持整个数据源注入外，还支持单个Type注入，甚至细化到单个Type中一个小Type，例如header。简直炫酷的不要不要的。而这里的notifyType1()方法是为了注入type为ItemEntity1.TYPE_1相对应的数据，取这个方法是因为所有类型都体现了(header,data,footer)。</p>
 <pre><code>Tips:建议大家把刷新的方法封装在Adapter中，万一哪天版本大升级，直接使用helper的朋友可要改死了，这个也同我们在开发中封装图片加载库的需要二次封装一个工具类，万一哪天换库了，你不会想跑路吧？
 </code></pre><p><img src="/img/huaji.jpg" alt=""></p>
@@ -470,6 +470,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -479,18 +487,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,14 +514,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
@@ -534,7 +522,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,19 +550,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Helper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Error</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,7 +586,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Expand</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Footer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,10 +615,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,11 +646,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
