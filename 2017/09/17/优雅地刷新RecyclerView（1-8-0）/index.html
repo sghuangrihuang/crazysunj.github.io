@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 单例模式 | 欢迎来到crazysunjの博客</title>
+  <title>优雅地刷新RecyclerView（1.8.0） | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="永不止步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到crazysunjの博客">
-<meta property="og:url" content="http://yoursite.com/tags/单例模式/index.html">
+  <meta name="description" content="前言这次更新说多不多，说少不少。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅地刷新RecyclerView（1.8.0）">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/优雅地刷新RecyclerView（1-8-0）/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="永不止步">
+<meta property="og:description" content="前言这次更新说多不多，说少不少。">
+<meta property="og:updated_time" content="2017-09-17T08:05:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到crazysunjの博客">
-<meta name="twitter:description" content="永不止步">
+<meta name="twitter:title" content="优雅地刷新RecyclerView（1.8.0）">
+<meta name="twitter:description" content="前言这次更新说多不多，说少不少。">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
   
@@ -128,68 +130,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-优雅地刷新RecyclerView（1-8-0）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/29/单例模式/" class="archive-article-date">
-  	<time datetime="2016-12-29T05:25:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/29/单例模式/">单例模式</a>
+    <h1 class="article-title" itemprop="name">
+      优雅地刷新RecyclerView（1.8.0）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单例模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2017/09/17/优雅地刷新RecyclerView（1-8-0）/" class="archive-article-date">
+  	<time datetime="2017-09-17T07:47:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
+</a>
+        
+      </header>
+    
 
-          
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">文章目录</span>
+                    </p>
+        			<div id="toc-article" class="toc-article">
+        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
+        				<strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">2.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#去除部分过时类和方法"><span class="toc-number">2.1.</span> <span class="toc-text">去除部分过时类和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#addData方法支持标准模式"><span class="toc-number">2.2.</span> <span class="toc-text">addData方法支持标准模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化资源的注册"><span class="toc-number">2.3.</span> <span class="toc-text">优化资源的注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加2个功能方法"><span class="toc-number">2.4.</span> <span class="toc-text">添加2个功能方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">3.</span> <span class="toc-text">结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">4.</span> <span class="toc-text">传送门</span></a></li></ol>
+       </div>
+       <script type="text/javascript">
+       			function showToc(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:block");
+       				show_toc_btn.setAttribute("style","display:none");
+       				};
+       			function showBtn(){
+       				var toc_article = document.getElementById("toc-article");
+       				var show_toc_btn = document.getElementById("show-toc-btn");
+       				toc_article.setAttribute("style","display:none");
+       				show_toc_btn.setAttribute("style","display:block");
+       				};
+       		   </script>
+    
+    <!-- 目录内容结束 -->
 
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次更新说多不多，说少不少。</p>
+<a id="more"></a>
+<h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><ul>
+<li>去除部分过时类和方法</li>
+<li>addData方法支持标准模式</li>
+<li>优化资源的注册</li>
+<li>添加2个功能方法</li>
+</ul>
+<h3 id="去除部分过时类和方法"><a href="#去除部分过时类和方法" class="headerlink" title="去除部分过时类和方法"></a>去除部分过时类和方法</h3><p>这次把1.7.0版本标记为过时的方法和类给去除了，这些类主要用于以前粘性头的，但这属于扩展，并不是我们的核心内容，因此把它移除，很早几个版本已经有提到。例如我们熟悉的MultiHeaderEntity。</p>
+<h3 id="addData方法支持标准模式"><a href="#addData方法支持标准模式" class="headerlink" title="addData方法支持标准模式"></a>addData方法支持标准模式</h3><p>以前是不支持的，因为这个确实比较麻烦，就算是现在支持，但在添加集合的情况下，支持并不是很完善，比如你添加集合，它可能正好是当前type的末尾，又是下个level的一部分，甚至下下个level的一部分，例如当前集合为AABBE，而add的position正好是B之后且添加的集合为BCCD，而C，D的level小于E，有这种复杂的情况存在，当前支持添加的集合为当前position的type。</p>
+<h3 id="优化资源的注册"><a href="#优化资源的注册" class="headerlink" title="优化资源的注册"></a>优化资源的注册</h3><p>以前资源注册有内部类直接引用外部类，尽量避免这样写法，现在用静态内部类代替。</p>
+<h3 id="添加2个功能方法"><a href="#添加2个功能方法" class="headerlink" title="添加2个功能方法"></a>添加2个功能方法</h3><p>一个可以说是优化，一个是真正的添加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">public void clearMoudle(int... type);</div><div class="line">public void remainMoudle(int... type);</div></pre></td></tr></table></figure>
+<p>前者是清除type数组中所有type，例如原集合为ABBCDDE，type数组为BDE，那么调用该方法后就为AC。后者是保留type数组中的所有type，同上例，那么结果为BBDDE。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p><font color="red">你的意见，你的建议，你的star，你的分享，一直是我前进的动力。</font>现在关于LayoutManager，RecyclerView，Adapter的流派很多，我们更关注于RecyclerView的优雅刷新（数据源处理）。</p>
+<p>如果对本库还不是很了解的同学可以到我的github查看具体版本进行了解。</p>
+<p><strong>欢迎大家的star(fork)和反馈(可发issues或者我的邮箱）。</strong></p>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
+<p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
+<p>谷歌邮箱:twsunj@gmail.com</p>
+<p>QQ邮箱:387953660@qq.com</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/17/优雅地刷新RecyclerView（1-8-0）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/08/14/BRVAH-MTRVA，复杂？不存在的/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          BRVAH+MTRVA，复杂？不存在的
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+
   
 
-    
+  
+
+  
 
 
           </div>
@@ -221,9 +323,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
