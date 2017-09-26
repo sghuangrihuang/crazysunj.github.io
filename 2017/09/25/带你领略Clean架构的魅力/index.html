@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://yoursite.com/img/yukuaiwanshua.jpg">
 <meta property="og:image" content="http://yoursite.com/img/aha.jpeg">
 <meta property="og:image" content="http://yoursite.com/img/heiren_wtf.jpg">
-<meta property="og:updated_time" content="2017-09-26T12:11:49.000Z">
+<meta property="og:updated_time" content="2017-09-26T12:22:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带你领略Clean架构的魅力">
 <meta name="twitter:description" content="前言当项目需求不断扩张的时候，当开发团队人员不断增加，当新技术不断涌现，当软件质量不断提高，我还是不能和你分手，不能和你分手。我对唱出声的同学不发表任何意见。如果你真的碰到上述问题而没有演进你的架构，可能你碰到的问题都是属于灵异事件。那这里的核心点是架构，那它又是个什么玩意？它能带来什么好处？ 架构到底什么是架构？我现在的水平还不能告诉你，没资格。我能告诉你自己在学习过程中的领悟，我想架构就是一种">
@@ -223,7 +223,7 @@
 <p>这是一种Repository模式，具体的可以看<a href="https://msdn.microsoft.com/en-us/library/ff649690.aspx" target="_blank" rel="external">这里</a>（需要翻墙）。以我现在的见解，只能说只要项目复杂而需要分层，那么就应该用这个模式，它让clean架构的clean更加亮眼。</p>
 <p>这个本来就是概念，我相信大家也不愿意看，所以就简单介绍。如果想详细了解，可以戳<a href="https://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/" target="_blank" rel="external">这里</a>，</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>现在谈谈自己的看法，后者是相对前者较为具体的一种符合Android的结构。在这插一个clean架构的依赖性规则：内层不能依赖外层。三者也都分别解释了是干什么用的，那么为什么有分为这三者，它们又有什么联系？我是个俗人，那就应该用俗话来讲，从数据层利用Repository模式让领域层感觉不到数据访问层的存在，即原始数据是独立的，业务规则不绑定具体哪一种数据，通俗点讲就是你要什么数据？我给你取，但你不需要知道我从哪里取的；因此领域层对数据层怎么实现的是一无所知，而领域层主要工作就是你给了我数据，那我就要用，怎么用？都是我来决定；用完之后再回调给表现层渲染UI。因此大多数的业务逻辑都在领域层，可以说是一个APP的核心。我认为这里透露着一个很重要的设计理念就是数据驱动UI，我都想给自己点个赞，哈哈。其实，到这里，你心里已经有点13数的话，可以跳到Why，因为怎么用已经是具体的东西，而架构本身就是一种共识，是抽象的，从Java角度讲你可以多个类去实现这个接口。下面的使用只是我对Clean架构理解的一点代码体现。</p>
-<h3 id="How"><a href="#How" class="headerlink" title="How"></a>How</h3><p>下面的例子是从我开源库<a href="">CrazyDaily</a>中选取的，以知乎日报为例。</p>
+<h3 id="How"><a href="#How" class="headerlink" title="How"></a>How</h3><p>下面的例子是从我开源库<a href="https://github.com/crazysunj/CrazyDaily" target="_blank" rel="external">CrazyDaily</a>中选取的，以知乎日报为例。</p>
 <h4 id="数据层-Data-Layer-1"><a href="#数据层-Data-Layer-1" class="headerlink" title="数据层 (Data Layer)"></a>数据层 (Data Layer)</h4><p>数据层就是从我们的仓库（Repository）中取数据，可以从云端、磁盘或者内存中取。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public interface ZhihuService &#123;</div><div class="line">    String HOST = &quot;http://news-at.zhihu.com/api/4/&quot;;</div><div class="line"></div><div class="line">    @GET(&quot;news/latest&quot;)</div><div class="line">    Flowable&lt;ZhihuNewsEntity&gt; getZhihuNewsList();</div><div class="line">    </div><div class="line">    @GET(&quot;news/&#123;id&#125;&quot;)</div><div class="line">    Flowable&lt;ZhihuNewsDetailEntity&gt; getZhihuNewsDetail(@Path(&quot;id&quot;) long id);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class ZhihuDataRepository implements ZhihuRepository &#123;</div><div class="line">    ...</div><div class="line">    @Inject</div><div class="line">    public ZhihuDataRepository(HttpHelper httpHelper) &#123;</div><div class="line">        mZhihuService = httpHelper.getZhihuService();</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public Flowable&lt;ZhihuNewsEntity&gt; getZhihuNewsList() &#123;</div><div class="line">        return mZhihuService.getZhihuNewsList()</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里比较尴尬的是只提供了云端的数据，采用的是retrofit+okhttp的框架获取。比较正确的方式应该是给ZhihuDataRepository提供一个Factory而不是HttpHelper，Factory根据不同的条件获取相应的数据。比如像这样：</p>
@@ -465,15 +465,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,7 +481,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,6 +593,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Animator</a>
               </li>
              
@@ -609,14 +613,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clean</a>
               </li>
              
@@ -629,11 +625,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,11 +653,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
             
             <div class="clearfix"></div>
