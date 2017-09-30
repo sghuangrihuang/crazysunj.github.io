@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://yoursite.com/img/yukuaiwanshua.jpg">
 <meta property="og:image" content="http://yoursite.com/img/aha.jpeg">
 <meta property="og:image" content="http://yoursite.com/img/heiren_wtf.jpg">
-<meta property="og:updated_time" content="2017-09-26T22:19:13.000Z">
+<meta property="og:updated_time" content="2017-09-30T08:25:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带你领略Clean架构的魅力">
 <meta name="twitter:description" content="前言当项目需求不断扩张的时候，当开发团队人员不断增加，当新技术不断涌现，当软件质量不断提高，我还是不能和你分手，不能和你分手。我对唱出声的同学不发表任何意见。如果你真的碰到上述问题而没有演进你的架构，可能你碰到的问题都是属于灵异事件。那这里的核心点是架构，那它又是个什么玩意？它能带来什么好处？ 架构到底什么是架构？我现在的水平还不能告诉你，没资格。我能告诉你自己在学习过程中的领悟，我想架构就是一种">
@@ -228,7 +228,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public interface ZhihuService &#123;</div><div class="line">    String HOST = &quot;http://news-at.zhihu.com/api/4/&quot;;</div><div class="line"></div><div class="line">    @GET(&quot;news/latest&quot;)</div><div class="line">    Flowable&lt;ZhihuNewsEntity&gt; getZhihuNewsList();</div><div class="line">    </div><div class="line">    @GET(&quot;news/&#123;id&#125;&quot;)</div><div class="line">    Flowable&lt;ZhihuNewsDetailEntity&gt; getZhihuNewsDetail(@Path(&quot;id&quot;) long id);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class ZhihuDataRepository implements ZhihuRepository &#123;</div><div class="line">    ...</div><div class="line">    @Inject</div><div class="line">    public ZhihuDataRepository(HttpHelper httpHelper) &#123;</div><div class="line">        mZhihuService = httpHelper.getZhihuService();</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public Flowable&lt;ZhihuNewsEntity&gt; getZhihuNewsList() &#123;</div><div class="line">        return mZhihuService.getZhihuNewsList()</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里比较尴尬的是只提供了云端的数据，采用的是retrofit+okhttp的框架获取。比较正确的方式应该是给ZhihuDataRepository提供一个Factory而不是HttpHelper，Factory根据不同的条件获取相应的数据。比如像这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Inject</div><div class="line"> UserDataRepository(UserDataStoreFactory dataStoreFactory,</div><div class="line">     UserEntityDataMapper userEntityDataMapper) &#123;</div><div class="line">   this.userDataStoreFactory = dataStoreFactory;</div><div class="line">   this.userEntityDataMapper = userEntityDataMapper;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>UserDataStoreFactory是从不同地方获取数据的一个工厂类，UserEntityDataMapper是我们的数据包装类，不知道还记得上面的Interface Adapters吗？细心的朋友可以关注到ZhihuDataRepository实现了ZhihuRepository，但是ZhihuRepository并非数据层的东西，而是领域层的东西，很显然，以接口进行关联，但内容独立，没错，这就是传送中的依赖倒置原则。</p>
+<p>UserDataStoreFactory是从不同地方获取数据的一个工厂类，UserEntityDataMapper是我们的数据包装类，不知道还记得上面的Interface Adapters吗？细心的朋友可以关注到ZhihuDataRepository实现了ZhihuRepository，但是ZhihuRepository并非数据层的东西，而是领域层的东西，很显然，以接口进行关联，但内容独立，没错，这就是传说中的依赖倒置原则。</p>
 <p><img src="/img/666.jpeg" alt=""></p>
 <h4 id="领域层-Domain-Layer-1"><a href="#领域层-Domain-Layer-1" class="headerlink" title="领域层 (Domain Layer)"></a>领域层 (Domain Layer)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public interface ZhihuRepository &#123;</div><div class="line">    </div><div class="line">    Flowable&lt;ZhihuNewsEntity&gt; getZhihuNewsList();</div><div class="line"></div><div class="line">    Flowable&lt;ZhihuNewsDetailEntity&gt; getZhihuNewsDetail(long id);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class UseCase&lt;T, Params&gt; &#123;</div><div class="line"></div><div class="line">    ...</div><div class="line"></div><div class="line">    public UseCase() &#123;</div><div class="line">    	...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    protected abstract Flowable&lt;T&gt; buildUseCaseObservable(Params params);</div><div class="line"></div><div class="line">    public void execute(Params params, DisposableSubscriber&lt;T&gt; subscriber) &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class ZhihuNewsListUseCase extends UseCase&lt;ZhihuNewsEntity, Void&gt; &#123;</div><div class="line"></div><div class="line">    private final ZhihuRepository mZhihuRepository;</div><div class="line"></div><div class="line">    @Inject</div><div class="line">    public ZhihuNewsListUseCase(ZhihuRepository zhihuRepository) &#123;</div><div class="line">        mZhihuRepository = zhihuRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected Flowable&lt;ZhihuNewsEntity&gt; buildUseCaseObservable(Void aVoid) &#123;</div><div class="line">        return mZhihuRepository.getZhihuNewsList()</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>真的很完美，跟数据层一毛线关系都没有，利用接口（ZhihuRepository）来控制数据层（ZhihuDataRepository）。真的感觉架构越来越有意思了。我可以在这里处理我们大部分的业务逻辑。</p>
@@ -469,10 +469,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -481,11 +477,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,14 +518,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,18 +613,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clean</a>
               </li>
              
@@ -637,6 +625,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
@@ -645,19 +645,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
               </li>
             
             <div class="clearfix"></div>
