@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>优雅地刷新RecyclerView（1.7.0） | 欢迎来到crazysunjの博客</title>
+  <title>Tag: 算法 | 欢迎来到crazysunjの博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。">
-<meta name="keywords" content="Android,RecyclerView,Adapter">
-<meta property="og:type" content="article">
-<meta property="og:title" content="优雅地刷新RecyclerView（1.7.0）">
-<meta property="og:url" content="http://yoursite.com/2017/08/14/优雅地刷新RecyclerView（1-7-0）/index.html">
+  <meta name="description" content="永不止步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="欢迎来到crazysunjの博客">
+<meta property="og:url" content="http://yoursite.com/tags/算法/index.html">
 <meta property="og:site_name" content="欢迎来到crazysunjの博客">
-<meta property="og:description" content="前言距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。">
-<meta property="og:updated_time" content="2017-08-14T03:40:59.000Z">
+<meta property="og:description" content="永不止步">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="优雅地刷新RecyclerView（1.7.0）">
-<meta name="twitter:description" content="前言距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。">
+<meta name="twitter:title" content="欢迎来到crazysunjの博客">
+<meta name="twitter:description" content="永不止步">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到crazysunjの博客" type="application/atom+xml">
   
@@ -130,203 +128,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-优雅地刷新RecyclerView（1-7-0）" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      优雅地刷新RecyclerView（1.7.0）
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/11/01/解读排序算法/" class="archive-article-date">
+  	<time datetime="2017-11-01T07:26:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/11/01/解读排序算法/">解读排序算法</a>
     </h1>
   
 
-        
-        <a href="/2017/08/14/优雅地刷新RecyclerView（1-7-0）/" class="archive-article-date">
-  	<time datetime="2017-08-14T03:27:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                    <span class="btn-bg"></span>
-                    <span class="btn-text">文章目录</span>
-                    </p>
-        			<div id="toc-article" class="toc-article">
-        			    <span id="toc-close" class="toc-close" title="隐藏目录" onclick="showBtn();">×</span>
-        				<strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新内容"><span class="toc-number">2.</span> <span class="toc-text">更新内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#去除部分类和资源"><span class="toc-number">2.1.</span> <span class="toc-text">去除部分类和资源</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#去除粘性包"><span class="toc-number">2.1.1.</span> <span class="toc-text">去除粘性包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去除Shimmer包"><span class="toc-number">2.1.2.</span> <span class="toc-text">去除Shimmer包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去除apt注解和RecyclerView依赖"><span class="toc-number">2.1.3.</span> <span class="toc-text">去除apt注解和RecyclerView依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去除资源"><span class="toc-number">2.1.4.</span> <span class="toc-text">去除资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#兼容版本低版本的RecyclerView"><span class="toc-number">2.2.</span> <span class="toc-text">兼容版本低版本的RecyclerView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改部分类和方法结构"><span class="toc-number">2.3.</span> <span class="toc-text">修改部分类和方法结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修复初始化全局Loading数据bug"><span class="toc-number">2.4.</span> <span class="toc-text">修复初始化全局Loading数据bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加新demo"><span class="toc-number">2.5.</span> <span class="toc-text">增加新demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">3.</span> <span class="toc-text">结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传送门"><span class="toc-number">4.</span> <span class="toc-text">传送门</span></a></li></ol>
-       </div>
-       <script type="text/javascript">
-       			function showToc(){
-       				var toc_article = document.getElementById("toc-article");
-       				var show_toc_btn = document.getElementById("show-toc-btn");
-       				toc_article.setAttribute("style","display:block");
-       				show_toc_btn.setAttribute("style","display:none");
-       				};
-       			function showBtn(){
-       				var toc_article = document.getElementById("toc-article");
-       				var show_toc_btn = document.getElementById("show-toc-btn");
-       				toc_article.setAttribute("style","display:none");
-       				show_toc_btn.setAttribute("style","display:block");
-       				};
-       		   </script>
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>距离前一个版本已经挺久了，这次的更新主要是规范我们的库，让他成为真正的意味着专门为RecyclerView服务的一个刷新（资源和数据源处理）的库，废话不多说直接看这次我们的更新内容。</p>
-<a id="more"></a>
-<h2 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h2><ul>
-<li>去除部分类和资源</li>
-<li>部分类和方法过时</li>
-<li>兼容版本低版本的RecyclerView</li>
-<li>修改部分类和方法结构</li>
-<li>修复初始化全局Loading数据bug</li>
-<li>增加新demo</li>
-</ul>
-<h3 id="去除部分类和资源"><a href="#去除部分类和资源" class="headerlink" title="去除部分类和资源"></a>去除部分类和资源</h3><p>放心，兼容方案都给大家想好了</p>
-<h4 id="去除粘性包"><a href="#去除粘性包" class="headerlink" title="去除粘性包"></a>去除粘性包</h4><p>这次去除了粘性包，大家可以依赖我的另一个库<a href="https://github.com/crazysunj/RecycylerViewItemDecoration" target="_blank" rel="external">RecycylerViewItemDecoration</a>，包名和用法并没有变</p>
-<h4 id="去除Shimmer包"><a href="#去除Shimmer包" class="headerlink" title="去除Shimmer包"></a>去除Shimmer包</h4><p>Shimmer包的github地址<a href="https://github.com/facebook/shimmer-android" target="_blank" rel="external">shimmer-android</a></p>
-<h4 id="去除apt注解和RecyclerView依赖"><a href="#去除apt注解和RecyclerView依赖" class="headerlink" title="去除apt注解和RecyclerView依赖"></a>去除apt注解和RecyclerView依赖</h4><p>原来都是库中直接依赖的，现在改为想用就依赖，更加灵活，这里给出apt注解的依赖方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">com.crazysunj:multitypeadapter-annotation:xxx //版本与库的版本一致</div></pre></td></tr></table></figure>
-<h4 id="去除资源"><a href="#去除资源" class="headerlink" title="去除资源"></a>去除资源</h4><p>res目录下的资源都已经移去，兼容方法就是下载demo，资源全部移到demo的res目录下了，跟几个小伙伴讨论了下，真的没必要放太多的东西。</p>
-<h3 id="兼容版本低版本的RecyclerView"><a href="#兼容版本低版本的RecyclerView" class="headerlink" title="兼容版本低版本的RecyclerView"></a>兼容版本低版本的RecyclerView</h3><p>由于diffutil这个支持库在24.2.0加入的，因此低于这个版本的都得gg，这里提供了兼容库<a href="https://github.com/crazysunj/RecyclerViewDiffUtil" target="_blank" rel="external">RecyclerViewDiffUtil</a>（注意，如果是24.2.0以上的并不需要依赖），版本22的RecyclerViewAdapter并没有带3个参数的notifyItemRangeChanged方法，因此，想要兼容22(RecyclerView在22.0.0出现)，得重写Helper的getListUpdateCallback方法，并在onChanged方法回调中使用带两个参数的方法。</p>
-<p>例如像这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">    protected ListUpdateCallback getListUpdateCallback(final BaseAdapter adapter) &#123;</div><div class="line">    final int preDataCount = getPreDataCount();</div><div class="line"></div><div class="line">    return new ListUpdateCallback() &#123;</div><div class="line">        @Override</div><div class="line">        public void onInserted(int position, int count) &#123;</div><div class="line">            adapter.notifyItemRangeInserted(position + preDataCount, count);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onRemoved(int position, int count) &#123;</div><div class="line">            adapter.notifyItemRangeRemoved(position + preDataCount, count);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onMoved(int fromPosition, int toPosition) &#123;</div><div class="line">            adapter.notifyItemMoved(fromPosition + preDataCount, toPosition + preDataCount);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onChanged(int position, int count, Object payload) &#123;</div><div class="line">            adapter.notifyItemRangeChanged(position + preDataCount, count);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="修改部分类和方法结构"><a href="#修改部分类和方法结构" class="headerlink" title="修改部分类和方法结构"></a>修改部分类和方法结构</h3><p>其实方法就一个，原来的刷新方法notifyMoudleHeaderAndDataAndFooterChanged更新为notifyMoudleDataAndHeaderAndFooterChanged，主要是为保持Data-&gt;Header-&gt;Footer的顺序。</p>
-<p>很巧，类也只有一个，CommonHelperAdapter类的泛型结构改变，具体：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CommonHelperAdapter&lt;T extends MultiTypeEntity, K extends CommonViewHolder, H extends RecyclerViewAdapterHelper&lt;T, CommonHelperAdapter&gt;&gt; extends RecyclerView.Adapter&lt;K&gt;</div><div class="line"></div><div class="line">CommonHelperAdapter(H helper)</div></pre></td></tr></table></figure>
-<h3 id="修复初始化全局Loading数据bug"><a href="#修复初始化全局Loading数据bug" class="headerlink" title="修复初始化全局Loading数据bug"></a>修复初始化全局Loading数据bug</h3><p>原来如果先初始化LoadingData全局，然后刷新全局LoadingData，再刷新部分type，会发现loading页面还在，因为在刷新全局Loading数据时，并没有把loadData缓存下来，核心方法就当它不存在的情况，只会在原来的基础上添加，并不会移除或者替换LoadingData。</p>
-<h3 id="增加新demo"><a href="#增加新demo" class="headerlink" title="增加新demo"></a>增加新demo</h3><p>请参考这篇文章<a href="/2017/08/14/BRVAH-MTRVA，复杂？不存在的/">《BRVAH+MTRVA，复杂？不存在的》</a></p>
-<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>这次的更新说多不多，说少也不少，只是希望能让大家减少更多的工作量，不再为刷新而烦恼，能够有更多的时间陪媳妇。</p>
-<p><font color="red">你的意见，你的建议，你的star，你的分享，一直是我前进的动力。</font>现在关于LayoutManager，RecyclerView，Adapter的流派很多，我们更关注于RecyclerView的优雅刷新（数据源处理）。</p>
-<p>如果对本库还不是很了解的同学可以到我的github查看具体版本进行了解。</p>
-<p><strong>欢迎大家的star(fork)和反馈(可发issues或者我的邮箱）。</strong></p>
-<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github:<a href="https://github.com/crazysunj/MultiTypeRecyclerViewAdapter" target="_blank" rel="external">https://github.com/crazysunj/MultiTypeRecyclerViewAdapter</a></p>
-<p>博客:<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
-<p>谷歌邮箱:twsunj@gmail.com</p>
-<p>QQ邮箱:387953660@qq.com</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RecyclerView</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Adapter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/14/优雅地刷新RecyclerView（1-7-0）/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/14/MTRVA使用说明书/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MTRVA使用说明书
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/14/BRVAH-MTRVA，复杂？不存在的/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">BRVAH+MTRVA，复杂？不存在的</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -358,9 +217,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
