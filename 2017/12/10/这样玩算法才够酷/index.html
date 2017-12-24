@@ -18,11 +18,10 @@
 <meta property="og:image" content="http://yoursite.com/img/wuyanyidui.jpg">
 <meta property="og:image" content="http://yoursite.com/img/kepa.jpg">
 <meta property="og:image" content="http://yoursite.com/img/yuanliang.jpg">
-<meta property="og:image" content="http://yoursite.com/img/dongtaimengbi.gif">
 <meta property="og:image" content="http://yoursite.com/img/dushuduo.jpg">
 <meta property="og:image" content="http://yoursite.com/img/zhenxiang.gif">
 <meta property="og:image" content="http://yoursite.com/img/lang.gif">
-<meta property="og:updated_time" content="2017-12-24T22:41:42.000Z">
+<meta property="og:updated_time" content="2017-12-24T22:43:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="这样玩算法才够酷">
 <meta name="twitter:description" content="前言想接触算法的朋友经常会问一句，算法难吗？我掐指一算，回答一般有3种结果，难，不难，have a try。其实这个问题并不好，我们接触的较多的一门课程叫数学，从小学到大学，甚至工作了，还不放过我们，而这个你很熟悉的东西，你觉得它难吗？那么结果出来了，更多的是一种兴趣，很多人老是说自己智商不够用，那是你根本不想认真去面对它，这么跟你说吧，天赋差距肯定是有的，但你身边可以说80%的人智商都跟你差不多">
@@ -208,7 +207,6 @@
 <h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>首先我们要明确几个固定的点，n个骰子扔出去，那么和至少也有n（所有都是1的情况），最大有6n（所有都是6的情况），排列总数为6^n（不清楚的同学去看看概率学）。这些都是确定的，而我们要求的是每种朝上之和的概率，有一种的方法是我们创建一个数组，容量为6n-n+1，这样正好能把所有情况都存储下来，而值正好是该情况出现的次数，最后再遍历数组取出值比上6^n便是最后的结果。那如何去存储呢？n可能太抽象了，不妨试试一个具体常量，比如2个骰子并打印所有值出现的概率，那你会怎么做呢？你是不是会写出这样的代码来？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_VALUE = 6;</div><div class="line">public static void printProbabilityOf2() &#123;</div><div class="line">    int number = 2;</div><div class="line">    int maxSum = number * MAX_VALUE;</div><div class="line">    int[] pProbabilities = new int[maxSum - number + 1];</div><div class="line">    //初始化，开始统计之前都为0次</div><div class="line">    for (int i = number; i &lt;= maxSum; i++) &#123;</div><div class="line">        pProbabilities[i - number] = 0;</div><div class="line">    &#125;</div><div class="line">    int total = (int) Math.pow(MAX_VALUE, number);</div><div class="line">    for (int i = 1; i &lt;= MAX_VALUE; i++) &#123;</div><div class="line">        for (int j = 1; j &lt;= MAX_VALUE; j++) &#123;</div><div class="line">            pProbabilities[i + j - number]++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    for (int i = number; i &lt;= maxSum; i++) &#123;</div><div class="line">        System.out.println(String.format(Locale.getDefault(), &quot;s的值为%d，概率为%d/%d=%.4f&quot;, i, pProbabilities[i - number], total, pProbabilities[i - number] * 1.0f / total));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果你能写出这样的代码来，说明你思路是对的，但缺少递归的思想，其实我自己也缺少，善用递归的大佬我只能交出膝盖，递归的方法一开始没想到，我只能想到第二种方法，只能用用循环啊。</p>
-<p><img src="/img/dongtaimengbi.gif" alt=""></p>
 <p>回归正题，有2个骰子你便套了两层循环，3个你是不是会套3层循环？4个4层？5个5层？那n个是不是n层啊。像这种不确定循环次数且是嵌套的情况下，你应该想到递归。一般解决思路无外乎两种，要么循环，要么递归（说的容易，但就是tmd想不到啊）。而递归的实现需要一个判断语句促使继续递归下去还是终止递归。那这样行不行？我从第一个骰子开始，判断条件为当前扔的骰子为最后一个，那么我们把数据记录下来，否则扔下一个骰子直到是最后一个为止。说干就干，献上代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_VALUE = 6;</div><div class="line">public static void printProbability(int number) &#123;</div><div class="line">    if (number &lt; 1) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    int maxSum = number * MAX_VALUE;//点数和最大值6n</div><div class="line">    int[] pProbabilities = new int[maxSum - number + 1];//存储每一种可能的数组</div><div class="line">    //初始化，开始统计之前都为0次</div><div class="line">    for (int i = number; i &lt;= maxSum; i++) &#123;</div><div class="line">        pProbabilities[i - number] = 0;</div><div class="line">    &#125;</div><div class="line">    int total = (int) Math.pow(MAX_VALUE, number);//情况种数6^n</div><div class="line">    probability(number, pProbabilities);//计算n~6n每种情况出现的次数并存储在pProbabilities中</div><div class="line">    for (int i = number; i &lt;= maxSum; i++) &#123;</div><div class="line">        System.out.println(String.format(Locale.getDefault(), &quot;s的值为%d，概率为%d/%d=%.4f&quot;, i, pProbabilities[i - number], total, pProbabilities[i - number] * 1.0f / total));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public static void probability(int number, int[] pProbabilities) &#123;</div><div class="line">    for (int i = 1; i &lt;= MAX_VALUE; i++) &#123;//从第一个骰子开始</div><div class="line">        probability(number, 1, i, pProbabilities);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 不停递归每条路线直到扔完所有骰子</div><div class="line"> *</div><div class="line"> * @param original       总共骰子数</div><div class="line"> * @param current        当前扔的骰子</div><div class="line"> * @param sum            每条路线计算和</div><div class="line"> * @param pProbabilities 存储数组</div><div class="line"> */</div><div class="line">public static void probability(int original, int current, int sum, int[] pProbabilities) &#123;</div><div class="line">    if (current == original) &#123;</div><div class="line">        pProbabilities[sum - original]++;</div><div class="line">    &#125; else &#123;</div><div class="line">        for (int i = 1; i &lt;= MAX_VALUE; i++) &#123;</div><div class="line">            probability(original, current + 1, sum + i, pProbabilities);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们发现，只不过更改了2个骰子中间循环嵌套部分，采用递归实现。我们再来回顾下2个骰子的时候的统计代码是：</p>
@@ -448,6 +446,14 @@ k-1 -&gt; n-2
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
               </li>
              
@@ -480,19 +486,15 @@ k-1 -&gt; n-2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,10 +511,6 @@ k-1 -&gt; n-2
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PageTransformer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,18 +562,6 @@ k-1 -&gt; n-2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Animator</a>
               </li>
              
@@ -589,6 +575,18 @@ k-1 -&gt; n-2
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,6 +606,10 @@ k-1 -&gt; n-2
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -620,15 +622,11 @@ k-1 -&gt; n-2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">适配器模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
