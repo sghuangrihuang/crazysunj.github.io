@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/img/jvm_biaoji_zhengli.png">
 <meta property="og:image" content="http://yoursite.com/img/buganshuohua.jpeg">
 <meta property="og:image" content="http://yoursite.com/img/xinnian.jpeg">
-<meta property="og:updated_time" content="2018-01-28T10:27:56.000Z">
+<meta property="og:updated_time" content="2018-01-28T10:31:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="揭开Java内存管理的面纱">
 <meta name="twitter:description" content="前言相对于C、C++这些高性能语言，Java有着让此类程序员羡慕的功能：内存自动管理。似乎这样，Java程序员不用再关心内存，也不用去了解相关知识。但结果真的是这样吗？特别对于我们这种Android程序员来说，对内存可是吃得死死的，一旦出现较为复杂的内存泄露和溢出方面的问题，简直就是噩梦。因此，对Java内存管理有个大体的了解似乎已经成为一个合格的Android程序员必备的技能，就算是新进的Kot">
@@ -199,6 +199,7 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相对于C、C++这些高性能语言，Java有着让此类程序员羡慕的功能：内存自动管理。似乎这样，Java程序员不用再关心内存，也不用去了解相关知识。但结果真的是这样吗？特别对于我们这种Android程序员来说，对内存可是吃得死死的，一旦出现较为复杂的内存泄露和溢出方面的问题，简直就是噩梦。因此，对Java内存管理有个大体的了解似乎已经成为一个合格的Android程序员必备的技能，就算是新进的Kotlin同样是基于JVM的。不如趁此机会，大家一起来揭开它的面纱。</p>
 <p><img src="/img/ciji.png" alt=""></p>
+<a id="more"></a>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>Java是一门面向对象的编程语言，江湖一直流传着这么一句话：万物皆对象。因此，Java的内存管理也可以理解成为对象的创建与释放。那么，对象到底是什么？男朋友？女朋友？还是？对象和内存到底是什么关系？这里的问题太多，我们一步一步来。</p>
 <pre><code>Tips1:全文以常用的虚拟机HotSpot、常用的内存区域Java堆和普通Java对象为例。
 Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了，请右上角，如果忘了，请继续！
@@ -474,15 +475,43 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,34 +536,6 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,23 +595,11 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,6 +616,18 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">onTouchEvent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,6 +651,10 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
@@ -658,15 +663,11 @@ Tips2:如果深读过《深入理解Java虚拟机》的同学可以不用看了�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
