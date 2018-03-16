@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/img/weex_yuanli.png">
 <meta property="og:image" content="http://yoursite.com/img/wotm.jpg">
 <meta property="og:image" content="http://yoursite.com/img/zhuangbiciji.gif">
-<meta property="og:updated_time" content="2018-03-16T10:08:45.000Z">
+<meta property="og:updated_time" content="2018-03-16T10:32:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起来玩Weex">
 <meta name="twitter:description" content="前言从前几天的面试情况来看，绝大部分的公司提到的更多是Hybrid App，诸如ReactNative、weex和WebView这样的字眼。为啥呢？简单的总结了一下，发布节奏快（节约成本），跨端，前两者还可以拥有Native一样的流畅体验。那么到底是不是这样呢？我这种渣渣说了不算，时间会说明一切，而这篇文章主要讲的三者之一的weex。 在学习一门技术之前必须要有一定的觉悟，而我的觉悟就是：我现在没">
@@ -206,6 +206,7 @@
 <p>list组件里面的loadmore是监听我们的上拉加载事件，相当于我们的Listener和下面<a href="https://weex.apache.org/cn/references/components/cell.html" target="_blank" rel="external">cell</a>的click都是监听事件。除此之外还有scroll事件，我们这里并没有用到。写法都是一样，前面写个@。</p>
 <p>list与我们的RecyclerView一样只不过是容器，更好管理我们的条目，与我们item(ViewHolder)相对应的就是cell组件，这里你要知道一个思想，数据驱动UI，我们的数据源去控制我们UI的渲染。而weex是基于MVVM的，这里的<a href="https://cn.vuejs.org/v2/api/#v-for" target="_blank" rel="external">v-for</a>主要对集合的操作，item就是所处索引为index的值。相当于我们在onBindViewHolder根据position拿到数据，这很好理解。而cell组件里面的就是我们的onCreateViewHolder创建的view。</p>
 <p>其中<a href="https://weex.apache.org/cn/references/components/text.html" target="_blank" rel="external">text</a>和<a href="https://weex.apache.org/cn/references/components/image.html" target="_blank" rel="external">image</a>我就不过多介绍了，相应链接都给出了。如果没接触过前端的同学肯定很好奇它是如何布局摆放的，像什么宽高啊，padding和margin啊，这其实是我们的<a href="https://weex.apache.org/cn/wiki/common-styles.html" target="_blank" rel="external">css</a>去控制的，但是是阉割版的，如果已经看过v-for链接的同学，发现是vue的官网，是的，weex基于vue，原来编写这样的文件格式为we，而现在要改为vue格式才能<a href="https://weex.apache.org/cn/tools/toolkit.html" target="_blank" rel="external">编译</a>成正确运行的js文件。</p>
+<p>上面说了weex是MVVM模式，其实是vue采用MVVM模式，如果对Android的MVVM模式开发很熟悉的话，越看上面的文件越像我们的xml，我一直想说这个，xml在我们Android Studio中可以预览，如果上面的文件可以预览那该多好？No problem!我们可以利用Playground进行在线编写以及运行调试，甚至可以利用Playground的客户端扫码进行在手机端上调试，简直吊炸天。</p>
 <h4 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h4><p>Component，也就是我上面说的组件，也就是我们的控件，除了官方内置的几种组件外，我们还可以自定义控件哦，是不是有点小兴奋，想当年也是因为自定义控件入行了Android，最前面所说的TabLayout+ViewPager+Fragment我把集成为一个控件，这样的做法，很明显的一个缺点就是耦合性增强了。我们现在处于学习嘛，怎么简单怎么来，先上我们的代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class WXTabPagerComponent extends WXVContainer&lt;LinearLayout&gt;</div><div class="line"></div><div class="line">@Override</div><div class="line">protected LinearLayout initComponentHostView(@NonNull Context context) &#123;</div><div class="line">    LinearLayout root = (LinearLayout) View.inflate(context, R.layout.layout_tab_pager, null);</div><div class="line">    ...</div><div class="line">    return root;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@WXComponentProp(name = &quot;titledata&quot;)</div><div class="line">public void setData(List&lt;String&gt; datas) &#123;</div><div class="line">    if (mTabPagerAdapter == null) &#123;</div><div class="line">        ...</div><div class="line">        mViewPager.setAdapter(mTabPagerAdapter);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    mTabPagerAdapter.reload(datas);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;LinearLayout ...&gt;</div><div class="line">    &lt;android.support.design.widget.TabLayout .../&gt;</div><div class="line">    &lt;android.support.v4.view.ViewPager .../&gt;</div><div class="line">&lt;/LinearLayout&gt;</div><div class="line"></div><div class="line">WXSDKEngine.registerComponent(&quot;tabPager&quot;, WXTabPagerComponent.class);</div><div class="line"></div><div class="line">&lt;template&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;tabPager :titledata=&quot;datas&quot; style=&quot;flex:1;&quot;&gt;&lt;/tabPager&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div></pre></td></tr></table></figure>
 <p>大部分无关紧要的代码都省略了，我相信你都可以脑补出来。最上面是我们是我们的自定义组件WXTabPagerComponent继承WXVContainer，还可以继承WXComponent，两者相当于我们的ViewGroup和View。</p>
@@ -466,6 +467,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -475,34 +484,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">RecyclerView</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,6 +511,26 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ijkplayer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">用户态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">内核态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ViewPager</a>
               </li>
              
@@ -546,18 +547,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Weex</a>
               </li>
              
@@ -567,6 +556,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代理模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Helper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,15 +603,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,6 +635,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clean</a>
               </li>
              
@@ -650,23 +651,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,7 +659,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
               </li>
              
               <li class="article-tag-list-item">
