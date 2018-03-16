@@ -24,9 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/img/weex_yuanli.png">
 <meta property="og:image" content="http://yoursite.com/img/wotm.jpg">
 <meta property="og:image" content="http://yoursite.com/img/zhuangbiciji.gif">
-<meta property="og:image" content="http://yoursite.com/img/zhuangbicijipao.gif">
-<meta property="og:image" content="http://yoursite.com/img/lang.gif">
-<meta property="og:updated_time" content="2018-03-16T09:23:36.000Z">
+<meta property="og:updated_time" content="2018-03-16T10:08:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起来玩Weex">
 <meta name="twitter:description" content="前言从前几天的面试情况来看，绝大部分的公司提到的更多是Hybrid App，诸如ReactNative、weex和WebView这样的字眼。为啥呢？简单的总结了一下，发布节奏快（节约成本），跨端，前两者还可以拥有Native一样的流畅体验。那么到底是不是这样呢？我这种渣渣说了不算，时间会说明一切，而这篇文章主要讲的三者之一的weex。 在学习一门技术之前必须要有一定的觉悟，而我的觉悟就是：我现在没">
@@ -201,7 +199,7 @@
 <p>作为一名地地道道的Android工程师，在面试的时候问我rn或者weex的时候，真不知道咋说，主要我真不会啊，h5还好说，因为我在上家公司主要从事原生与h5的开发，同事也分享了许多前端的框架，但我基本了解下其中的思想，除了大学学的微不足道的js之外，真的是对前端一无所知啊！说了这么多跟主题无关的话，主要想说，不要害怕自己啥都不会，撸起袖子就是干。多一门技术多一份饭碗，提升自己的技术栈，更多的公司需要的是啥都会的人才（嘿嘿）。</p>
 <pre><code>Tips:一些坑点和注意点会在讲述的时候掺杂，并不会一次性总结，大家要认真点哦！
 </code></pre><p><img src="/img/guaiqiao.gif" alt=""></p>
-<h3 id="开战"><a href="#开战" class="headerlink" title="开战"></a>开战</h3><h4 id="基本布局"><a href="#基本布局" class="headerlink" title="基本布局"></a>基本布局</h4><p>现在我们开始，关于什么环境配置，如何在Android studio上成功跑动demo类似这种我就不说了，你要时刻记住你是一名优秀的程序员，这篇文章要讲的更多的Android视角，如何在已有项目中集成weex。</p>
+<h3 id="开战"><a href="#开战" class="headerlink" title="开战"></a>开战</h3><h4 id="基本布局"><a href="#基本布局" class="headerlink" title="基本布局"></a>基本布局</h4><p>现在我们开始，关于什么环境配置，如何在Android studio上成功跑动demo类似这种我就不说了，你要时刻记住你是一名优秀的程序员，这篇文章要讲的更多的是Android视角，如何在已有项目中集成weex。</p>
 <p>我们简单分析一下效果图，如果是我们原生开发，那么TabLayout+ViewPager+Fragment+RecyclerView是一种常见的选择。前三者在weex中并没有现成的组件，但RecyclerView有啊！在weex中有一个叫<a href="https://weex.apache.org/cn/references/components/list.html" target="_blank" rel="external">list</a>的组件可以达到这样的效果。先上最终的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    &lt;list class=&quot;list&quot; @loadmore=&quot;loadmore&quot; loadmoreoffset=&quot;10&quot;&gt;</div><div class="line">        &lt;cell class=&quot;cell&quot; v-for=&quot;(item,index) in lists&quot; @click=&quot;itemclick(item,index)&quot;&gt;</div><div class="line">            &lt;div class=&quot;panel1&quot;&gt;</div><div class="line">                &lt;div class=&quot;panel2&quot;&gt;</div><div class="line">                    &lt;text class=&quot;text1&quot; lines=&quot;1&quot;&gt;&#123;&#123;item.desc&#125;&#125;&lt;/text&gt;</div><div class="line">                    &lt;text class=&quot;text2&quot; lines=&quot;1&quot;&gt;&#123;&#123;&quot;作者：&quot;+isWhoEmpty(item.who)&#125;&#125;&lt;/text&gt;</div><div class="line">                    &lt;text class=&quot;text3&quot; lines=&quot;1&quot;&gt;&#123;&#123;&quot;发布时间：&quot;+getLocalTime(item.publishedAt)&#125;&#125;&lt;/text&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;image class=&quot;icon&quot; src=&quot;mipmap://ic_go.png&quot;&gt;&lt;/image&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/cell&gt;</div><div class="line"></div><div class="line">        &lt;loading class=&quot;loading&quot; :display=&quot;loadinging ? &apos;show&apos; : &apos;hide&apos;&quot;&gt;</div><div class="line">              &lt;loading-indicator class=&quot;indicator&quot;&gt;&lt;/loading-indicator&gt;</div><div class="line">              &lt;text class=&quot;indicator-text&quot;&gt;正在加载中...&lt;/text&gt;</div><div class="line">            &lt;/loading&gt;</div><div class="line">    &lt;/list&gt;</div><div class="line">&lt;/template&gt;</div></pre></td></tr></table></figure>
 <p>关于下面的<a href="https://weex.apache.org/cn/references/components/loading.html" target="_blank" rel="external">loading</a>控件主要功能就是提供上拉加载，很简单，与之相配的是<a href="https://weex.apache.org/cn/references/components/refresh.html" target="_blank" rel="external">refresh</a>组件，聪明的你肯定已经猜到就是我们的下拉刷新。</p>
@@ -217,7 +215,7 @@
 <p>style=”flex:1;”用来指定它的宽高，你可以理解为LinearLayout的weight属性，若不指定宽高，默认是0。</p>
 <h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><p>接上面的自定义组件，贴数据绑定代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    export default&#123;</div><div class="line">        data () &#123;</div><div class="line">            return &#123;</div><div class="line">                datas: [&quot;Android&quot;,&quot;iOS&quot;,&quot;前端&quot;]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<p>这是的写法也有各种各样的意义，我学的时候也是一头雾水，比如带return属性写法表示只能在该组件生效，反之全局生效，可能会造成变量污染。这里的datas你可以理解我们的成员变量，就我们WXTabPagerComponent组件来说，我们return的datas直接以:titledata=”datas”这样的形式进行绑定，一旦datas变量变化相应绑定的组件随之变化，所以叫属性方法。这里再多嘴一下，:titledata其实是缩写，全写是<a href="https://cn.vuejs.org/v2/api/#v-bind" target="_blank" rel="external">v-bind</a>:titledata，这样是不是更好理解了？</p>
+<p>这里的花样也是百花齐放，我学的时候也是一头雾水，比如带return属性写法表示只能在该组件生效，反之全局生效，可能会造成变量污染。这里的datas你可以理解我们的成员变量，就我们WXTabPagerComponent组件来说，我们return的datas直接以:titledata=”datas”这样的形式进行绑定，一旦datas变量变化相应绑定的组件随之变化，所以叫属性方法。这里再多嘴一下，:titledata其实是缩写，全写是<a href="https://cn.vuejs.org/v2/api/#v-bind" target="_blank" rel="external">v-bind</a>:titledata，这样是不是更好理解了？与最上面事件的@写法如出一辙，@写法的全写是v-on:，这些都是vue的东西。</p>
 <p><img src="/img/6fanle .jpg" alt=""></p>
 <h4 id="Native和JS通信"><a href="#Native和JS通信" class="headerlink" title="Native和JS通信"></a>Native和JS通信</h4><h5 id="自定义事件通知"><a href="#自定义事件通知" class="headerlink" title="自定义事件通知"></a>自定义事件通知</h5><p>该用法我还没用过，不做解释，我把官方的贴出。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public void fireEvent(String elementRef,final String type, final Map&lt;String, Object&gt; data,final Map&lt;String, Object&gt; domChanges)&#123;  &#125;</div><div class="line"></div><div class="line">public void fireEvent(String elementRef,final String type, final Map&lt;String, Object&gt; data)&#123;</div><div class="line">  fireEvent(elementRef,type,data,null);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void fireEvent(String elementRef, String type)&#123;</div><div class="line">  fireEvent(ref,type,new HashMap&lt;String, Object&gt;());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -246,18 +244,17 @@
 <h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p>我猜很多哥们内心现在最想问的是Android原生到底如何执行js文件？Weex的原理到底是什么？你那个效果图有bug，滑动的时候TabLayout透明了，你行不行啊？</p>
 <p><img src="/img/maolengjing.gif" alt=""></p>
 <p>听我一一道来，关于Weex的<a href="https://weex.apache.org/cn/wiki/index.html" target="_blank" rel="external">工作原理</a>的示意图如下：</p>
-<p><img src="/img/weex_yuanli.png" alt=""><br>对于这种原理我也是半知半解，无能为力了。</p>
+<p><img src="/img/weex_yuanli.png" alt=""></p>
+<p>对于这种原理我也是半知半解，无能为力了。</p>
 <p>关于Android原生执行js文件一般有两种，一种是从网络上获取，一种直接执行本地的js文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mWXSDKInstance.render(&quot;GankioList&quot;, WXFileUtils.loadAsset(&quot;gankiolist.js&quot;, context), options, null, WXRenderStrategy.APPEND_ASYNC);</div><div class="line">mWXSDKInstance.renderByUrl();</div></pre></td></tr></table></figure>
-<p>前者是执行本地，后者是网络获取，比较常用可能会操作options，可以给js传递一些native的参数。</p>
+<p>前者是执行本地，后者是网络获取，我们常常会操作options以此给js传递一些native的参数。</p>
 <p>关于最后一个问题，我也很无奈啊，原来这个项目就是卡片阴影背景，一开始发现weex也有这样的样式，欣喜若狂，后来发现这个问题，我一度以为我使用姿势错了，急忙回去看文档，天空飘来仅仅支持ios几个字。</p>
 <p><img src="/img/wotm.jpg" alt=""></p>
 <p>为何ios这么叼？为何ios这么叼？为何ios这么叼？</p>
 <h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>这算是对自己这几天学习Weex的一点小总结，小弟不才，已经尽力了，希望对想入门或者刚入门Weex的同学有所帮助，同时希望Weex的前辈能够指出其中错误。文中的代码已经集成到我开源项目<a href="https://github.com/crazysunj/CrazyDaily" target="_blank" rel="external">CrazyDaily</a>。学习Weex主要还是看重它基于Vue，传说Vue是以为长得很帅的国人创立的，请给我一个理由不支持？</p>
 <p><img src="/img/zhuangbiciji.gif" alt=""></p>
-<p><img src="/img/zhuangbicijipao.gif" alt=""></p>
 <p>最后，感谢一直支持我的人！</p>
-<p><img src="/img/lang.gif" alt=""></p>
 <h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p>Github：<a href="https://github.com/crazysunj/" target="_blank" rel="external">https://github.com/crazysunj/</a></p>
 <p>博客：<a href="http://crazysunj.com/" target="_blank" rel="external">http://crazysunj.com/</a></p>
 <p>Weex常用网站：<a href="https://github.com/joggerplus/awesome-weex" target="_blank" rel="external">https://github.com/joggerplus/awesome-weex</a></p>
@@ -473,39 +470,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">DI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dagger2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IOC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,6 +503,30 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Adapter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Butterknife</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">DI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dagger2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IOC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">xUtils</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,10 +578,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">helper</a>
               </li>
              
@@ -609,7 +602,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,10 +638,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工厂模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Clean</a>
               </li>
              
@@ -645,11 +650,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Framework</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,11 +674,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">内存管理</a>
+                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,14 +683,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模板方法模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">装饰者模式</a>
               </li>
             
             <div class="clearfix"></div>
